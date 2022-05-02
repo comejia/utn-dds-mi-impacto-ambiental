@@ -1,0 +1,37 @@
+@startuml
+
+class APie
+class Bicicleta
+class ServicioContratado
+enum TipoCombustible
+enum TipoServicioContratado
+enum TipoTransportePublico
+enum TipoVehiculo
+
+abstract class Transporte {
+String direccionInicio
+String direccionLlegada
+}
+
+class TransportePublico {
+String paradaInicio
+String paradaFin
+Integer linea
+}
+class VehiculoParticular
+
+APie --|> Transporte
+Bicicleta --|> Transporte
+
+ServicioContratado --|> Transporte
+ServicioContratado --> TipoServicioContratado
+
+TransportePublico --|> Transporte
+TransportePublico --> TipoTransportePublico
+
+VehiculoParticular --|> Transporte
+VehiculoParticular --> TipoVehiculo
+VehiculoParticular --> TipoCombustible
+
+
+@enduml
