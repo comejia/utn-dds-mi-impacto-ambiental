@@ -1,4 +1,4 @@
-package organizacion;
+package organizaciones;
 
 public enum Clasificacion {
   MINISTERIO,
