@@ -1,9 +1,8 @@
 package organizaciones;
 
-import miembros.Miembro;
-
 import java.util.ArrayList;
 import java.util.List;
+import miembros.Miembro;
 
 public class Sector {
   private final Organizacion organizacion;

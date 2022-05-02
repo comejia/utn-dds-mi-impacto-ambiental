@@ -1,10 +1,9 @@
 package miembros;
 
-import organizaciones.Organizacion;
-import organizaciones.Sector;
-
 import java.util.HashMap;
 import java.util.Map;
+import organizaciones.Organizacion;
+import organizaciones.Sector;
 
 public class Miembro {
 
