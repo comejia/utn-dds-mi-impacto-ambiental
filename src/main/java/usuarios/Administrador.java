@@ -56,9 +56,9 @@ public class Administrador {
   //Metodo para traduccir el codigo de un error para el usuario
   private HashMap<String, String> getDiccionarioDeErrores() {
     HashMap<String, String> DiccionarioDeErrores = new HashMap<>();
-    DiccionarioDeErrores.put("ILLEGAL_WORD", "La contraseña ingresada es muy facil");
+    DiccionarioDeErrores.put("ILLEGAL_WORD", "La contraseña ingresada es muy fácil");
     DiccionarioDeErrores.put("TOO_SHORT", "La contraseña debe tener al menos 8 caracteres");
-    DiccionarioDeErrores.put("TOO_LONG", "La contraseña puede tener 64 caracteres como maximo");
+    DiccionarioDeErrores.put("TOO_LONG", "La contraseña puede tener 64 caracteres como máximo");
     return DiccionarioDeErrores;
   }
 
