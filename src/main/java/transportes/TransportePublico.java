@@ -6,9 +6,9 @@ public class TransportePublico extends Transporte {
 
   private TipoTransportePublico tipoTransportePublico;
   private List<Parada> paradas;
-  private Integer linea;
+  private int linea;
 
-  public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, Integer linea) {
+  public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea) {
     this.tipoTransportePublico = tipoTransportePublico;
     this.paradas = paradas;
     this.linea = linea;

@@ -62,4 +62,6 @@ public class AdministradorTest {
     });
     assertEquals("La contraseña debe tener al menos 8 caracteres", UsuarioInvalido.getMessage());
   }
+
 }
+

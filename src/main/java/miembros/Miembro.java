@@ -4,16 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 import organizaciones.Organizacion;
 import organizaciones.Sector;
+import trayectos.Tramo;
 
 public class Miembro {
 
   private String nombre;
   private String apellido;
   private TipoDocumento tipoDocumento;
-  private Integer numeroDocumento;
+  private int numeroDocumento;
+
   private final Map<Sector, Organizacion> trabajos = new HashMap<>();
 
-  public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, Integer numeroDocumento) {
+  public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.tipoDocumento = tipoDocumento;
@@ -23,6 +25,10 @@ public class Miembro {
   public void vincularASector(Sector sector) {
     sector.agregarMiembro(this);
     trabajos.put(sector, sector.getOrganizacion());
+  }
+
+  public Map<Sector, Organizacion> devolverTrabajos() {
+    return trabajos;
   }
 
 }
