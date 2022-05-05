@@ -1,16 +1,20 @@
 package transportes;
 
+import java.util.List;
+
 public class TransportePublico extends Transporte {
 
-    private TipoTransportePublico tipoTransportePublico;
-    private Parada paradaInicio;
-    private Parada paradaFin;
-    private Integer linea;
+  private TipoTransportePublico tipoTransportePublico;
+  private List<Parada> paradas;
+  private Integer linea;
 
-    public TransportePublico(TipoTransportePublico tipoTransportePublico, Parada paradaInicio, Parada paradaFin, Integer linea) {
-        this.tipoTransportePublico = tipoTransportePublico;
-        this.paradaInicio = paradaInicio;
-        this.paradaFin = paradaFin;
-        this.linea = linea;
-    }
+  public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, Integer linea) {
+    this.tipoTransportePublico = tipoTransportePublico;
+    this.paradas = paradas;
+    this.linea = linea;
+  }
+
+  public void agregarParada(Parada parada) {
+    this.paradas.add(parada);
+  }
 }

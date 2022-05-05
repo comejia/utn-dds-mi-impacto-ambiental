@@ -1,11 +1,9 @@
 package miembros;
 
-import organizacion.Organizacion;
-import organizacion.Sector;
-import trayectos.Trayecto;
-
 import java.util.HashMap;
 import java.util.Map;
+import organizaciones.Organizacion;
+import organizaciones.Sector;
 
 public class Miembro {
 
@@ -13,7 +11,7 @@ public class Miembro {
   private String apellido;
   private TipoDocumento tipoDocumento;
   private Integer numeroDocumento;
-  private Map<Organizacion, Sector> trabajos = new HashMap<>();
+  private final Map<Sector, Organizacion> trabajos = new HashMap<>();
 
   public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, Integer numeroDocumento) {
     this.nombre = nombre;
@@ -22,6 +20,9 @@ public class Miembro {
     this.numeroDocumento = numeroDocumento;
   }
 
-  public void registrarTrayecto(Trayecto trayecto) {
+  public void vincularASector(Sector sector) {
+    sector.agregarMiembro(this);
+    trabajos.put(sector, sector.getOrganizacion());
   }
+
 }
