@@ -1,37 +1,114 @@
 @startuml
 
+class Miembro {
+    String nombre
+    String apellido
+    Integer numeroDocumento
+    Map<Sector, Organizacion> trabajos
+}
+
+enum TipoDocumento {
+    DNI
+    LIBRETA_CIVICA
+}
+
+enum Clasificacion {
+    MINISTERIO
+    UNIVERSIDAD
+    ESCUELA
+    EMPRESA_SECTOR_PRIMARIO
+    EMPRESA_SECTOR_SECUNDARIO
+}
+
+class Organizacion {
+    String razonSocial
+    String ubicacion
+}
+
+class Sector
+
+enum TipoOrganizacion {
+    GUBERNAMENTAL
+    ONG
+    EMPRESA
+    INSTITUCION
+}
+
 class APie
 class Bicicleta
-class ServicioContratado
-enum TipoCombustible
-enum TipoServicioContratado
-enum TipoTransportePublico
-enum TipoVehiculo
 
-abstract class Transporte {
-String direccionInicio
-String direccionLlegada
+class Parada {
+    String direccion
 }
+
+
+class ServicioContratado
+
+enum TipoCombustible {
+    GNC
+    NAFTA
+    GASOIL
+    ELECTRICO
+}
+
+enum TipoServicioContratado {
+    TAXI
+    REMIS
+}
+
+enum TipoTransportePublico {
+    TREN
+    SUBTE
+    COLECTIVO
+}
+
+enum TipoVehiculo {
+    MOTO
+    AUTO
+    CAMIONETA
+}
+
+abstract class Transporte
 
 class TransportePublico {
-String paradaInicio
-String paradaFin
-Integer linea
+    Integer linea
 }
+
 class VehiculoParticular
+
+class Punto {
+    String direccion
+}
+
+class Tramo {
+    Transporte transporte;
+  private Punto puntoInicio;
+  private Punto puntoFinal;
+}
+class Trayecto
+
+Miembro --> TipoDocumento
+
+Organizacion --> TipoOrganizacion
+Organizacion --> Clasificacion
+Organizacion --> "*" Sector
+Sector --> Organizacion
+Sector --> "*" Miembro
 
 APie --|> Transporte
 Bicicleta --|> Transporte
-
 ServicioContratado --|> Transporte
 ServicioContratado --> TipoServicioContratado
-
 TransportePublico --|> Transporte
 TransportePublico --> TipoTransportePublico
-
+TransportePublico --> "*" Parada
 VehiculoParticular --|> Transporte
 VehiculoParticular --> TipoVehiculo
 VehiculoParticular --> TipoCombustible
 
+Tramo --> Transporte
+Tramo --> "inicio" Punto
+Tramo --> "final" Punto
+Trayecto --> "*" Tramo
 
 @enduml
