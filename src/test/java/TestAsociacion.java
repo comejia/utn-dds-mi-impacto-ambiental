@@ -1,17 +1,13 @@
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Collections;
-import java.util.HashSet;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import miembros.Miembro;
 import miembros.TipoDocumento;
 import organizaciones.Clasificacion;
 import organizaciones.Organizacion;
 import organizaciones.Sector;
 import organizaciones.TipoOrganizacion;
-
-
 
 public class TestAsociacion {
     Organizacion ministerio = new Organizacion("Ministerio Dr Goku", TipoOrganizacion.GUBERNAMENTAL, "Av.Libertador 2552", Clasificacion.MINISTERIO);
@@ -23,15 +19,17 @@ public class TestAsociacion {
         ministerio.agregarSector(seguridad);
         seguridad.agregarMiembro(goku);
         
-        assertEquals(seguridad.verMiembros().get(0),goku);
+        assertEquals(seguridad.verMiembros().get(0), goku);
     }
 
     @Test
     public void unMiembroConoceSuSector() {
         goku.vincularASector(seguridad);
-        assertEquals(true,goku.devolverOrganizaciones().contains(ministerio));}
-    
+        assertTrue(goku.devolverOrganizaciones().contains(ministerio));
+    }
+
     @Test
     public void unSectorConoceSuOrganizacion() {
-        assertEquals(seguridad.getOrganizacion(),ministerio);
-    }}
+        assertEquals(seguridad.getOrganizacion(), ministerio);
+    }
+}

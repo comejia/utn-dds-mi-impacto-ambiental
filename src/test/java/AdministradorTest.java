@@ -1,4 +1,4 @@
-import Exepciones.ContraseniaDebilException;
+import exepciones.ContraseniaDebilException;
 import org.junit.jupiter.api.Test;
 import usuarios.Administrador;
 

@@ -1,12 +1,10 @@
 package miembros;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 import organizaciones.Organizacion;
 import organizaciones.Sector;
-import trayectos.Tramo;
 
 public class Miembro {
 
@@ -30,7 +28,7 @@ public class Miembro {
   }
 
   public List<Organizacion> devolverOrganizaciones() {
-    return trabajos.stream().map(Sector::getOrganizacion).toList();
+    return trabajos.stream().map(Sector::getOrganizacion).collect(Collectors.toList());
   }
 
 }

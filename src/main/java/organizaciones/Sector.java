@@ -19,7 +19,8 @@ public class Sector {
   public void agregarMiembro(Miembro miembro) {
     this.miembros.add(miembro);
   }
+
   public List<Miembro> verMiembros() {
-    return miembros;
+    return this.miembros;
   }
 }

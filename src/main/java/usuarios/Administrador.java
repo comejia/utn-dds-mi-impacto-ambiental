@@ -1,11 +1,10 @@
 package usuarios;
 
-import Exepciones.ContraseniaDebilException;
+import exepciones.ContraseniaDebilException;
 import org.passay.*;
 import org.passay.dictionary.Dictionary;
 import org.passay.dictionary.DictionaryBuilder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -55,18 +54,18 @@ public class Administrador {
 
   //Metodo para traduccir el codigo de un error para el usuario
   private HashMap<String, String> getDiccionarioDeErrores() {
-    HashMap<String, String> DiccionarioDeErrores = new HashMap<>();
-    DiccionarioDeErrores.put("ILLEGAL_WORD", "La contraseña ingresada es muy fácil");
-    DiccionarioDeErrores.put("TOO_SHORT", "La contraseña debe tener al menos 8 caracteres");
-    DiccionarioDeErrores.put("TOO_LONG", "La contraseña puede tener 64 caracteres como máximo");
-    return DiccionarioDeErrores;
+    HashMap<String, String> diccionarioDeErrores = new HashMap<>();
+    diccionarioDeErrores.put("ILLEGAL_WORD", "La contraseña ingresada es muy fácil");
+    diccionarioDeErrores.put("TOO_SHORT", "La contraseña debe tener al menos 8 caracteres");
+    diccionarioDeErrores.put("TOO_LONG", "La contraseña puede tener 64 caracteres como máximo");
+    return diccionarioDeErrores;
   }
 
   //Genero un diccionario de reglas en bases al archivo de las 10000 contraseñas faciles
   private DictionaryRule reglaConClavesBaneadas() throws ClassNotFoundException {
     Class cls = Class.forName("usuarios.Administrador");
-    ClassLoader cLoader = cls.getClassLoader();
-    InputStream inputStream = cLoader.getResourceAsStream("10-million-password-list-top-10000.txt");
+    ClassLoader classLoader = cls.getClassLoader();
+    InputStream inputStream = classLoader.getResourceAsStream("10-million-password-list-top-10000.txt");
     DictionaryBuilder dictionaryBuilder = new DictionaryBuilder();
     assert inputStream != null;
     Dictionary diccionarioContraseniasFaciles = dictionaryBuilder.addReader(new InputStreamReader(inputStream)).build();
@@ -76,6 +75,5 @@ public class Administrador {
   private String hashearContrasenia(String contraseniaPlana) {
     return BCrypt.hashpw(contraseniaPlana, BCrypt.gensalt());
   }
-
 
 }
