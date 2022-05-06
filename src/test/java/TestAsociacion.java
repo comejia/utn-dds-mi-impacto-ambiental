@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Collections;
+import java.util.HashSet;
+
 import miembros.Miembro;
 import miembros.TipoDocumento;
 import organizaciones.Clasificacion;
@@ -26,5 +29,9 @@ public class TestAsociacion {
     @Test
     public void unMiembroConoceSuSector() {
         goku.vincularASector(seguridad);
-        assertEquals(goku.devolverTrabajos(),seguridad);}
-}
+        assertEquals(goku.devolverTrabajos().keySet(),new HashSet(Collections.singleton(seguridad)));}
+    
+    @Test
+    public void unSectorConoceSuOrganizacion() {
+        assertEquals(seguridad.getOrganizacion(),ministerio);
+    }}
