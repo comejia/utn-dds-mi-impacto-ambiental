@@ -3,7 +3,7 @@
 class Miembro {
     String nombre
     String apellido
-    Integer numeroDocumento
+    int numeroDocumento
     Map<Sector, Organizacion> trabajos
 }
 
@@ -71,7 +71,7 @@ enum TipoVehiculo {
 abstract class Transporte
 
 class TransportePublico {
-    Integer linea
+    int linea
 }
 
 class VehiculoParticular
@@ -88,6 +88,7 @@ class Tramo {
 class Trayecto
 
 Miembro --> TipoDocumento
+Miembro --> "*" Sector
 
 Organizacion --> TipoOrganizacion
 Organizacion --> Clasificacion
