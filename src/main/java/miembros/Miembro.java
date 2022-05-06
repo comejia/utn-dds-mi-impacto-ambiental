@@ -1,6 +1,8 @@
 package miembros;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import organizaciones.Organizacion;
 import organizaciones.Sector;
@@ -13,7 +15,7 @@ public class Miembro {
   private TipoDocumento tipoDocumento;
   private int numeroDocumento;
 
-  private final Map<Sector, Organizacion> trabajos = new HashMap<>();
+  private final List<Sector> trabajos = new ArrayList<>();
 
   public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento) {
     this.nombre = nombre;
@@ -24,11 +26,11 @@ public class Miembro {
 
   public void vincularASector(Sector sector) {
     sector.agregarMiembro(this);
-    trabajos.put(sector, sector.getOrganizacion());
+    trabajos.add(sector);
   }
 
-  public Map<Sector, Organizacion> devolverTrabajos() {
-    return trabajos;
+  public List<Organizacion> devolverOrganizaciones() {
+    return trabajos.stream().map(Sector::getOrganizacion).toList();
   }
 
 }

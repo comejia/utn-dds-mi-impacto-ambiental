@@ -29,7 +29,7 @@ public class TestAsociacion {
     @Test
     public void unMiembroConoceSuSector() {
         goku.vincularASector(seguridad);
-        assertEquals(goku.devolverTrabajos().keySet(),new HashSet(Collections.singleton(seguridad)));}
+        assertEquals(true,goku.devolverOrganizaciones().contains(ministerio));}
     
     @Test
     public void unSectorConoceSuOrganizacion() {
