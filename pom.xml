@@ -57,7 +57,10 @@
             MissingJavadocType,
             NonEmptyAtclauseDescription,
             JavadocParagraph,
-            SummaryJavadoc
+            SummaryJavadoc,
+            CustomImportOrder,
+            LineLength,
+            AvoidStarImport
           </violationIgnore>
         </configuration>
         <executions>
