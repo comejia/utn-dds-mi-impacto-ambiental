@@ -1,5 +1,5 @@
 package transportes;
 
-public abstract class Transporte {
+public interface Transporte {
 
 }

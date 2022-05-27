@@ -1,6 +1,6 @@
 package transportes;
 
-public class APie extends Transporte {
+public class APie implements Transporte {
 
   public APie() {
   }

@@ -1,6 +1,6 @@
 package transportes;
 
-public class ServicioContratado extends Transporte {
+public class ServicioContratado implements Transporte {
 
   private TipoServicioContratado tipoServicioContratado;
 

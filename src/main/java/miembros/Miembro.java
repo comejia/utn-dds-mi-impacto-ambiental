@@ -2,8 +2,7 @@ package miembros;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import organizaciones.Organizacion;
+
 import organizaciones.Sector;
 
 public class Miembro {
@@ -23,12 +22,11 @@ public class Miembro {
   }
 
   public void vincularASector(Sector sector) {
-    sector.agregarMiembro(this);
     trabajos.add(sector);
   }
 
-  public List<Organizacion> devolverOrganizaciones() {
-    return trabajos.stream().map(Sector::getOrganizacion).collect(Collectors.toList());
+  public List<Sector> getSector() {
+    return this.trabajos;
   }
 
 }

@@ -14,31 +14,29 @@ public class Administrador {
   private String usuario;
   private String contrasenia;
 
-  public Administrador(String usuario, String contrasenia) throws ClassNotFoundException {
+  public Administrador(String usuario, String contrasenia) {
     if (usuario == null) {
       throw new RuntimeException("Debe ingresar un usuario");
     }
     validarContrasenia(usuario,contrasenia);
     this.usuario = usuario;
-    this.contrasenia = hashearContrasenia(contrasenia); //guardo la contraseña de forma hasheada
+    this.contrasenia = hashearContrasenia(contrasenia);
   }
 
-  private void validarContrasenia(String usuario, String contrasenia) throws ClassNotFoundException {
+  private void validarContrasenia(String usuario, String contrasenia) {
     PasswordData passwordData = new PasswordData();
     passwordData.setUsername(usuario);
     passwordData.setPassword(contrasenia);
 
     PasswordValidator validador = getValidador();
 
-    //valido la contraseña contra las validaciones definidas
     RuleResult validate = validador.validate(passwordData);
     if (!validate.isValid()) {
-      throw new ContraseniaDebilException(definirMensajeDelError(validate));
+      throw new ContraseniaDebilException(getMensajeDeError(validate));
     }
   }
 
-  //En este metodo armo un validador personalizado con las validaciones que quiero.
-  private PasswordValidator getValidador() throws ClassNotFoundException {
+  private PasswordValidator getValidador() {
     return new PasswordValidator(
         reglaConClavesBaneadas(),
         new LengthRule(8,64),
@@ -46,13 +44,11 @@ public class Administrador {
     );
   }
 
-  //Un get del Error de la validacion
-  private String definirMensajeDelError(RuleResult validate) {
+  private String getMensajeDeError(RuleResult validate) {
     RuleResultDetail ruleResultDetail = validate.getDetails().get(0);
     return String.valueOf(getDiccionarioDeErrores().get(ruleResultDetail.getErrorCode()));
   }
 
-  //Metodo para traduccir el codigo de un error para el usuario
   private HashMap<String, String> getDiccionarioDeErrores() {
     HashMap<String, String> diccionarioDeErrores = new HashMap<>();
     diccionarioDeErrores.put("ILLEGAL_WORD", "La contraseña ingresada es muy fácil");
@@ -61,10 +57,8 @@ public class Administrador {
     return diccionarioDeErrores;
   }
 
-  //Genero un diccionario de reglas en bases al archivo de las 10000 contraseñas faciles
-  private DictionaryRule reglaConClavesBaneadas() throws ClassNotFoundException {
-    Class cls = Class.forName("usuarios.Administrador");
-    ClassLoader classLoader = cls.getClassLoader();
+  private DictionaryRule reglaConClavesBaneadas() {
+    ClassLoader classLoader = Administrador.class.getClassLoader();
     InputStream inputStream = classLoader.getResourceAsStream("10-million-password-list-top-10000.txt");
     DictionaryBuilder dictionaryBuilder = new DictionaryBuilder();
     assert inputStream != null;

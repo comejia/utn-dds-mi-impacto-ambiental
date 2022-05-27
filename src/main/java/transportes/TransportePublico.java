@@ -2,7 +2,7 @@ package transportes;
 
 import java.util.List;
 
-public class TransportePublico extends Transporte {
+public class TransportePublico implements Transporte {
 
   private TipoTransportePublico tipoTransportePublico;
   private List<Parada> paradas;

@@ -1,6 +1,6 @@
 package transportes;
 
-public class VehiculoParticular extends Transporte {
+public class VehiculoParticular implements Transporte {
 
   private TipoVehiculo tipoVehiculo;
   private TipoCombustible tipoCombustible;

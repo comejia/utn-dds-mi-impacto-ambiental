@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Organizacion {
+
   private String razonSocial;
   private TipoOrganizacion tipoOrganizacion;
   private String ubicacion;
