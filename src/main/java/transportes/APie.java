@@ -1,7 +1,8 @@
 package transportes;
 
-public class APie implements Transporte {
+public class APie extends TransportePrivado {
 
   public APie() {
+    super();
   }
 }

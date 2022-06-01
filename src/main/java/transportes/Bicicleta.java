@@ -1,7 +1,8 @@
 package transportes;
 
-public class Bicicleta implements Transporte {
+public class Bicicleta extends TransportePrivado {
 
   public Bicicleta() {
+    super();
   }
 }
