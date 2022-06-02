@@ -5,6 +5,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import exepciones.PuntoIncompatibleException;
+import trayectos.Distancia;
 import trayectos.Punto;
 
 public class TransportePublico implements Transporte {
@@ -40,6 +41,7 @@ public class TransportePublico implements Transporte {
     int i1 = paradas.indexOf(parada1), i2 = paradas.indexOf(parada2);
     
     List<Parada> p = paradas.subList(i1, i2);
-    return i1 == i2 ? 0 : p.stream().mapToDouble(parada -> parada.getDistanciaProximaParada()).sum();
+    return p.stream().mapToDouble(parada -> parada.getDistanciaProximaParada()).sum();
+    //return new Distancia(p.stream().mapToDouble(parada -> parada.getDistanciaProximaParada()).sum(), "metros");
   }
 }

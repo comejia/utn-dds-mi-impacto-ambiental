@@ -1,5 +1,6 @@
 package transportes;
 
+import trayectos.Distancia;
 import trayectos.Punto;
 
 public interface Transporte {
