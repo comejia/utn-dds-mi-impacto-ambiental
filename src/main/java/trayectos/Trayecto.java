@@ -17,6 +17,11 @@ public class Trayecto {
   public double distanciaTotal() {
     return tramos.stream().mapToDouble(tramo -> tramo.distancia()).sum();
   }
+
+  public boolean puedoCompartir() {
+    return tramos.stream().allMatch(tramo -> tramo.esVehiculoParticularOServicioContratado());
+  }
+ 
 }
 
 /*

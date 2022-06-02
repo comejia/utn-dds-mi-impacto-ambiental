@@ -1,5 +1,7 @@
 package transportes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import API.Geodds;
 import trayectos.Distancia;
 import trayectos.Punto;
