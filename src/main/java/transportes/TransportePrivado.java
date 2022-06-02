@@ -1,5 +1,7 @@
 package transportes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import API.Geodds;
 import trayectos.Distancia;
 import trayectos.Punto;
@@ -13,6 +15,13 @@ public abstract class TransportePrivado implements Transporte {
 
   @Override
   public double getDistancia(Punto puntoInicio, Punto puntoFin) {
-      return appi.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
+    
+      try {
+        return appi.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
+      } catch (JsonProcessingException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      return 0;
   }
 }
