@@ -1,7 +1,5 @@
 package trayectos;
 
-import transportes.Parada;
-
 public class Punto {
 
   private Direccion direccion;

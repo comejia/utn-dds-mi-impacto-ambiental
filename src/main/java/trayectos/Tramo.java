@@ -1,6 +1,8 @@
 package trayectos;
 
+
 import transportes.ServicioContratado;
+
 import transportes.Transporte;
 import transportes.VehiculoParticular;
 
@@ -14,9 +16,9 @@ public class Tramo {
     this.puntoInicio = puntoInicio;
     this.puntoFinal = puntoFinal;
   }
-  
+
   public double distancia() {
-	  
+
     return transporte.getDistancia(puntoInicio, puntoFinal);
 
   }

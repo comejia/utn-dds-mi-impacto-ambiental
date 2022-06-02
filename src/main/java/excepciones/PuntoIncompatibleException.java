@@ -1,4 +1,4 @@
-package exepciones;
+package excepciones;
 
 public class PuntoIncompatibleException extends RuntimeException {
 

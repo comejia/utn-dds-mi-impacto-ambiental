@@ -16,6 +16,7 @@ public abstract class TransportePrivado implements Transporte {
   @Override
   public double getDistancia(Punto puntoInicio, Punto puntoFin) {
     
+     
       try {
         return appi.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
       } catch (JsonProcessingException e) {
@@ -23,5 +24,9 @@ public abstract class TransportePrivado implements Transporte {
         e.printStackTrace();
       }
       return 0;
+  }
+
+  public void setAppi(Geodds appi) {
+    this.appi = appi;
   }
 }
