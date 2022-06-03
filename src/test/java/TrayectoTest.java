@@ -23,6 +23,7 @@ import trayectos.Punto;
 import trayectos.Tramo;
 import trayectos.Trayecto;
 
+
 public class TrayectoTest {
 
   Parada p1, p2, p3, p4, p5;

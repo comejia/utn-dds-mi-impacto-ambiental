@@ -33,6 +33,7 @@ public class Miembro {
   public List<Sector> getSector() {
     return this.trabajos;
   }
+  public List<Trayecto> getTrayectos(){return this.trayectos;}
 
   public void agregarTrayecto(Miembro miembro, Trayecto trayecto) {
     if(trayecto.puedoCompartir() && !noCompartoOrganizacionCon(miembro)) {
