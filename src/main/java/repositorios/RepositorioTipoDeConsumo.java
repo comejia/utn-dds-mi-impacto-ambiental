@@ -16,7 +16,7 @@ public class RepositorioTipoDeConsumo {
 
   public TipoConsumo getTipoConsumo(String tipo) {
     return tipoConsumos.stream()
-        .filter(t -> t.getTipo().equals(tipo))
+        .filter(t -> t.esMismoTipo(tipo))
         .findFirst()
         .orElseThrow(() -> new RuntimeException("Tipo de Consumo inexistente"));
   }

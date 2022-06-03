@@ -17,12 +17,12 @@ public class FactorDeEmisionTest {
   }
 
   @Test
-  public void unfactorDeEmisionEsCompatibleConDeterminadoTipoDeConsumo() {
+  public void factorDeEmisionEsCompatibleConDeterminadoTipoDeConsumo() {
     Assertions.assertDoesNotThrow(() -> new FactorEmision(10, "kgCO2eq/kWh", this.electricidad));
   }
 
   @Test
-  public void unFactorDeEmisionNoCompatibleConElTipoDeConsumoArrojaError() {
+  public void factorDeEmisionNoCompatibleConElTipoDeConsumoLanzaException() {
     Assertions.assertThrows(UnidadIncompatibleException.class,
         () -> new FactorEmision(10, "kgCO2eq/kWh", this.gasNatural));
   }

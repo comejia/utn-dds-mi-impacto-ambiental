@@ -21,4 +21,8 @@ public class TipoConsumo {
   public String getTipo() {
     return this.tipo;
   }
+
+  public boolean esMismoTipo(String tipo) {
+    return this.tipo.equals(tipo);
+  }
 }
