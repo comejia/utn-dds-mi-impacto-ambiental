@@ -1,0 +1,112 @@
+@startuml
+
+class Geodds {
+    Client client
+    static final String API_DISTANCIA
+    double getDistancia(Direccion direccionInicio, Direccion direccionFin)
+}
+class Distancia {
+    Double unidad
+    String valor
+}
+
+class Punto {}
+
+class Direccion {
+    String localidad
+    String calle
+    String altura
+}
+
+class APie
+class Bicicleta
+
+class Parada {
+    double distanciaProximaParada
+}
+
+class ServicioContratado {}
+
+interface Transporte {
+    double getDistancia(Punto puntoInicio, Punto puntoFin)
+}
+
+class TransportePublico {
+    double getDistancia(Punto p1, Punto p2)
+}
+
+class VehiculoParticular {}
+
+class Tramo {
+    double distancia()
+    boolean esVehiculoParticularOServicioContratado()
+}
+
+class Trayecto {
+    double distanciaTotal()
+    boolean puedoCompartir()
+}
+
+abstract class TransportePrivado {
+    double getDistancia(Punto puntoInicio, Punto puntoFin)
+}
+
+class Miembro {
+    List<Trayecto> trayectos
+    void agregarTrayecto(Miembro miembro, Trayecto trayecto)
+    List<Organizacion> listaOrganizaciones()
+    List<Organizacion> listaOrganizacionesCompartidas(Miembro miembro)
+    boolean noCompartoOrganizacionCon(Miembro miembro)
+}
+
+class Sector {
+}
+
+
+class FactorEmision {
+    int valor
+    String unidad
+}
+class Medicion {
+    String tipoConsumo
+    int valor
+    String periodicidad
+    String periodicidadDeImputacion
+}
+
+class Organizacion {
+    void cargarMediciones(String path, List<TipoConsumo> tiposExistentes)
+    void agregarMedicion(String[] fila)
+}
+
+APie --|> TransportePrivado
+Bicicleta --|> TransportePrivado
+ServicioContratado --|> TransportePrivado
+
+TransportePublico ..|> Transporte
+TransportePublico --> "*" Parada
+VehiculoParticular --|> TransportePrivado
+
+TransportePrivado ..|> Transporte
+TransportePrivado --> Geodds
+
+Tramo --> Transporte
+Tramo --> "inicio" Punto
+Tramo --> "final" Punto
+
+Trayecto --> "*" Tramo
+
+Miembro --> "*" Trayecto
+Miembro --> "trabajos" Sector
+
+Punto --> Direccion
+Punto --> Parada
+
+FactorEmision --> TipoConsumo
+
+Organizacion --> "*" Medicion
+Organizacion --> "*" Sector
+
+Sector --> "final" Organizacion
+
+@enduml

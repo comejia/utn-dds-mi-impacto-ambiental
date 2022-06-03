@@ -1,0 +1,178 @@
+@startuml
+
+class Geodds {
+    Client client
+    static final String API_DISTANCIA
+    double getDistancia(Direccion direccionInicio, Direccion direccionFin)
+}
+
+class Miembro {
+    String nombre
+    String apellido
+    int numeroDocumento
+    void agregarTrayecto(Miembro miembro, Trayecto trayecto)
+    List<Organizacion> listaOrganizaciones()
+    List<Organizacion> listaOrganizacionesCompartidas(Miembro miembro)
+    boolean noCompartoOrganizacionCon(Miembro miembro)
+}
+
+enum TipoDocumento {
+    DNI
+    LIBRETA_CIVICA
+}
+
+enum Clasificacion {
+    MINISTERIO
+    UNIVERSIDAD
+    ESCUELA
+    EMPRESA_SECTOR_PRIMARIO
+    EMPRESA_SECTOR_SECUNDARIO
+}
+
+class FactorEmision {
+    int valor
+    String unidad
+}
+
+class Medicion {
+    String tipoConsumo
+    int valor
+    String periodicidad
+    String periodicidadDeImputacion
+}
+
+class Organizacion {
+    String razonSocial
+    String ubicacion
+    void cargarMediciones(String path, List<TipoConsumo> tiposExistentes)
+    void agregarMedicion(String[] fila)
+}
+
+class Sector
+
+class TipoConsumo {
+    String tipo
+    String unidad
+    String actividad
+    int alcance
+    boolean esMismoTipo(String tipo)
+}
+
+enum TipoOrganizacion {
+    GUBERNAMENTAL
+    ONG
+    EMPRESA
+    INSTITUCION
+}
+
+class APie
+class Bicicleta
+
+class Parada {
+    String direccion
+}
+
+
+class ServicioContratado
+
+enum TipoCombustible {
+    GNC
+    NAFTA
+    GASOIL
+    ELECTRICO
+}
+
+enum TipoServicioContratado {
+    TAXI
+    REMIS
+}
+
+enum TipoTransportePublico {
+    TREN
+    SUBTE
+    COLECTIVO
+}
+
+enum TipoVehiculo {
+    MOTO
+    AUTO
+    CAMIONETA
+}
+
+interface Transporte {
+    double getDistancia(Punto puntoInicio, Punto puntoFin)
+}
+
+abstract class TransportePrivado {
+    double getDistancia(Punto puntoInicio, Punto puntoFin)
+}
+
+class TransportePublico {
+    int linea
+    double getDistancia(Punto p1, Punto p2)
+}
+
+class VehiculoParticular
+
+class Direccion {
+    String localidad
+    String calle
+    String altura
+}
+
+class Distancia {
+    Double unidad
+    String valor
+}
+
+class Parada {
+    double distanciaProximaParada
+}
+
+class Punto {
+    String direccion
+}
+
+class Tramo {}
+
+class Trayecto {
+    double distanciaTotal()
+    boolean puedoCompartir()
+}
+
+Miembro --> TipoDocumento
+Miembro --> "*" Trayecto
+Miembro --> "trabajos" Sector
+
+Organizacion --> TipoOrganizacion
+Organizacion --> Clasificacion
+Organizacion --> "*" Sector
+Organizacion --> "*" Medicion
+
+Sector --> "final" Organizacion
+
+APie --|> TransportePrivado
+Bicicleta --|> TransportePrivado
+ServicioContratado --|> TransportePrivado
+ServicioContratado --> TipoServicioContratado
+TransportePrivado ..|> Transporte
+TransportePrivado --> Geodds
+TransportePublico ..|> Transporte
+TransportePublico --> TipoTransportePublico
+TransportePublico --> "*" Parada
+
+VehiculoParticular --|> TransportePrivado
+VehiculoParticular --> TipoVehiculo
+VehiculoParticular --> TipoCombustible
+
+Tramo --> Transporte
+Tramo --> "inicio" Punto
+Tramo --> "final" Punto
+Trayecto --> "*" Tramo
+
+FactorEmision --> TipoConsumo
+
+Punto --> Direccion
+Punto --> Parada
+
+@enduml
