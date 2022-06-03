@@ -1,0 +1,10 @@
+tipo_consumo,unidad,actividad,alcance
+Gas natural,m3,Combustion fija,1
+Diesel/Gasoil,lt,Combustion fija,1
+Nafta,lt,Combustion fija,1
+Carbon,kg,Combustion fija,1
+Combustible consumido - Gasoil,lts,Combustion movil,1
+Combustible consumido - Nafta,lts,Combustion movil,1
+Electricidad,kwh,Electricidad adquirida y consumida,2
+Medio de transporte: camion de la carga o utilitario,,Logistica de productos y residuos,3
+Distancia media recorrida,km,Logistica de productos y residuos,3
