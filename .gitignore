@@ -28,4 +28,8 @@ target/**
 # IJ files
 *.iml
 .idea/**
-/target/
+
+# Eclipse files
+.settings
+.classpath
+.project
