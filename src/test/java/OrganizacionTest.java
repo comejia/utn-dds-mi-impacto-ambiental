@@ -1,10 +1,8 @@
-import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import organizaciones.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

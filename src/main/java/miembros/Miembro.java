@@ -1,9 +1,7 @@
 package miembros;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import excepciones.NoPuedoCompartirMiTrayecto;
 import organizaciones.Organizacion;
 import organizaciones.Sector;

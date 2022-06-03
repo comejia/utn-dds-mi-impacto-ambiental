@@ -1,12 +1,8 @@
 package usuarios;
-
 import org.passay.*;
-import org.passay.dictionary.Dictionary;
-import org.passay.dictionary.DictionaryBuilder;
+import org.passay.dictionary.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
 import excepciones.ContraseniaDebilException;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;

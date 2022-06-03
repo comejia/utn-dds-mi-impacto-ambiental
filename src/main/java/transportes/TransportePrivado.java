@@ -1,9 +1,6 @@
 package transportes;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import API.Geodds;
-import trayectos.Distancia;
 import trayectos.Punto;
 
 public abstract class TransportePrivado implements Transporte {
@@ -20,7 +17,6 @@ public abstract class TransportePrivado implements Transporte {
       try {
         return appi.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
       } catch (JsonProcessingException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
       return 0;

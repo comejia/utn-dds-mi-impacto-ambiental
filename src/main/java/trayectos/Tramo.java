@@ -1,8 +1,5 @@
 package trayectos;
-
-
 import transportes.ServicioContratado;
-
 import transportes.Transporte;
 import transportes.VehiculoParticular;
 

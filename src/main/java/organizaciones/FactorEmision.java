@@ -1,5 +1,4 @@
 package organizaciones;
-
 import excepciones.UnidadIncompatibleException;
 
 public class FactorEmision {

@@ -1,10 +1,7 @@
 package organizaciones;
-
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,11 +30,11 @@ public class Organizacion {
   public void cargarMediciones(String path, List<TipoConsumo> tiposExistentes) throws IOException, CsvException {
     CSVReader reader = new CSVReader(new FileReader(path));
     List<String[]> filas = reader.readAll();
-    filas.forEach(f -> {
-      if (tiposExistentes.stream().noneMatch(tipo -> tipo.esMismoTipo(f[0]))) {
+    filas.forEach(fila -> {
+      if (tiposExistentes.stream().noneMatch(tipo -> tipo.esMismoTipo(fila[0]))) {
         throw new TipoConsumoInexistente("El Tipo de Consumo leido debe existir en el sistema");
       }
-      agregarMedicion(f);
+      agregarMedicion(fila);
     });
 
     reader.close();

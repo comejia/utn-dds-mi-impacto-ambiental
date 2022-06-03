@@ -1,7 +1,5 @@
 package repositorios;
-
 import organizaciones.TipoConsumo;
-
 import java.util.ArrayList;
 import java.util.List;
 

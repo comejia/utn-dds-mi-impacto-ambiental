@@ -1,29 +1,9 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import miembros.Miembro;
-import miembros.TipoDocumento;
-import organizaciones.Clasificacion;
-import organizaciones.Organizacion;
-import organizaciones.Sector;
-import organizaciones.TipoOrganizacion;
-import transportes.APie;
-import transportes.ServicioContratado;
-import transportes.TipoCombustible;
-import transportes.TipoServicioContratado;
-import transportes.TipoTransportePublico;
-import transportes.TipoVehiculo;
-import transportes.TransportePrivado;
-import transportes.TransportePublico;
-import transportes.VehiculoParticular;
-import trayectos.Direccion;
-import trayectos.Parada;
-import trayectos.Punto;
-import trayectos.Tramo;
-import trayectos.Trayecto;
-
+import static org.junit.jupiter.api.Assertions.*;
+import organizaciones.*;
+import transportes.*;
+import trayectos.*;
+import miembros.*;
 import java.util.ArrayList;
 import java.util.List;
 

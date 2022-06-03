@@ -1,11 +1,6 @@
 package transportes;
-
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
 import excepciones.PuntoIncompatibleException;
-import trayectos.Distancia;
 import trayectos.Parada;
 import trayectos.Punto;
 

@@ -2,26 +2,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import API.Geodds;
 import excepciones.PuntoIncompatibleException;
-import transportes.APie;
-import transportes.Bicicleta;
-import transportes.TipoTransportePublico;
-import transportes.TransportePublico;
-import trayectos.Direccion;
-import trayectos.Parada;
-import trayectos.Punto;
-import trayectos.Tramo;
-import trayectos.Trayecto;
+import transportes.*;
+import trayectos.*;
 
 
 public class TrayectoTest {
