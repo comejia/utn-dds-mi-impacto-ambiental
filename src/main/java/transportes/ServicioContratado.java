@@ -1,10 +1,11 @@
 package transportes;
 
-public class ServicioContratado implements Transporte {
+public class ServicioContratado extends TransportePrivado {
 
   private TipoServicioContratado tipoServicioContratado;
 
   public ServicioContratado(TipoServicioContratado tipoServicioContratado) {
+    super();
     this.tipoServicioContratado = tipoServicioContratado;
   }
 }

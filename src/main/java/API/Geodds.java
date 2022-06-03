@@ -1,8 +1,12 @@
 package API;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
-
+import trayectos.Distancia;
+import trayectos.Direccion;
 import javax.ws.rs.core.MediaType;
 
 public class Geodds {
@@ -15,18 +19,23 @@ public class Geodds {
     this.client = Client.create();
   }
 
-  //falta mas parametros
-  public ClientResponse getDistancia(String puntoInicio, String puntoFin) {
+  public double getDistancia(Direccion direccionInicio, Direccion direccionFin) throws JsonProcessingException {
     ClientResponse recurso = this.client.resource(API_DISTANCIA)
-        .path(RESOURCE_DISTANCIA)
-        .queryParam("localidadOrigenId","1")
-        .queryParam("calleOrigen",puntoFin)
-        .queryParam("alturaOrigen","1")
-        .queryParam("localidadDestinoId","1")
-        .queryParam("calleDestino",puntoInicio)
-        .queryParam("alturaDestino","1")
+
+        .queryParam("localidadOrigenId", String.valueOf(direccionInicio.getLocalidad()))
+        .queryParam("calleOrigen", direccionInicio.getCalle()).queryParam("alturaOrigen", direccionInicio.getAltura())
+        .queryParam("localidadDestinoId", String.valueOf(direccionFin.getLocalidad()))
+        .queryParam("calleDestino", direccionFin.getCalle()).queryParam("alturaDestino", direccionFin.getAltura())
         .accept(MediaType.APPLICATION_JSON)
-        .get(ClientResponse.class);
-    return recurso;
+        .header("Authorization", "Bearer WXt8IlZJB6tEj/mJgSQpqVNq45VR919wOxFqCGKR7yk=").get(ClientResponse.class);
+
+    String jsonResultApi = recurso.getEntity(String.class);
+    JsonNode JsonNodeApi = new ObjectMapper().readTree(jsonResultApi);
+    Double unidad = JsonNodeApi.get("unidad").asDouble();
+    String valor = JsonNodeApi.get("valor").textValue();
+
+    return unidad;
+    // return new Distancia(unidad, valor);
   }
+
 }

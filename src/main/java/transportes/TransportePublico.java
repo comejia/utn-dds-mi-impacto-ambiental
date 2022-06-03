@@ -1,6 +1,13 @@
 package transportes;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import excepciones.PuntoIncompatibleException;
+import trayectos.Distancia;
+import trayectos.Parada;
+import trayectos.Punto;
 
 public class TransportePublico implements Transporte {
 
@@ -16,5 +23,20 @@ public class TransportePublico implements Transporte {
 
   public void agregarParada(Parada parada) {
     this.paradas.add(parada);
+  }
+
+  public double getDistancia(Punto p1, Punto p2) {
+    Parada parada1 = p1.getParada();
+    Parada parada2 = p2.getParada();
+
+    if (!paradas.contains(parada1) || !paradas.contains(parada2)) {
+      throw new PuntoIncompatibleException("La linea: " + linea + ", no pasa por la/s parada/s indicadas");
+    }
+
+    int i1 = paradas.indexOf(parada1), i2 = paradas.indexOf(parada2);
+
+    List<Parada> p = paradas.subList(i1, i2);
+    return p.stream().mapToDouble(parada -> parada.getDistanciaProximaParada()).sum();
+
   }
 }

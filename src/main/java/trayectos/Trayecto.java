@@ -13,4 +13,13 @@ public class Trayecto {
   public void agregarTramo(Tramo tramo) {
     this.tramos.add(tramo);
   }
+
+  public double distanciaTotal() {
+    return tramos.stream().mapToDouble(tramo -> tramo.distancia()).sum();
+  }
+
+  public boolean puedoCompartir() {
+    return tramos.stream().allMatch(tramo -> tramo.esVehiculoParticularOServicioContratado());
+  }
+ 
 }

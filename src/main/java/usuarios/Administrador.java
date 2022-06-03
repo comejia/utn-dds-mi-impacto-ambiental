@@ -1,6 +1,6 @@
 package usuarios;
 
-import exepciones.ContraseniaDebilException;
+import excepciones.ContraseniaDebilException;
 import org.passay.*;
 import org.passay.dictionary.Dictionary;
 import org.passay.dictionary.DictionaryBuilder;

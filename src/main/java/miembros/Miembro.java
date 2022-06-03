@@ -2,8 +2,12 @@ package miembros;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import excepciones.NoPuedoCompartirMiTrayecto;
+import organizaciones.Organizacion;
 import organizaciones.Sector;
+import trayectos.Trayecto;
 
 public class Miembro {
 
@@ -13,6 +17,7 @@ public class Miembro {
   private int numeroDocumento;
 
   private final List<Sector> trabajos = new ArrayList<>();
+  private List<Trayecto> trayectos = new ArrayList<>();
 
   public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento) {
     this.nombre = nombre;
@@ -29,4 +34,22 @@ public class Miembro {
     return this.trabajos;
   }
 
+  public void agregarTrayecto(Miembro miembro, Trayecto trayecto) {
+    if(trayecto.puedoCompartir() && !noCompartoOrganizacionCon(miembro)) {
+    this.trayectos.add(trayecto);
+    miembro.trayectos.add(trayecto);}
+    else throw new 
+    NoPuedoCompartirMiTrayecto("Imposible compartir este trayecto pues todos los transportes de sus tramos no cumplen ser vehículo particular o servicio contratado");  
+  }
+
+  public List<Organizacion> listaOrganizaciones() {
+    return this.getSector().stream().map(sector -> sector.getOrganizacion()).collect(Collectors.toList());
+  }
+
+  public List<Organizacion> listaOrganizacionesCompartidas(Miembro miembro) {
+   return listaOrganizaciones().stream().filter(organizacion -> miembro.listaOrganizaciones().contains(organizacion)).collect(Collectors.toList());
+  }
+  public boolean noCompartoOrganizacionCon(Miembro miembro) {
+  return listaOrganizacionesCompartidas(miembro).isEmpty();
+  }
 }
