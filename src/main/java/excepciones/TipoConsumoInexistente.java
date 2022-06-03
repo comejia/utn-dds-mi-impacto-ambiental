@@ -1,4 +1,4 @@
-package exepciones;
+package excepciones;
 
 public class TipoConsumoInexistente extends RuntimeException {
 

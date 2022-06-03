@@ -1,5 +1,5 @@
 import com.opencsv.exceptions.CsvException;
-import exepciones.TipoConsumoInexistente;
+import excepciones.TipoConsumoInexistente;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

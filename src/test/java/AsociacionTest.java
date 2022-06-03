@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,8 +10,14 @@ import organizaciones.Organizacion;
 import organizaciones.Sector;
 import organizaciones.TipoOrganizacion;
 import transportes.APie;
+import transportes.ServicioContratado;
+import transportes.TipoCombustible;
+import transportes.TipoServicioContratado;
 import transportes.TipoTransportePublico;
+import transportes.TipoVehiculo;
+import transportes.TransportePrivado;
 import transportes.TransportePublico;
+import transportes.VehiculoParticular;
 import trayectos.Direccion;
 import trayectos.Parada;
 import trayectos.Punto;
@@ -26,6 +33,7 @@ public class AsociacionTest {
     Sector seguridad = new Sector(ministerio);
     Miembro goku = new Miembro("Son", "Goku", TipoDocumento.DNI, 1525135681);
     Miembro vegetta = new Miembro("Son", "Vegetta", TipoDocumento.DNI, 1333804417);
+ 
 
     @Test
     public void unMiembroConoceSuSector() {
@@ -37,25 +45,35 @@ public class AsociacionTest {
     public void unSectorConoceSuOrganizacion() {
         assertEquals(seguridad.getOrganizacion(), ministerio);
     }
-
+ 
     @Test
-    public void trayectosCompartidos() {
+    public void trayectosCompartidosServicioContratado() {
         Parada p1,p5;
         p1 = new Parada(25);
         p5 = new Parada(20);
-        List<Parada> paradas = new ArrayList<Parada>();
-        paradas.add(p1);
-        paradas.add(p5);
-        aPie = new APie();
-        TransportePublico colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO,paradas,107);
-
-        Tramo tramoColectivo = new Tramo(colectivo, new Punto(p1), new Punto(p5));
-
+        ServicioContratado taxi = new ServicioContratado(TipoServicioContratado.TAXI);
+        goku.vincularASector(seguridad);
+        vegetta.vincularASector(seguridad);
+        Tramo tramoTaxi = new Tramo(taxi, new Punto(p1), new Punto(p5));
         List<Tramo> tramos = new ArrayList<Tramo>();
-        //tramos.add(tramoAPie);
-        tramos.add(tramoColectivo);
+        tramos.add(tramoTaxi);
         Trayecto trayecto = new Trayecto(tramos);
+        goku.agregarTrayecto(vegetta,trayecto);
+        assertTrue(goku.getTrayectos().contains(trayecto));
+    }
 
+    @Test
+    public void trayectosCompartidosVehiculoParticular() {
+        Parada p1,p5;
+        p1 = new Parada(25);
+        p5 = new Parada(20);
+        VehiculoParticular moto = new VehiculoParticular(TipoVehiculo.MOTO,TipoCombustible.NAFTA);
+        goku.vincularASector(seguridad);
+        vegetta.vincularASector(seguridad);
+        Tramo tramoMoto= new Tramo(moto, new Punto(p1), new Punto(p5));
+        List<Tramo> tramos = new ArrayList<Tramo>();
+        tramos.add(tramoMoto);
+        Trayecto trayecto = new Trayecto(tramos);
         goku.agregarTrayecto(vegetta,trayecto);
         assertTrue(goku.getTrayectos().contains(trayecto));
     }

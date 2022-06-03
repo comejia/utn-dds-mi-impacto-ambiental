@@ -2,7 +2,7 @@ package organizaciones;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import exepciones.TipoConsumoInexistente;
+import excepciones.TipoConsumoInexistente;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
