@@ -106,4 +106,5 @@ public class TrayectoTest {
 
     assertEquals(3713.0, trayecto.distanciaTotal());
   }
+
 }

@@ -2,6 +2,8 @@ package organizaciones;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
+import trayectos.Direccion;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,12 +13,12 @@ public class Organizacion {
 
   private String razonSocial;
   private TipoOrganizacion tipoOrganizacion;
-  private String ubicacion;
+  private Direccion ubicacion;
   private final List<Sector> sectores = new ArrayList<>();
   private Clasificacion clasificacion;
   private final List<Medicion> mediciones = new ArrayList<>();
 
-  public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, String ubicacion, Clasificacion clasificacion) {
+  public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {
     this.razonSocial = razonSocial;
     this.tipoOrganizacion = tipoOrganizacion;
     this.ubicacion = ubicacion;
