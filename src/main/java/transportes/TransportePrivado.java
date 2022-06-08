@@ -12,8 +12,6 @@ public abstract class TransportePrivado implements Transporte {
 
   @Override
   public double getDistancia(Punto puntoInicio, Punto puntoFin) {
-    
-     
       try {
         return appi.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
       } catch (JsonProcessingException e) {

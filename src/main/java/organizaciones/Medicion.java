@@ -1,13 +1,15 @@
 package organizaciones;
 
+import java.math.BigDecimal;
+
 public class Medicion {
 
-  private String tipoConsumo;
-  private int valor;
+  private TipoConsumo tipoConsumo;
+  private BigDecimal valor;
   private String periodicidad;
   private String periodicidadDeImputacion;
 
-  public Medicion(String tipoConsumo, int valor, String periodicidad, String periodicidadDeImputacion) {
+  public Medicion(TipoConsumo tipoConsumo, BigDecimal valor, String periodicidad, String periodicidadDeImputacion) {
     this.tipoConsumo = tipoConsumo;
     this.valor = valor;
     this.periodicidad = periodicidad;

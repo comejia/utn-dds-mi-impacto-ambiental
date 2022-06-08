@@ -6,6 +6,7 @@ import trayectos.Direccion;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,16 +34,13 @@ public class Organizacion {
     CSVReader reader = new CSVReader(new FileReader(path));
     List<String[]> filas = reader.readAll();
     filas.forEach(fila -> {
-      if (tiposExistentes.stream().noneMatch(tipo -> tipo.esMismoTipo(fila[0]))) {
-        throw new TipoConsumoInexistente("El Tipo de Consumo leido debe existir en el sistema");
-      }
-      agregarMedicion(fila);
+      TipoConsumo tipoConsumo = tiposExistentes.stream().filter(tipo -> tipo.esMismoTipo(fila[0])).findFirst().orElseThrow(()->new TipoConsumoInexistente("El Tipo de Consumo leido debe existir en el sistema"));
+      agregarMedicion(fila,tipoConsumo);
     });
-
     reader.close();
   }
 
-  private void agregarMedicion(String[] fila) {
-    this.mediciones.add(new Medicion(fila[0], Integer.parseInt(fila[1]), fila[2], fila[3]));
+  private void agregarMedicion(String[] fila,TipoConsumo tipoConsumo) {
+    this.mediciones.add(new Medicion(tipoConsumo, new BigDecimal(fila[1]), fila[2], fila[3]));
   }
 }
