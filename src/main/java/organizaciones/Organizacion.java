@@ -43,4 +43,8 @@ public class Organizacion {
   private void agregarMedicion(String[] fila) {
     this.mediciones.add(new Medicion(fila[0], Integer.parseInt(fila[1]), fila[2], fila[3]));
   }
+  
+  private int getCalculoHCTotal(TipoConsumo tipo) {
+    return this.mediciones.stream().mapToInt(medicion -> medicion.getHuellaCarbono(tipo)).sum();
+  }
 }
