@@ -1,16 +1,21 @@
+import API.GeoddsInterface;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import excepciones.PuntoIncompatibleException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import transportes.APie;
+import transportes.Bicicleta;
+import transportes.TipoTransportePublico;
+import transportes.TransportePublico;
+import trayectos.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import java.util.ArrayList;
-import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import API.Geodds;
-import excepciones.PuntoIncompatibleException;
-import transportes.*;
-import trayectos.*;
 
 
 public class TrayectoTest {
@@ -19,7 +24,7 @@ public class TrayectoTest {
 
   APie aPie;
   Bicicleta bici;
-  Geodds appi;
+  GeoddsInterface appi;
 
   TransportePublico colectivo;
 
@@ -38,7 +43,7 @@ public class TrayectoTest {
     paradas.add(p4);
     paradas.add(p5);
 
-    appi = mock(Geodds.class);
+    appi = mock(GeoddsInterface.class);
     aPie = new APie();
     aPie.setAppi(appi);
 
@@ -106,4 +111,5 @@ public class TrayectoTest {
 
     assertEquals(3713.0, trayecto.distanciaTotal());
   }
+
 }

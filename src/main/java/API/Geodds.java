@@ -7,7 +7,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import trayectos.Direccion;
 import javax.ws.rs.core.MediaType;
 
-public class Geodds {
+public class Geodds implements GeoddsInterface {
 
   private Client client;
   private static final String API_DISTANCIA = "https://app.swaggerhub.com/apis-docs/ezequieloscarescobar/geodds/1.0.0#/default/get_api_distancia";

@@ -1,5 +1,9 @@
 package organizaciones;
+
 import excepciones.UnidadIncompatibleException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FactorEmision {
 
@@ -8,7 +12,13 @@ public class FactorEmision {
   private TipoConsumo tipoConsumo;
 
   public FactorEmision(int valor, String unidad, TipoConsumo tipoConsumo) {
-    if (!unidad.contains(tipoConsumo.getUnidad())) {
+    if(unidad.contains("/")){
+      String[] unidades = unidad.split("/");
+      ArrayList<String> unidadesArray = new ArrayList<String>(Arrays.asList(unidades));
+      if (!unidadesArray.contains(tipoConsumo.getUnidad())) {
+        throw new UnidadIncompatibleException("La unidad del FE debe ser compatible con el Tipo de Consumo");
+      }
+    } else if (!unidad.equals(tipoConsumo.getUnidad())) {
       throw new UnidadIncompatibleException("La unidad del FE debe ser compatible con el Tipo de Consumo");
     }
     this.valor = valor;

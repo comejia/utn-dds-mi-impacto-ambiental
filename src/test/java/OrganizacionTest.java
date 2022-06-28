@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import organizaciones.*;
+import trayectos.Direccion;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class OrganizacionTest {
     this.tiposExistentes.add(new TipoConsumo(
         "Electricidad", "kWh", "Electricidad adquirida", 2));
     this.organizacion = new Organizacion(
-        "DDS", TipoOrganizacion.INSTITUCION, "Mozart", Clasificacion.UNIVERSIDAD);
+        "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano","Mozart","2300"), Clasificacion.UNIVERSIDAD);
   }
 
   @Test
