@@ -18,6 +18,7 @@ public class Medicion {
 
   public int getHuellaCarbono(TipoConsumo tipo) {
     //validar con tipo consumo?
-    return valor;
+    //return valor;
+    return 0;
   }
 }
