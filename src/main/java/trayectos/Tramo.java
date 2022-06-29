@@ -15,7 +15,6 @@ public class Tramo {
   }
 
   public double distancia() {
-
     return transporte.getDistancia(puntoInicio, puntoFinal);
 
   }

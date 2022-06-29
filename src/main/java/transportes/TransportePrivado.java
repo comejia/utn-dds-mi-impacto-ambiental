@@ -5,23 +5,22 @@ import API.Geodds;
 import trayectos.Punto;
 
 public abstract class TransportePrivado implements Transporte {
-  GeoddsInterface appi;
+  GeoddsInterface api;
 
   public TransportePrivado() {
-    this.appi = new Geodds();
+    this.api = new Geodds();
   }
 
   @Override
   public double getDistancia(Punto puntoInicio, Punto puntoFin) {
       try {
-        return appi.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
+        return api.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
       } catch (JsonProcessingException e) {
-        e.printStackTrace();
+        throw new RuntimeException("No se pudo obtener la distancia desde la API");
       }
-      return 0;
   }
 
-  public void setAppi(GeoddsInterface appi) {
-    this.appi = appi;
+  public void setApi(GeoddsInterface api) {
+    this.api = api;
   }
 }
