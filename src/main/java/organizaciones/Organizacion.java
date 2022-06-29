@@ -1,4 +1,5 @@
 package organizaciones;
+import Notificador.Notificador;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
@@ -18,6 +19,8 @@ public class Organizacion {
   private final List<Sector> sectores = new ArrayList<>();
   private Clasificacion clasificacion;
   private final List<Medicion> mediciones = new ArrayList<>();
+  private final List<Organizacion> contactos = new ArrayList<>();
+  Notificador notificador;
 
   public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {
     this.razonSocial = razonSocial;
@@ -29,6 +32,12 @@ public class Organizacion {
   public void agregarSector(Sector sector) {
     this.sectores.add(sector);
   }
+
+  public void agregarContacto(Organizacion contacto) {
+    this.contactos.add(contacto);
+  }
+
+  public void cambiarNotificador(Notificador notificador) {this.notificador = notificador;}
 
   public void cargarMediciones(String path, List<TipoConsumo> tiposExistentes) throws IOException, CsvException {
     CSVReader reader = new CSVReader(new FileReader(path));
@@ -46,5 +55,9 @@ public class Organizacion {
   
   private int getCalculoHCTotal(TipoConsumo tipo) {
     return this.mediciones.stream().mapToInt(medicion -> medicion.getHuellaCarbono(tipo)).sum();
+  }
+
+  public void notificarContactos() {
+    //this.contactos.forEach(x -> notificador.notificar(x,"holA"));
   }
 }
