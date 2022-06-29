@@ -1,11 +1,11 @@
 package transportes;
-import API.GeoddsInterface;
+import API.Geolocalizacion;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import API.Geodds;
 import trayectos.Punto;
 
 public abstract class TransportePrivado implements Transporte {
-  GeoddsInterface api;
+  Geolocalizacion api;
 
   public TransportePrivado() {
     this.api = new Geodds();
@@ -20,7 +20,7 @@ public abstract class TransportePrivado implements Transporte {
       }
   }
 
-  public void setApi(GeoddsInterface api) {
+  public void setApi(Geolocalizacion api) {
     this.api = api;
   }
 }
