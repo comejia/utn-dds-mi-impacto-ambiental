@@ -24,7 +24,7 @@ public class TrayectoTest {
 
   APie aPie;
   Bicicleta bici;
-  GeoddsInterface appi;
+  GeoddsInterface api;
 
   TransportePublico colectivo;
 
@@ -43,12 +43,12 @@ public class TrayectoTest {
     paradas.add(p4);
     paradas.add(p5);
 
-    appi = mock(GeoddsInterface.class);
+    api = mock(GeoddsInterface.class);
     aPie = new APie();
-    aPie.setAppi(appi);
+    aPie.setApi(api);
 
     bici = new Bicicleta();
-    bici.setAppi(appi);
+    bici.setApi(api);
 
     colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55);
 
@@ -77,7 +77,7 @@ public class TrayectoTest {
     Punto puntoInicio = new Punto(new Direccion("Lugano", "Mozart", "4000"));
     Punto puntoDestino = new Punto(new Direccion("Lugano", "Mozart", "3500"));
 
-    when(appi.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion())).thenReturn(500.0);
+    when(api.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion())).thenReturn(500.0);
 
     Tramo tramoAPie = new Tramo(aPie, puntoInicio, puntoDestino);
 
@@ -89,14 +89,14 @@ public class TrayectoTest {
     Punto puntoInicioBici = new Punto(new Direccion("Flores", "Rivadavia", "11000"));
     Punto puntoDestinoBici = new Punto(new Direccion("Flores", "Rivadavia", "8000"));
 
-    when(appi.getDistancia(puntoInicioBici.getDireccion(), puntoDestinoBici.getDireccion())).thenReturn(3000.0);
+    when(api.getDistancia(puntoInicioBici.getDireccion(), puntoDestinoBici.getDireccion())).thenReturn(3000.0);
 
     Tramo tramoBici = new Tramo(bici, puntoInicioBici, puntoDestinoBici);
 
     Punto puntoInicioAPie = new Punto(new Direccion("Villa del Parque", "Nazca", "3500"));
     Punto puntoDestinoAPie = new Punto(new Direccion("Villa del Parque", "Nazca", "4100"));
 
-    when(appi.getDistancia(puntoInicioAPie.getDireccion(), puntoDestinoAPie.getDireccion())).thenReturn(600.0);
+    when(api.getDistancia(puntoInicioAPie.getDireccion(), puntoDestinoAPie.getDireccion())).thenReturn(600.0);
 
     Tramo tramoAPie = new Tramo(aPie, puntoInicioAPie, puntoDestinoAPie);
 
