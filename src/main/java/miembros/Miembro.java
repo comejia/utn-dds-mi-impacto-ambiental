@@ -49,6 +49,9 @@ public class Miembro {
    return listaOrganizaciones().stream().filter(organizacion -> miembro.listaOrganizaciones().contains(organizacion)).collect(Collectors.toList());
   }
   public boolean noCompartoOrganizacionCon(Miembro miembro) {
-  return listaOrganizacionesCompartidas(miembro).isEmpty();
+    return listaOrganizacionesCompartidas(miembro).isEmpty();
+  }
+  public double getHcTotal() {
+    return this.trayectos.stream().mapToDouble(trayecto->trayecto.calcularHcTotal()).sum();
   }
 }

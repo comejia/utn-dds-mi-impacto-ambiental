@@ -44,7 +44,7 @@ public class Organizacion {
     this.mediciones.add(new Medicion(tipoConsumo, new BigDecimal(fila[1]), fila[2], fila[3]));
   }
   
-  private int getCalculoHCTotal(TipoConsumo tipo) {
+  public int getCalculoHCTotal(TipoConsumo tipo) {
     return this.mediciones.stream().mapToInt(medicion -> medicion.getHuellaCarbono(tipo)).sum();
   }
 }

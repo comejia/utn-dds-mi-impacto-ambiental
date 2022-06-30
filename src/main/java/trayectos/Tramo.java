@@ -22,4 +22,7 @@ public class Tramo {
   public boolean esVehiculoParticularOServicioContratado() {
     return (transporte instanceof VehiculoParticular) || (transporte instanceof ServicioContratado);
    }
+  public int calcularHC() {
+    return 2;
+  }
 }
