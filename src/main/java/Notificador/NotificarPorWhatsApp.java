@@ -5,6 +5,6 @@ import organizaciones.Organizacion;
 public class NotificarPorWhatsApp implements Notificador{
 
   @Override
-  public void notificar(Organizacion organizacion, String mensaje) {
+  public void notificar(String destinatario, String asunto, String cuerpo) {
   }
 }

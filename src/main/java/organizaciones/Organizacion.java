@@ -1,10 +1,13 @@
 package organizaciones;
 import Notificador.Notificador;
+import Notificador.NotificarPorMail;
+import Notificador.Contacto;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
 import trayectos.Direccion;
 
+import javax.mail.MessagingException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -19,7 +22,9 @@ public class Organizacion {
   private final List<Sector> sectores = new ArrayList<>();
   private Clasificacion clasificacion;
   private final List<Medicion> mediciones = new ArrayList<>();
-  private final List<Organizacion> contactos = new ArrayList<>();
+  private final List<Contacto> contactos = new ArrayList<>();
+  private Contacto contacto;
+  private String contraseniaMail;
   Notificador notificador;
 
   public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {
@@ -29,15 +34,32 @@ public class Organizacion {
     this.clasificacion = clasificacion;
   }
 
+  public void agregarNoticadorPorMail() {
+    String usuario = this.contacto.getMail();
+    this.notificador = new NotificarPorMail(usuario,this.contraseniaMail);
+  }
+
   public void agregarSector(Sector sector) {
     this.sectores.add(sector);
   }
 
-  public void agregarContacto(Organizacion contacto) {
+  public void agregarContacto(Contacto contacto) {
     this.contactos.add(contacto);
   }
 
   public void cambiarNotificador(Notificador notificador) {this.notificador = notificador;}
+
+  public void cambiarContacto(Contacto contacto) {
+    this.contacto = contacto;
+  }
+
+  public void cambiarContraseniaMail(String contraseniaMail) {
+    this.contraseniaMail = contraseniaMail;
+  }
+
+  public String getMail() {
+    return this.contacto.getMail();
+  }
 
   public void cargarMediciones(String path, List<TipoConsumo> tiposExistentes) throws IOException, CsvException {
     CSVReader reader = new CSVReader(new FileReader(path));
@@ -58,6 +80,12 @@ public class Organizacion {
   }
 
   public void notificarContactos() {
-    //this.contactos.forEach(x -> notificador.notificar(x,"holA"));
+    this.contactos.forEach(x -> {
+      try {
+        notificador.notificar(x.getMail(),"Guía de recomendaciones","link");
+      } catch (MessagingException e) {
+        e.printStackTrace();
+      }
+    });
   }
 }
