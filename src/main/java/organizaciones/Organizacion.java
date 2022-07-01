@@ -2,6 +2,7 @@ package organizaciones;
 import Notificador.Notificador;
 import Notificador.NotificarPorMail;
 import Notificador.Contacto;
+import Notificador.NotificarPorWhatsApp;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
@@ -24,13 +25,15 @@ public class Organizacion {
   private final List<Medicion> mediciones = new ArrayList<>();
   private final List<Contacto> contactos = new ArrayList<>();
   private Contacto contacto;
-  Notificador notificador;
+  private final List<Notificador> notificadores = new ArrayList<>();
 
   public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {
     this.razonSocial = razonSocial;
     this.tipoOrganizacion = tipoOrganizacion;
     this.ubicacion = ubicacion;
     this.clasificacion = clasificacion;
+    notificadores.add(new NotificarPorMail());
+    notificadores.add(new NotificarPorWhatsApp());
   }
 
   public void agregarSector(Sector sector) {
@@ -41,7 +44,9 @@ public class Organizacion {
     this.contactos.add(contacto);
   }
 
-  public void cambiarNotificador(Notificador notificador) {this.notificador = notificador;}
+  public void agregarNotificador(Notificador notificador) {this.notificadores.add(notificador);}
+
+  public void quitarNotificador(Notificador notificador) {this.notificadores.remove(notificador);}
 
   public void cambiarContacto(Contacto contacto) {
     this.contacto = contacto;
@@ -69,13 +74,19 @@ public class Organizacion {
     return this.mediciones.stream().mapToInt(medicion -> medicion.getHuellaCarbono(tipo)).sum();
   }
 
-  public void notificarContactos() {
-    this.contactos.forEach(x -> {
+  public void notificarUnContacto(Contacto contacto, String asunto, String contenido) {
+    this.notificadores.forEach(x -> {
       try {
-        notificador.notificar(x.getMail(),"Guía de recomendaciones","link");
+        x.notificar(contacto,asunto,contenido);
       } catch (MessagingException e) {
         e.printStackTrace();
       }
+    });
+  }
+
+  public void notificarGuiaRecomendaciones() {
+    this.contactos.forEach(x -> {
+      notificarUnContacto(x,"Guia de recomendaciones","link");
     });
   }
 }
