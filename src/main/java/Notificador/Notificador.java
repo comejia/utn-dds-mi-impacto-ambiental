@@ -1,7 +1,5 @@
 package Notificador;
 
-import organizaciones.Organizacion;
-
 import javax.mail.MessagingException;
 
 public interface Notificador {
