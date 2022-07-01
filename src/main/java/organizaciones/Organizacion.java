@@ -51,7 +51,6 @@ public class Organizacion {
   
   public double getHCTotal(String unidad) {
     return this.sectores.stream().mapToDouble(sector -> sector.getHuellaCarbono(unidad)).sum();
-  }
-  
 
+  }
 }

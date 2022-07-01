@@ -23,10 +23,7 @@ public class Trayecto {
   public boolean puedoCompartir() {
     return tramos.stream().allMatch(tramo -> tramo.esVehiculoParticularOServicioContratado());
   }
-
   public double getHC(String unidad) {
-    
     return this.tramos.stream().mapToDouble(tramo -> tramo.getHC(unidad)).sum();
   }
- 
 }

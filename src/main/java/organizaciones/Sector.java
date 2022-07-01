@@ -39,5 +39,4 @@ public class Sector {
     // TODO Auto-generated method stub
     return (double)miembros.size();
   }
-  
 }

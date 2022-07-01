@@ -24,11 +24,10 @@ public class Tramo {
   public boolean esVehiculoParticularOServicioContratado() {
     return (transporte instanceof VehiculoParticular) || (transporte instanceof ServicioContratado);
    }
-
+   
   public double getHC(String unidad) {
     // TODO Auto-generated method stub
     FactorEmision fe = this.transporte.getFactorEmision();
-    //fe.pasarA(unidad);
     return this.distancia() * fe.getValor();
   }
 }
