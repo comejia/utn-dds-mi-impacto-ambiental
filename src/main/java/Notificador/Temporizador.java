@@ -1,12 +1,18 @@
 package Notificador;
 
 
+import organizaciones.Organizacion;
+
 import java.util.TimerTask;
 
 public class Temporizador extends TimerTask {
-  //Deberia existir un acceso al repo para poder enviarles a todos
+  Organizacion organizacion;
+  public Temporizador(Organizacion organizacion){
+    this.organizacion=organizacion;
+  }
+
   @Override
   public void run() {
-    //PARA CADA ORGANIZACION ENVIAR NOTIFICACION
+    System.out.print("Soy la tarea calendarizada\n");
   }
 }
