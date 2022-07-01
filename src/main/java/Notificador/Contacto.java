@@ -2,9 +2,9 @@ package Notificador;
 
 public class Contacto {
   private String mail;
-  private int telefono;
+  private String telefono;
 
-  public Contacto(String mail, int telefono) {
+  public Contacto(String mail, String telefono) {
     this.mail = mail;
     this.telefono = telefono;
   }
@@ -13,7 +13,7 @@ public class Contacto {
     return mail;
   }
 
-  public int getTelefono() {
+  public String getTelefono() {
     return telefono;
   }
 }

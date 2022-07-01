@@ -11,8 +11,9 @@ public class NotificarPorWhatsApp implements Notificador{
   public static final String AUTH_TOKEN = "23f10df284242d15913504e923cf0667";
 
   @Override
-  public void notificar(String destinatario, String asunto, String cuerpo) {
-    // El formato correcto para un numero de argentina es "+5411" + el numero, por ejemplo +541133914938
+  public void notificar(Contacto contacto, String asunto, String cuerpo) {
+    String destinatario = contacto.getTelefono();
+    // El formato correcto para un numero de argentina es "+549" + el numero, por ejemplo +5491133914938
     if (!destinatario.isEmpty()) {
       Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
       Message.creator(

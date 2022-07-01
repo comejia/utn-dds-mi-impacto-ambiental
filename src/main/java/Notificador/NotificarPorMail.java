@@ -40,7 +40,8 @@ public class NotificarPorMail implements Notificador {
   }
 
   @Override
-  public void notificar(String destinatario, String asunto, String cuerpo) throws MessagingException {
+  public void notificar(Contacto contacto, String asunto, String cuerpo) throws MessagingException {
+    String destinatario = contacto.getMail();
     if (!Objects.equals(destinatario, "") && destinatario != null) {
       Session session = abrirSesion();
       Message message = construirCorreo(session, destinatario, asunto, cuerpo);

@@ -3,5 +3,5 @@ package Notificador;
 import javax.mail.MessagingException;
 
 public interface Notificador {
-  void notificar(String destinatario, String asunto, String cuerpo) throws MessagingException;
+  void notificar(Contacto contacto, String asunto, String cuerpo) throws MessagingException;
 }
