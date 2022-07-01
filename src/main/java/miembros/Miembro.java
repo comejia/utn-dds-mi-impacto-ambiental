@@ -2,9 +2,13 @@ package miembros;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import excepciones.NoPerteneceAOrganizacionException;
 import excepciones.NoPuedoCompartirMiTrayecto;
 import organizaciones.Organizacion;
 import organizaciones.Sector;
+import organizaciones.TipoConsumo;
 import trayectos.Trayecto;
 
 public class Miembro {
@@ -50,5 +54,18 @@ public class Miembro {
   }
   public boolean noCompartoOrganizacionCon(Miembro miembro) {
   return listaOrganizacionesCompartidas(miembro).isEmpty();
+  }
+
+  public double getHC(String unidad) {
+    
+    return trayectos.stream().mapToDouble(trayecto -> trayecto.getHC(unidad)).sum();
+  }
+  
+  public double getHCRespectoOrganizacion(Organizacion org, String unidad) {
+    List<Sector> organizaciones = this.trabajos.stream().filter(sector -> sector.perteneceAOrganizacion(org)).collect(Collectors.toList());
+    if( organizaciones.isEmpty() ) {
+      throw new NoPerteneceAOrganizacionException("El miembro no pertenece a la organizacion");
+    }
+    return this.getHC(unidad) / org.getHCTotal(unidad);
   }
 }

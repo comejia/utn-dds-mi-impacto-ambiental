@@ -1,6 +1,7 @@
 package transportes;
 import java.util.List;
 import excepciones.PuntoIncompatibleException;
+import organizaciones.FactorEmision;
 import trayectos.Parada;
 import trayectos.Punto;
 
@@ -9,6 +10,7 @@ public class TransportePublico implements Transporte {
   private TipoTransportePublico tipoTransportePublico;
   private List<Parada> paradas;
   private int linea;
+  private FactorEmision factorEmision;
 
   public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea) {
     this.tipoTransportePublico = tipoTransportePublico;
@@ -33,5 +35,10 @@ public class TransportePublico implements Transporte {
     List<Parada> p = paradas.subList(i1, i2);
     return p.stream().mapToDouble(parada -> parada.getDistanciaProximaParada()).sum();
 
+  }
+
+  @Override
+  public FactorEmision getFactorEmision() {
+    return this.factorEmision;
   }
 }
