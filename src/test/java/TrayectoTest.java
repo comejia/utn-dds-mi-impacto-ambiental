@@ -1,4 +1,4 @@
-import API.GeoddsInterface;
+import API.Geolocalizacion;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import excepciones.PuntoIncompatibleException;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ public class TrayectoTest {
 
   APie aPie;
   Bicicleta bici;
-  GeoddsInterface api;
+  Geolocalizacion api;
 
   TransportePublico colectivo;
 
@@ -43,7 +43,7 @@ public class TrayectoTest {
     paradas.add(p4);
     paradas.add(p5);
 
-    api = mock(GeoddsInterface.class);
+    api = mock(Geolocalizacion.class);
     aPie = new APie();
     aPie.setApi(api);
 

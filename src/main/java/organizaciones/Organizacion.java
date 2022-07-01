@@ -70,8 +70,9 @@ public class Organizacion {
     this.mediciones.add(new Medicion(tipoConsumo, new BigDecimal(fila[1]), fila[2], fila[3]));
   }
   
-  private int getCalculoHCTotal(TipoConsumo tipo) {
-    return this.mediciones.stream().mapToInt(medicion -> medicion.getHuellaCarbono(tipo)).sum();
+  public double getHCTotal(String unidad) {
+    return this.sectores.stream().mapToDouble(sector -> sector.getHuellaCarbono(unidad)).sum();
+
   }
 
   public void notificarUnContacto(Contacto contacto, String asunto, String contenido) {
