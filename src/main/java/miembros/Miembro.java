@@ -55,8 +55,9 @@ public class Miembro {
   public boolean noCompartoOrganizacionCon(Miembro miembro) {
     return listaOrganizacionesCompartidas(miembro).isEmpty();
   }
-  public double getHcTotal() {
-    return this.trayectos.stream().mapToDouble(trayecto->trayecto.calcularHcTotal()).sum();
+
+  public double getHcTotal(String unidad) {
+    return this.trayectos.stream().mapToDouble(trayecto->trayecto.getHC(unidad)).sum();
   }
 
   public double getHC(String unidad) {

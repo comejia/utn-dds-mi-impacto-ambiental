@@ -2,8 +2,6 @@ package trayectos;
 
 import java.util.List;
 
-import organizaciones.TipoConsumo;
-
 public class Trayecto {
 
   private final List<Tramo> tramos;

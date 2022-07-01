@@ -17,7 +17,6 @@ public class Medicion {
   }
 
   public double getHuellaCarbono(TipoConsumo tipo) {
-    //validar con tipo consumo?
     return valor.doubleValue();
   }
 }
