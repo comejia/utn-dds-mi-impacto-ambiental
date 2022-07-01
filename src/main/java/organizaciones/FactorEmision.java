@@ -26,4 +26,17 @@ public class FactorEmision {
     this.tipoConsumo = tipoConsumo;
   }
 
+  public int getValor() {
+    return valor;
+  }
+
+  public String getUnidad() {
+    return unidad;
+  }
+
+  public TipoConsumo getTipoConsumo() {
+    return tipoConsumo;
+  }
+
+
 }

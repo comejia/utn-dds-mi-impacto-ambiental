@@ -2,6 +2,8 @@ package trayectos;
 
 import java.util.List;
 
+import organizaciones.TipoConsumo;
+
 public class Trayecto {
 
   private final List<Tramo> tramos;
@@ -21,7 +23,7 @@ public class Trayecto {
   public boolean puedoCompartir() {
     return tramos.stream().allMatch(tramo -> tramo.esVehiculoParticularOServicioContratado());
   }
-  public double calcularHcTotal() {
-    return this.tramos.stream().mapToDouble(tramo->tramo.calcularHC()).sum();
+  public double getHC(String unidad) {
+    return this.tramos.stream().mapToDouble(tramo -> tramo.getHC(unidad)).sum();
   }
 }

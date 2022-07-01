@@ -16,8 +16,8 @@ public class Medicion {
     this.periodicidadDeImputacion = periodicidadDeImputacion;
   }
 
-  public int getHuellaCarbono(TipoConsumo tipo) {
+  public double getHuellaCarbono(TipoConsumo tipo) {
     //validar con tipo consumo?
-    return valor;
+    return valor.doubleValue();
   }
 }

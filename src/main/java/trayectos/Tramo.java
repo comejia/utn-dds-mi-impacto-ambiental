@@ -1,4 +1,7 @@
 package trayectos;
+import organizaciones.FactorEmision;
+import organizaciones.TipoConsumo;
+import repositorios.RepositorioFactorEmision;
 import transportes.ServicioContratado;
 import transportes.Transporte;
 import transportes.VehiculoParticular;
@@ -16,13 +19,15 @@ public class Tramo {
 
   public double distancia() {
     return transporte.getDistancia(puntoInicio, puntoFinal);
-
   }
 
   public boolean esVehiculoParticularOServicioContratado() {
     return (transporte instanceof VehiculoParticular) || (transporte instanceof ServicioContratado);
    }
-  public int calcularHC() {
-    return 2;
+   
+  public double getHC(String unidad) {
+    // TODO Auto-generated method stub
+    FactorEmision fe = this.transporte.getFactorEmision();
+    return this.distancia() * fe.getValor();
   }
 }
