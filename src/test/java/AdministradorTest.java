@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import excepciones.ContraseniaDebilException;
 import usuarios.Administrador;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -24,9 +25,9 @@ public class AdministradorTest {
   public void administradorConContraseniaMuyLarga() {
     ContraseniaDebilException usuarioInvalido = assertThrows(ContraseniaDebilException.class, () ->
         new Administrador("LaPulga10", "Esta clave es muy larga por el hecho de que " +
-        "tengo que llegar a mas de 64 caracteres, no se a que loco se le ocurriria poner " +
-        "una contraseña tan larga, la verdad que le llegas a errar a una letra y te la " +
-        "regalo"));
+            "tengo que llegar a mas de 64 caracteres, no se a que loco se le ocurriria poner " +
+            "una contraseña tan larga, la verdad que le llegas a errar a una letra y te la " +
+            "regalo"));
     assertEquals("La contraseña puede tener 64 caracteres como máximo", usuarioInvalido.getMessage());
   }
 
