@@ -24,7 +24,6 @@ public class Organizacion {
   private final List<Medicion> mediciones = new ArrayList<>();
   private final List<Contacto> contactos = new ArrayList<>();
   private Contacto contacto;
-  private String contraseniaMail;
   Notificador notificador;
 
   public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {
@@ -32,11 +31,6 @@ public class Organizacion {
     this.tipoOrganizacion = tipoOrganizacion;
     this.ubicacion = ubicacion;
     this.clasificacion = clasificacion;
-  }
-
-  public void agregarNoticadorPorMail() {
-    String usuario = this.contacto.getMail();
-    this.notificador = new NotificarPorMail(usuario,this.contraseniaMail);
   }
 
   public void agregarSector(Sector sector) {
@@ -51,10 +45,6 @@ public class Organizacion {
 
   public void cambiarContacto(Contacto contacto) {
     this.contacto = contacto;
-  }
-
-  public void cambiarContraseniaMail(String contraseniaMail) {
-    this.contraseniaMail = contraseniaMail;
   }
 
   public String getMail() {
