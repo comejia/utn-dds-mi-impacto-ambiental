@@ -23,7 +23,8 @@ public class NotificacionCalendarizada {
     c.set(Calendar.SECOND, 0);
 
     Date momentoNotificacion = c.getTime();
+    int tiempoRepeticion = 241920000; //CADA UN MES
     Timer temporizador = new Timer();
-    temporizador.schedule(new Temporizador(), momentoNotificacion);
+    temporizador.schedule(new Temporizador(), momentoNotificacion,241920000);
   }
 }
