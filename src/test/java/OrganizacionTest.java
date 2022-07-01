@@ -23,9 +23,9 @@ public class OrganizacionTest {
     this.tiposExistentes.add(new TipoConsumo(
         "Electricidad", "kWh", "Electricidad adquirida", 2));
     this.organizacion = new Organizacion(
-        "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano","Mozart","2300"), Clasificacion.UNIVERSIDAD);
-    this.contacto1 = new Contacto("migue.racedo.oviedo@gmail.com","+5491155136689");
-    this.contacto2 = new Contacto("migueracedooviedo@frba.utn.edu.ar","+5491155136689");
+        "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+    this.contacto1 = new Contacto("migue.racedo.oviedo@gmail.com", "+5491155136689");
+    this.contacto2 = new Contacto("migueracedooviedo@frba.utn.edu.ar", "+5491155136689");
     organizacion.agregarContacto(contacto1);
     organizacion.agregarContacto(contacto2);
   }

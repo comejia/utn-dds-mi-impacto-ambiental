@@ -12,7 +12,6 @@ public class NotificarPorMail implements Notificador {
   private final String contrasenia = "ofzzipstsiuxdnby";
 
   private Session abrirSesion() {
-    // Propiedades de la sesion con TLS
     Properties prop = new Properties();
     prop.put("mail.smtp.host", "smtp.gmail.com");
     prop.put("mail.smtp.port", "587");

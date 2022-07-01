@@ -64,7 +64,7 @@ public class TrayectoTest {
   }
 
   @Test
-  public void distanciaTramoColectivo() throws JsonProcessingException {
+  public void distanciaTramoColectivo() {
 
     Tramo tramoColectivo = new Tramo(colectivo, new Punto(p2), new Punto(p4));
 

@@ -7,8 +7,9 @@ import java.util.TimerTask;
 
 public class Temporizador extends TimerTask {
   Organizacion organizacion;
-  public Temporizador(Organizacion organizacion){
-    this.organizacion=organizacion;
+
+  public Temporizador(Organizacion organizacion) {
+    this.organizacion = organizacion;
   }
 
   @Override

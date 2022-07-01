@@ -16,7 +16,7 @@ public class FactorDeEmisionTest {
   public void setup() {
     this.gasNatural = new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1);
     this.electricidad = new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2);
-    this.cinta = new TipoConsumo("Electricidad","m","Pegar",1);
+    this.cinta = new TipoConsumo("Electricidad", "m", "Pegar", 1);
   }
 
   @Test
