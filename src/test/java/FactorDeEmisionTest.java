@@ -26,12 +26,27 @@ public class FactorDeEmisionTest {
 
   @Test
   public void factorDeEmisionDiscriminaUnidadesParecidas() {
-    Assertions.assertDoesNotThrow(() -> new FactorEmision(10, "m", this.cinta));
-    Assertions.assertThrows(UnidadIncompatibleException.class, () -> new FactorEmision(10, "m3", this.cinta));
+    Assertions.assertDoesNotThrow(() -> new FactorEmision(10, "kgCO2eq/m", this.cinta));
+    Assertions.assertThrows(UnidadIncompatibleException.class, () -> new FactorEmision(10, "kgCO2eq/m3", this.cinta));
   }
+
   @Test
   public void factorDeEmisionNoCompatibleConElTipoDeConsumoLanzaException() {
     Assertions.assertThrows(UnidadIncompatibleException.class,
         () -> new FactorEmision(10, "kgCO2eq/kWh", this.gasNatural));
+  }
+
+  @Test
+  public void factorDeEmisionQueCambiaDeValorAUnoCompatibleNoLanzaException() {
+    FactorEmision factorEmision = new FactorEmision(10, "kgCO2eq/kWh", this.electricidad);
+
+    Assertions.assertDoesNotThrow(() -> factorEmision.cambiarValor(20, "gCO2eq/kWh"));
+  }
+
+  @Test
+  public void factorDeEmisionQueCambiaDeValorAUnoNoCompatibleLanzaException() {
+    FactorEmision factorEmision = new FactorEmision(10, "kgCO2eq/kWh", this.electricidad);
+
+    Assertions.assertThrows(UnidadIncompatibleException.class, () -> factorEmision.cambiarValor(20, "gCO2eq/m3"));
   }
 }
