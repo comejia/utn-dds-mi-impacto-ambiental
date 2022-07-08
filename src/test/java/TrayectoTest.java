@@ -1,5 +1,4 @@
 import API.Geolocalizacion;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import excepciones.PuntoIncompatibleException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,7 +71,7 @@ public class TrayectoTest {
   }
 
   @Test
-  public void distanciaAPieSeCalculaConAppiExterna() throws JsonProcessingException {
+  public void distanciaAPieSeCalculaConAppiExterna() {
 
     Punto puntoInicio = new Punto(new Direccion("Lugano", "Mozart", "4000"));
     Punto puntoDestino = new Punto(new Direccion("Lugano", "Mozart", "3500"));
@@ -85,7 +84,7 @@ public class TrayectoTest {
   }
 
   @Test
-  public void distanciaTotalTrayectoUnTramoEnColectivoUnoAPieYUnoEnBicicleta() throws JsonProcessingException {
+  public void distanciaTotalTrayectoUnTramoEnColectivoUnoAPieYUnoEnBicicleta() {
     Punto puntoInicioBici = new Punto(new Direccion("Flores", "Rivadavia", "11000"));
     Punto puntoDestinoBici = new Punto(new Direccion("Flores", "Rivadavia", "8000"));
 

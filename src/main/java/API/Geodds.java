@@ -18,7 +18,7 @@ public class Geodds implements Geolocalizacion {
     this.client = Client.create();
   }
 
-  public double getDistancia(Direccion direccionInicio, Direccion direccionFin) throws JsonProcessingException {
+  public double getDistancia(Direccion direccionInicio, Direccion direccionFin) {
     ClientResponse recurso = this.client.resource(API_DISTANCIA)
 
         .queryParam("localidadOrigenId", String.valueOf(direccionInicio.getLocalidad()))
@@ -29,9 +29,14 @@ public class Geodds implements Geolocalizacion {
         .header("Authorization", "Bearer WXt8IlZJB6tEj/mJgSQpqVNq45VR919wOxFqCGKR7yk=").get(ClientResponse.class);
 
     String jsonResultApi = recurso.getEntity(String.class);
-    JsonNode JsonNodeApi = new ObjectMapper().readTree(jsonResultApi);
-    Double unidad = JsonNodeApi.get("unidad").asDouble();
-    String valor = JsonNodeApi.get("valor").textValue();
+    JsonNode jsonNodeApi;
+    try {
+      jsonNodeApi = new ObjectMapper().readTree(jsonResultApi);
+    } catch (JsonProcessingException e) {
+      throw new RuntimeException("No se pudo obtener la distancia desde la API");
+    }
+    Double unidad = jsonNodeApi.get("unidad").asDouble();
+    String valor = jsonNodeApi.get("valor").textValue();
 
     return unidad;
   }

@@ -1,4 +1,5 @@
 package trayectos;
+
 import organizaciones.FactorEmision;
 import organizaciones.TipoConsumo;
 import repositorios.RepositorioFactorEmision;
@@ -23,10 +24,9 @@ public class Tramo {
 
   public boolean esVehiculoParticularOServicioContratado() {
     return (transporte instanceof VehiculoParticular) || (transporte instanceof ServicioContratado);
-   }
-   
+  }
+
   public double getHC(String unidad) {
-    // TODO Auto-generated method stub
     FactorEmision fe = this.transporte.getFactorEmision();
     return this.distancia() * fe.getValor();
   }
