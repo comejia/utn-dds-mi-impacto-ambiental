@@ -32,8 +32,6 @@ public class Organizacion {
     this.tipoOrganizacion = tipoOrganizacion;
     this.ubicacion = ubicacion;
     this.clasificacion = clasificacion;
-    notificadores.add(new NotificarPorMail(System.getenv("user"), System.getenv("pass")));
-    notificadores.add(new NotificarPorWhatsApp());
   }
 
   public void agregarSector(Sector sector) {
