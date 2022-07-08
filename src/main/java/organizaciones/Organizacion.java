@@ -60,13 +60,13 @@ public class Organizacion {
           .filter(tipo -> tipo.esMismoTipo(fila[0]))
           .findFirst()
           .orElseThrow(() -> new TipoConsumoInexistente("El Tipo de Consumo leido debe existir en el sistema"));
-      agregarMedicion(fila, tipoConsumo);
+      agregarMedicion(new Medicion(tipoConsumo, new BigDecimal(fila[1]), fila[2], fila[3]));
     });
     reader.close();
   }
 
-  private void agregarMedicion(String[] fila, TipoConsumo tipoConsumo) {
-    this.mediciones.add(new Medicion(tipoConsumo, new BigDecimal(fila[1]), fila[2], fila[3]));
+  private void agregarMedicion(Medicion medicion) {
+    this.mediciones.add(medicion);
   }
 
   public double getHCTotal(String unidad) {
