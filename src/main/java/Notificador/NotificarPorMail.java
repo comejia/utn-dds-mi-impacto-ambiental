@@ -8,8 +8,13 @@ import java.util.Properties;
 
 public class NotificarPorMail implements Notificador {
 
-  private final String usuario = "grupo5.dds2022@gmail.com";
-  private final String contrasenia = "ofzzipstsiuxdnby";
+  private final String usuario;
+  private final String contrasenia;
+
+  public NotificarPorMail(String usuario, String contrasenia) {
+    this.usuario = usuario;
+    this.contrasenia = contrasenia;
+  }
 
   private Session abrirSesion() {
     Properties prop = new Properties();
