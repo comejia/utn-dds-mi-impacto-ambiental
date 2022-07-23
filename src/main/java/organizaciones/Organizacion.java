@@ -1,4 +1,5 @@
 package organizaciones;
+
 import Notificador.Notificador;
 import Notificador.NotificarPorMail;
 import Notificador.Contacto;
@@ -24,7 +25,6 @@ public class Organizacion {
   private Clasificacion clasificacion;
   private final List<Medicion> mediciones = new ArrayList<>();
   private final List<Contacto> contactos = new ArrayList<>();
-  private Contacto contacto;
   private final List<Notificador> notificadores = new ArrayList<>();
 
   public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {
@@ -32,8 +32,6 @@ public class Organizacion {
     this.tipoOrganizacion = tipoOrganizacion;
     this.ubicacion = ubicacion;
     this.clasificacion = clasificacion;
-    notificadores.add(new NotificarPorMail());
-    notificadores.add(new NotificarPorWhatsApp());
   }
 
   public void agregarSector(Sector sector) {
@@ -44,40 +42,39 @@ public class Organizacion {
     this.contactos.add(contacto);
   }
 
-  public void agregarNotificador(Notificador notificador) {this.notificadores.add(notificador);}
-
-  public void quitarNotificador(Notificador notificador) {this.notificadores.remove(notificador);}
-
-  public void cambiarContacto(Contacto contacto) {
-    this.contacto = contacto;
+  public void agregarNotificador(Notificador notificador) {
+    this.notificadores.add(notificador);
   }
 
-  public String getMail() {
-    return this.contacto.getMail();
+  public void quitarNotificador(Notificador notificador) {
+    this.notificadores.remove(notificador);
   }
 
   public void cargarMediciones(String path, List<TipoConsumo> tiposExistentes) throws IOException, CsvException {
     CSVReader reader = new CSVReader(new FileReader(path));
     List<String[]> filas = reader.readAll();
     filas.forEach(fila -> {
-      TipoConsumo tipoConsumo = tiposExistentes.stream().filter(tipo -> tipo.esMismoTipo(fila[0])).findFirst().orElseThrow(()->new TipoConsumoInexistente("El Tipo de Consumo leido debe existir en el sistema"));
-      agregarMedicion(fila,tipoConsumo);
+      TipoConsumo tipoConsumo = tiposExistentes.stream()
+          .filter(tipo -> tipo.esMismoTipo(fila[0]))
+          .findFirst()
+          .orElseThrow(() -> new TipoConsumoInexistente("El Tipo de Consumo leido debe existir en el sistema"));
+      agregarMedicion(new Medicion(tipoConsumo, new BigDecimal(fila[1]), fila[2], fila[3]));
     });
     reader.close();
   }
 
-  private void agregarMedicion(String[] fila,TipoConsumo tipoConsumo) {
-    this.mediciones.add(new Medicion(tipoConsumo, new BigDecimal(fila[1]), fila[2], fila[3]));
+  private void agregarMedicion(Medicion medicion) {
+    this.mediciones.add(medicion);
   }
-  
-  private int getCalculoHCTotal(TipoConsumo tipo) {
-    return this.mediciones.stream().mapToInt(medicion -> medicion.getHuellaCarbono(tipo)).sum();
+
+  public double getHCTotal(String unidad) {
+    return this.sectores.stream().mapToDouble(sector -> sector.getHuellaCarbono(unidad)).sum();
   }
 
   public void notificarUnContacto(Contacto contacto, String asunto, String contenido) {
     this.notificadores.forEach(x -> {
       try {
-        x.notificar(contacto,asunto,contenido);
+        x.notificar(contacto, asunto, contenido);
       } catch (MessagingException e) {
         e.printStackTrace();
       }
@@ -86,7 +83,7 @@ public class Organizacion {
 
   public void notificarGuiaRecomendaciones() {
     this.contactos.forEach(x -> {
-      notificarUnContacto(x,"Guia de recomendaciones","link");
+      notificarUnContacto(x, "Guia de recomendaciones", "link");
     });
   }
 }

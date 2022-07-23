@@ -1,5 +1,4 @@
-import API.GeoddsInterface;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import API.Geolocalizacion;
 import excepciones.PuntoIncompatibleException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ public class TrayectoTest {
 
   APie aPie;
   Bicicleta bici;
-  GeoddsInterface api;
+  Geolocalizacion api;
 
   TransportePublico colectivo;
 
@@ -43,7 +42,7 @@ public class TrayectoTest {
     paradas.add(p4);
     paradas.add(p5);
 
-    api = mock(GeoddsInterface.class);
+    api = mock(Geolocalizacion.class);
     aPie = new APie();
     aPie.setApi(api);
 
@@ -64,7 +63,7 @@ public class TrayectoTest {
   }
 
   @Test
-  public void distanciaTramoColectivo() throws JsonProcessingException {
+  public void distanciaTramoColectivo() {
 
     Tramo tramoColectivo = new Tramo(colectivo, new Punto(p2), new Punto(p4));
 
@@ -72,7 +71,7 @@ public class TrayectoTest {
   }
 
   @Test
-  public void distanciaAPieSeCalculaConAppiExterna() throws JsonProcessingException {
+  public void distanciaAPieSeCalculaConAppiExterna() {
 
     Punto puntoInicio = new Punto(new Direccion("Lugano", "Mozart", "4000"));
     Punto puntoDestino = new Punto(new Direccion("Lugano", "Mozart", "3500"));
@@ -85,7 +84,7 @@ public class TrayectoTest {
   }
 
   @Test
-  public void distanciaTotalTrayectoUnTramoEnColectivoUnoAPieYUnoEnBicicleta() throws JsonProcessingException {
+  public void distanciaTotalTrayectoUnTramoEnColectivoUnoAPieYUnoEnBicicleta() {
     Punto puntoInicioBici = new Punto(new Direccion("Flores", "Rivadavia", "11000"));
     Punto puntoDestinoBici = new Punto(new Direccion("Flores", "Rivadavia", "8000"));
 

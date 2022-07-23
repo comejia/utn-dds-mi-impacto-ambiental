@@ -27,4 +27,16 @@ public class FactorEmision {
       throw new UnidadIncompatibleException("La unidad del FE debe ser compatible con el Tipo de Consumo");
     }
   }
+
+  public int getValor() {
+    return this.valor;
+  }
+
+  public String getUnidad() {
+    return this.unidad;
+  }
+
+  public TipoConsumo getTipoConsumo() {
+    return this.tipoConsumo;
+  }
 }

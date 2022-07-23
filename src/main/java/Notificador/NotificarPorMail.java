@@ -8,11 +8,15 @@ import java.util.Properties;
 
 public class NotificarPorMail implements Notificador {
 
-  private final String usuario = "grupo5.dds2022@gmail.com";
-  private final String contrasenia = "ofzzipstsiuxdnby";
+  private final String usuario;
+  private final String contrasenia;
+
+  public NotificarPorMail(String usuario, String contrasenia) {
+    this.usuario = usuario;
+    this.contrasenia = contrasenia;
+  }
 
   private Session abrirSesion() {
-    // Propiedades de la sesion con TLS
     Properties prop = new Properties();
     prop.put("mail.smtp.host", "smtp.gmail.com");
     prop.put("mail.smtp.port", "587");
