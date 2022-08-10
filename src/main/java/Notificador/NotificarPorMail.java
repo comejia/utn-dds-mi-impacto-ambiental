@@ -1,6 +1,9 @@
 package Notificador;
 
+import excepciones.NotificacionException;
+
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Objects;
@@ -47,9 +50,14 @@ public class NotificarPorMail implements Notificador {
   public void notificar(Contacto contacto, String asunto, String cuerpo) throws MessagingException {
     String destinatario = contacto.getMail();
     if (!Objects.equals(destinatario, "") && destinatario != null) {
+      if (cuerpo == null) {
+        throw new NotificacionException("El cuerpo del mensaje es nulo, ingrese un cuerpo");
+      }
       Session session = abrirSesion();
       Message message = construirCorreo(session, destinatario, asunto, cuerpo);
       Transport.send(message);
+    } else {
+      throw new NotificacionException("El destinario esta vacio, ingrese un destinario");
     }
   }
 
