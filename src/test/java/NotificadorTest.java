@@ -20,11 +20,10 @@ public class NotificadorTest {
   NotificarPorMail notificarPorMail;
 
   Contacto contacto;
-  Properties properties;
 
   @Before
   public void setUp() throws IOException {
-    properties = new Properties();
+    Properties properties = new Properties();
     properties.load(Files.newInputStream(new File(System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
     this.notificarPorWhatsApp = new NotificarPorWhatsApp();
     this.notificarPorMail = new NotificarPorMail(properties.getProperty("user"), properties.getProperty("pass"));

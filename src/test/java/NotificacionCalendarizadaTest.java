@@ -17,15 +17,14 @@ import java.util.Properties;
 public class NotificacionCalendarizadaTest {
 
   private Organizacion organizacion;
-  private Properties properties;
 
   @BeforeEach
   public void setup() throws IOException {
-    properties = new Properties();
+    Properties properties = new Properties();
     properties.load(Files.newInputStream(new File(System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
     this.organizacion = new Organizacion(
         "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
-    this.organizacion.agregarNotificador(new NotificarPorMail(System.getenv("user"), System.getenv("pass")));
+    this.organizacion.agregarNotificador(new NotificarPorMail(properties.getProperty("user"), properties.getProperty("pass")));
     this.organizacion.agregarNotificador(new NotificarPorWhatsApp());
   }
 
