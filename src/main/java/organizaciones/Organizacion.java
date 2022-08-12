@@ -1,15 +1,12 @@
 package organizaciones;
 
 import Notificador.Notificador;
-import Notificador.NotificarPorMail;
 import Notificador.Contacto;
-import Notificador.NotificarPorWhatsApp;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
 import trayectos.Direccion;
 
-import javax.mail.MessagingException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -72,18 +69,10 @@ public class Organizacion {
   }
 
   public void notificarUnContacto(Contacto contacto, String asunto, String contenido) {
-    this.notificadores.forEach(x -> {
-      try {
-        x.notificar(contacto, asunto, contenido);
-      } catch (MessagingException e) {
-        e.printStackTrace();
-      }
-    });
+    this.notificadores.forEach(notificador -> notificador.notificar(contacto, asunto, contenido));
   }
 
   public void notificarGuiaRecomendaciones() {
-    this.contactos.forEach(x -> {
-      notificarUnContacto(x, "Guia de recomendaciones", "link");
-    });
+    this.contactos.forEach(contacto -> notificarUnContacto(contacto, "Guia de recomendaciones", "link"));
   }
 }
