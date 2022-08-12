@@ -15,8 +15,7 @@ public class NotificacionCalendarizada {
   public void notificacion(int dia, int hora, int minuto, int semanasFrecuencia) {
     Calendar c = new GregorianCalendar(2022, Calendar.JULY, dia, hora, minuto);
     Date momentoNotificacion = c.getTime();
-    int tiempoRepeticion = semanasFrecuencia;
     Timer temporizador = new Timer();
-    temporizador.schedule(new Temporizador(this.organizacion), momentoNotificacion, tiempoRepeticion);
+    temporizador.schedule(new Temporizador(this.organizacion), momentoNotificacion, semanasFrecuencia);
   }
 }

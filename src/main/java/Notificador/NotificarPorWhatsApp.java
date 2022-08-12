@@ -22,9 +22,9 @@ public class NotificarPorWhatsApp implements Notificador {
     }
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     Message.creator(
-        new PhoneNumber("whatsapp:" + destinatario),
-        from,
-        cuerpo).
-        create();
+            new PhoneNumber("whatsapp:" + destinatario),
+            from,
+            cuerpo)
+        .create();
   }
 }

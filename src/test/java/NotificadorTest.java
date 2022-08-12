@@ -5,7 +5,6 @@ import Notificador.NotificarPorWhatsApp;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,7 +33,7 @@ public class NotificadorTest {
   }
 
   @Test
-  public void enviarNotifiacionTest() throws MessagingException {
+  public void enviarNotificacionTest() {
     doAnswer(invocation -> {
       Object arg0 = invocation.getArgument(0);
       Object arg1 = invocation.getArgument(1);
@@ -47,15 +46,5 @@ public class NotificadorTest {
     }).when(notificador).notificar(any(Contacto.class),any(String.class),any(String.class));
     notificador.notificar(contacto, "asunto", "Esto es un mensaje de prueba");
   }
-
-  /*@Test
-  public void enviarWhatsAppTest() {
-    notificarPorWhatsApp.notificar(contacto, "Prueba", "Esto es un correo de prueba");
-  }
-
-  @Test
-  public void enviarMailTest() throws MessagingException {
-    notificarPorMail.notificar(contacto, "Prueba", "Esto es un correo de prueba");
-  }*/
 
 }
