@@ -2,7 +2,6 @@ package miembros;
 
 import organizaciones.SectorTerritorial;
 
-
 public class AgenteSectorial {
   private SectorTerritorial sectoresTerritoriales;
 

@@ -20,11 +20,9 @@ import static org.mockito.Mockito.when;
 public class TrayectoTest {
 
   Parada p1, p2, p3, p4, p5;
-
   APie aPie;
   Bicicleta bici;
   Geolocalizacion api;
-
   TransportePublico colectivo;
 
   @BeforeEach

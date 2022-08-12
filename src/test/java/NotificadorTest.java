@@ -25,7 +25,7 @@ public class NotificadorTest {
   @Before
   public void setUp() throws IOException {
     properties = new Properties();
-    properties.load(Files.newInputStream(new File( System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
+    properties.load(Files.newInputStream(new File(System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
     this.notificarPorWhatsApp = new NotificarPorWhatsApp();
     this.notificarPorMail = new NotificarPorMail(properties.getProperty("user"), properties.getProperty("pass"));
     this.contacto = new Contacto("migue.racedo.oviedo@gmail.com", "+5491155136689");
@@ -43,7 +43,7 @@ public class NotificadorTest {
       assertEquals("asunto", arg1);
       assertEquals("Esto es un mensaje de prueba", arg2);
       return null;
-    }).when(notificador).notificar(any(Contacto.class),any(String.class),any(String.class));
+    }).when(notificador).notificar(any(Contacto.class), any(String.class), any(String.class));
     notificador.notificar(contacto, "asunto", "Esto es un mensaje de prueba");
   }
 

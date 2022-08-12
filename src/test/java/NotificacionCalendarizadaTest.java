@@ -22,7 +22,7 @@ public class NotificacionCalendarizadaTest {
   @BeforeEach
   public void setup() throws IOException {
     properties = new Properties();
-    properties.load(Files.newInputStream(new File( System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
+    properties.load(Files.newInputStream(new File(System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
     this.organizacion = new Organizacion(
         "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
     this.organizacion.agregarNotificador(new NotificarPorMail(System.getenv("user"), System.getenv("pass")));

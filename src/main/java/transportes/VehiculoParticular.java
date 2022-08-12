@@ -11,5 +11,8 @@ public class VehiculoParticular extends TransportePrivado {
     this.tipoCombustible = tipoCombustible;
   }
 
-
+  @Override
+  public boolean seComparte() {
+    return true;
+  }
 }

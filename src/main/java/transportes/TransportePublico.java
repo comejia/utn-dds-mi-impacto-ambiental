@@ -41,4 +41,9 @@ public class TransportePublico implements Transporte {
   public FactorEmision getFactorEmision() {
     return this.factorEmision;
   }
+
+  @Override
+  public boolean seComparte() {
+    return false;
+  }
 }

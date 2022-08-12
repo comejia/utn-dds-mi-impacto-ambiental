@@ -8,4 +8,9 @@ public class ServicioContratado extends TransportePrivado {
     super();
     this.tipoServicioContratado = tipoServicioContratado;
   }
+
+  @Override
+  public boolean seComparte() {
+    return true;
+  }
 }

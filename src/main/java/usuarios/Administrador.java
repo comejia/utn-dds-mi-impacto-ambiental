@@ -1,8 +1,10 @@
 package usuarios;
+
 import org.passay.*;
 import org.passay.dictionary.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import excepciones.ContraseniaDebilException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -16,7 +18,7 @@ public class Administrador {
     if (usuario == null) {
       throw new RuntimeException("Debe ingresar un usuario");
     }
-    validarContrasenia(usuario,contrasenia);
+    validarContrasenia(usuario, contrasenia);
     this.usuario = usuario;
     this.contrasenia = hashearContrasenia(contrasenia);
   }
@@ -37,7 +39,7 @@ public class Administrador {
   private PasswordValidator getValidador() {
     return new PasswordValidator(
         reglaConClavesBaneadas(),
-        new LengthRule(8,64),
+        new LengthRule(8, 64),
         new UsernameRule()
     );
   }

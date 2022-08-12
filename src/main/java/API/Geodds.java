@@ -20,7 +20,6 @@ public class Geodds implements Geolocalizacion {
 
   public double getDistancia(Direccion direccionInicio, Direccion direccionFin) {
     ClientResponse recurso = this.client.resource(API_DISTANCIA)
-
         .queryParam("localidadOrigenId", String.valueOf(direccionInicio.getLocalidad()))
         .queryParam("calleOrigen", direccionInicio.getCalle()).queryParam("alturaOrigen", direccionInicio.getAltura())
         .queryParam("localidadDestinoId", String.valueOf(direccionFin.getLocalidad()))
