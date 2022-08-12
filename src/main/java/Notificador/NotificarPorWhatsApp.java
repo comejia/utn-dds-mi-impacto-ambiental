@@ -3,6 +3,7 @@ package Notificador;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import excepciones.NotificacionException;
 
 public class NotificarPorWhatsApp implements Notificador {
 
@@ -13,13 +14,17 @@ public class NotificarPorWhatsApp implements Notificador {
   @Override
   public void notificar(Contacto contacto, String asunto, String cuerpo) {
     String destinatario = contacto.getTelefono();
-    if (!destinatario.isEmpty()) {
-      Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-      Message.creator(
-              new PhoneNumber("whatsapp:" + destinatario),
-              from,
-              cuerpo).
-          create();
+    if (cuerpo == null) {
+      throw new NotificacionException("El cuerpo del mensaje es nulo, ingrese un cuerpo");
     }
+    if (destinatario.isEmpty()) {
+      throw new NotificacionException("El destinatario del mensaje está vacio, ingrese un destinatario");
+    }
+    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    Message.creator(
+        new PhoneNumber("whatsapp:" + destinatario),
+        from,
+        cuerpo).
+        create();
   }
 }
