@@ -2,8 +2,8 @@ import Notificador.Contacto;
 import Notificador.Notificador;
 import Notificador.NotificarPorMail;
 import Notificador.NotificarPorWhatsApp;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class NotificadorTest {
 
   Contacto contacto;
 
-  @Before
+  @BeforeEach
   public void setUp() throws IOException {
     Properties properties = new Properties();
     properties.load(Files.newInputStream(new File(System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
