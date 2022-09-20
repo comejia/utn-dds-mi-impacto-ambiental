@@ -9,15 +9,33 @@ import excepciones.NoPuedoCompartirMiTrayecto;
 import organizaciones.Organizacion;
 import organizaciones.Sector;
 import trayectos.Trayecto;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@Entity
 public class Miembro {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.TABLE)
+  private Long id;
 
   private String nombre;
   private String apellido;
+
+  @Enumerated(EnumType.STRING)
   private TipoDocumento tipoDocumento;
   private int numeroDocumento;
 
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "Miembros_X_Sector")
   private final List<Sector> trabajos = new ArrayList<>();
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "trayecto_id")
   private List<Trayecto> trayectos = new ArrayList<>();
 
   public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento) {
@@ -29,6 +47,10 @@ public class Miembro {
 
   public void vincularASector(Sector sector) {
     trabajos.add(sector);
+  }
+
+  public Long getId() {
+    return id;
   }
 
   public List<Sector> getSector() {
