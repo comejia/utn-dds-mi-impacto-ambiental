@@ -3,9 +3,7 @@ package organizaciones;
 import excepciones.UnidadIncompatibleException;
 import usuarios.EntidadPersistente;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Entity
 public class FactorEmision extends EntidadPersistente {
@@ -13,7 +11,7 @@ public class FactorEmision extends EntidadPersistente {
   private int valor;
   private String unidad;
 
-  @Enumerated(EnumType.STRING)
+  @OneToOne(cascade = CascadeType.ALL)
   private TipoConsumo tipoConsumo;
 
   public FactorEmision(int valor, String unidad, TipoConsumo tipoConsumo) {

@@ -7,7 +7,34 @@
 
   <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <!---class>utn.dds.persistencia.futbol.persistence.Jugador</class-->
+    <class>transportes.TransportePublico</class>
+    <class>transportes.Transporte</class>
+    <class>transportes.TransportePrivado</class>
+    <class>transportes.Transporte</class>
+    <class>transportes.ServicioContratado</class>
+    <class>transportes.Bicicleta</class>
+    <class>transportes.APie</class>
+    <class>transportes.VehiculoParticular</class>
+
+    <class>trayectos.Parada</class>
+    <class>trayectos.Punto</class>
+    <class>trayectos.Tramo</class>
+    <class>trayectos.Direccion</class>
+    <class>trayectos.Trayecto</class>
+
+    <class>organizaciones.Organizacion</class>
+    <class>organizaciones.FactorEmision</class>
+    <class>organizaciones.Medicion</class>
+    <class>organizaciones.TipoConsumo</class>
+    <class>organizaciones.Sector</class>
+    <class>organizaciones.SectorTerritorial</class>
+
+    <class>miembros.Miembro</class>
+
+    <class>Notificador.Contacto</class>
+
+
+
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>

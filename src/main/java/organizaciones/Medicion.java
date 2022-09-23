@@ -2,15 +2,13 @@ package organizaciones;
 
 import usuarios.EntidadPersistente;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 public class Medicion extends EntidadPersistente {
 
-  @Enumerated(EnumType.STRING)
+  @OneToOne(cascade = CascadeType.ALL)
   private TipoConsumo tipoConsumo;
   private BigDecimal valor;
   private String periodicidad;
