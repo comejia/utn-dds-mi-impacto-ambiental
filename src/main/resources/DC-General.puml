@@ -6,6 +6,13 @@ class Geodds {
     double getDistancia(Direccion direccionInicio, Direccion direccionFin)
 }
 
+interface Geolocalizacion {
+    double getDistancia(Direccion direccionInicio, Direccion direccionFin);
+}
+
+class AgenteSectorial {
+}
+
 class Miembro {
     String nombre
     String apellido
@@ -21,6 +28,37 @@ enum TipoDocumento {
     LIBRETA_CIVICA
 }
 
+class Contacto {
+    String mail
+    String telefono
+}
+
+class NotificacionCalendarizada {
+    void notificacion(int dia, int hora, int minuto, int semanasFrecuencia)
+}
+
+interface Notificador {
+    void notificar(Contacto contacto, String asunto, String cuerpo)
+}
+
+class NotificarPorMail {
+    String usuario
+    String contrasenia
+    Session abrirSesion()
+    Message construirCorreo(Session session, String destinatario, String asunto, String cuerpo)
+    void notificar(Contacto contacto, String asunto, String cuerpo)
+}
+
+class NotificarPorWhatsApp {
+    PhoneNumber from
+    String ACCOUNT_SID
+    String AUTH_TOKEN
+    void notificar(Contacto contacto, String asunto, String cuerpo)
+}
+
+class Temporizador {
+}
+
 enum Clasificacion {
     MINISTERIO
     UNIVERSIDAD
@@ -32,23 +70,35 @@ enum Clasificacion {
 class FactorEmision {
     int valor
     String unidad
+    void cambiarValor(int valor, String unidad)
+    void validarUnidad(String unidad, TipoConsumo tipoConsumo)
 }
 
 class Medicion {
-    String tipoConsumo
-    int valor
+    BigDecimal valor
     String periodicidad
     String periodicidadDeImputacion
 }
 
 class Organizacion {
     String razonSocial
-    String ubicacion
+    List<Double> hcTotal
     void cargarMediciones(String path, List<TipoConsumo> tiposExistentes)
-    void agregarMedicion(String[] fila)
+    double getHCTotal(String unidad)
+    List<Double> getHCPorPorcentaje(List<String> unidades)
+    void notificarGuiaRecomendaciones()
 }
 
-class Sector
+class Sector {
+    double getHuellaCarbono(String unidad)
+    double getHuellaCarbonoSobreMiembros(String unidad)
+}
+
+class SectorTerritorial {
+    double getCalculoHCTotal(String unidad)
+    List<List<Double>> getHcSector(List<String>unidades)
+    List<List<Double>> getHcEvolucion()
+}
 
 class TipoConsumo {
     String tipo
@@ -65,15 +115,26 @@ enum TipoOrganizacion {
     INSTITUCION
 }
 
-class APie
-class Bicicleta
+enum TipoSectorTerritorial {
+    DEPARTAMENTO,PROVINCIA
+}
+
+class APie {
+    boolean seComparte()
+}
+
+class Bicicleta {
+    boolean seComparte()
+}
 
 class Parada {
     String direccion
 }
 
 
-class ServicioContratado
+class ServicioContratado {
+    boolean seComparte()
+}
 
 enum TipoCombustible {
     GNC
@@ -99,8 +160,10 @@ enum TipoVehiculo {
     CAMIONETA
 }
 
-interface Transporte {
+abstract class Transporte {
     double getDistancia(Punto puntoInicio, Punto puntoFin)
+    FactorEmision getFactorEmision()
+    boolean seComparte()
 }
 
 abstract class TransportePrivado {
@@ -112,7 +175,9 @@ class TransportePublico {
     double getDistancia(Punto p1, Punto p2)
 }
 
-class VehiculoParticular
+class VehiculoParticular {
+    boolean seComparte()
+}
 
 class Direccion {
     String localidad
@@ -130,14 +195,17 @@ class Parada {
 }
 
 class Punto {
-    String direccion
 }
 
-class Tramo {}
+class Tramo {
+    boolean esCompartido()
+    double getHC(String unidad)
+}
 
 class Trayecto {
     double distanciaTotal()
     boolean puedoCompartir()
+    double getHC(String unidad)
 }
 
 Miembro --> TipoDocumento
@@ -148,18 +216,25 @@ Organizacion --> TipoOrganizacion
 Organizacion --> Clasificacion
 Organizacion --> "*" Sector
 Organizacion --> "*" Medicion
+Organizacion --> Direccion
+Organizacion --> "*" Contacto
+Organizacion --> "*" Notificador
+
 
 Sector --> "final" Organizacion
+Sector --> "*" Miembro
 
 APie --|> TransportePrivado
 Bicicleta --|> TransportePrivado
 ServicioContratado --|> TransportePrivado
 ServicioContratado --> TipoServicioContratado
-TransportePrivado ..|> Transporte
-TransportePrivado --> Geodds
-TransportePublico ..|> Transporte
+TransportePrivado --|> Transporte
+TransportePrivado --> Geolocalizacion
+TransportePrivado --> FactorEmision
+TransportePublico --|> Transporte
 TransportePublico --> TipoTransportePublico
 TransportePublico --> "*" Parada
+TransportePublico --> FactorEmision
 
 VehiculoParticular --|> TransportePrivado
 VehiculoParticular --> TipoVehiculo
@@ -175,4 +250,18 @@ FactorEmision --> TipoConsumo
 Punto --> Direccion
 Punto --> Parada
 
+Geodds ..|> Geolocalizacion
+
+AgenteSectorial --> SectorTerritorial
+
+NotificacionCalendarizada --> Organizacion
+NotificarPorMail ..|> Notificador
+NotificarPorWhatsApp ..|> Notificador
+
+Temporizador --> Organizacion
+
+Medicion --> TipoConsumo
+
+SectorTerritorial --> "*" Organizacion
+SectorTerritorial --> TipoSectorTerritorial
 @enduml
