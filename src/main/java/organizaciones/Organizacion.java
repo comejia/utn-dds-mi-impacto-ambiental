@@ -8,12 +8,14 @@ import excepciones.TipoConsumoInexistente;
 import trayectos.Direccion;
 import usuarios.EntidadPersistente;
 
+import java.util.stream.Collectors;
 import javax.persistence.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Organizacion extends EntidadPersistente {
@@ -21,6 +23,8 @@ public class Organizacion extends EntidadPersistente {
   private String razonSocial;
   @Enumerated(EnumType.STRING)
   private TipoOrganizacion tipoOrganizacion;
+
+  private List<Double> hcTotal;
 
   @OneToOne(cascade = CascadeType.ALL)
   private Direccion ubicacion;
@@ -49,7 +53,9 @@ public class Organizacion extends EntidadPersistente {
     this.ubicacion = ubicacion;
     this.clasificacion = clasificacion;
   }
-
+  public List<Double> getHc() {
+    return this.hcTotal;
+  }
   public void agregarSector(Sector sector) {
     this.sectores.add(sector);
   }
@@ -84,9 +90,20 @@ public class Organizacion extends EntidadPersistente {
   }
 
   public double getHCTotal(String unidad) {
+    hcTotal.add(this.sectores.stream().mapToDouble(sector -> sector.getHuellaCarbono(unidad)).sum());
     return this.sectores.stream().mapToDouble(sector -> sector.getHuellaCarbono(unidad)).sum();
   }
+  public List<Double> getHCPorUnidad(List<String> unidades) {
+    return unidades.stream().map(unidad -> getHCTotal(unidad)).collect(Collectors.toList());
+  }
 
+
+  public Double sumaDeHc(List<String> unidades) {
+    return getHCPorUnidad(unidades).stream().mapToDouble(hc -> hc).sum();
+  }
+  public List<Double> getHCPorPorcentaje(List<String> unidades) {
+    return getHCPorUnidad(unidades).stream().map(hc ->  hc *100 / sumaDeHc(unidades)).collect(Collectors.toList());
+  }
   public void notificarUnContacto(Contacto contacto, String asunto, String contenido) {
     this.notificadores.forEach(notificador -> notificador.notificar(contacto, asunto, contenido));
   }
