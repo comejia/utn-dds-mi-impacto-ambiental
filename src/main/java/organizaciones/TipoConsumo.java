@@ -1,6 +1,11 @@
 package organizaciones;
 
-public class TipoConsumo {
+import usuarios.EntidadPersistente;
+
+import javax.persistence.Entity;
+
+@Entity
+public class TipoConsumo extends EntidadPersistente {
 
   private String tipo;
   private String unidad;

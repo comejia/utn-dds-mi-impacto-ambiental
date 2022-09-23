@@ -1,20 +1,18 @@
 package transportes;
 
+import API.Geodds;
 import API.Geolocalizacion;
 import organizaciones.FactorEmision;
-
-import API.Geodds;
-import organizaciones.SectorTerritorial;
-import sun.util.resources.Bundles;
 import trayectos.Punto;
 
 import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public abstract class TransportePrivado extends Transporte {
+  @Transient
   Geolocalizacion api;
 
   @OneToOne(cascade = CascadeType.ALL)

@@ -1,8 +1,6 @@
 package trayectos;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+
 import usuarios.EntidadPersistente;
 
 import javax.persistence.*;
