@@ -6,6 +6,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import transportes.*;
 import trayectos.Parada;
+import trayectos.Trayecto;
 
 import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
@@ -33,13 +34,11 @@ public class TransporteTest extends AbstractPersistenceTest implements WithGloba
   @Test
   public void sePuedePersistirUnTransportePublico(){
     entityManager().persist(colectivo);
-    entityManager().close();
   }
 
   @Test
   public void sePuedePersistirUnVehicularParticular(){
     persist(scaloneta);
-    entityManager().close();
   }
 
   @Test
@@ -47,22 +46,28 @@ public class TransporteTest extends AbstractPersistenceTest implements WithGloba
     EntityTransaction tx = entityManager().getTransaction();
     tx.begin();
     entityManager().persist(colectivo);
-    persist(scaloneta);
+    entityManager().persist(scaloneta);
     tx.commit();
     assertEquals(2, entityManager().createQuery("from Transporte").getResultList().size());
-    entityManager().close();
   }
 
   @Test
   public void sePuedeRecuperarSoloTransportesPrivados(){
     EntityTransaction tx = entityManager().getTransaction();
     tx.begin();
-    entityManager().persist(bicicleta);
     entityManager().persist(colectivo);
-    persist(scaloneta);
+    entityManager().persist(scaloneta);
     tx.commit();
-    assertEquals(2, entityManager().createQuery("from TransportePrivado").getResultList().size());
-    entityManager().close();
+    assertEquals(1, entityManager().createQuery("from TransportePrivado").getResultList().size());
   }
 
+  @Test
+  public void sePuedeRecuperarUnTransporte(){
+    EntityTransaction tx = entityManager().getTransaction();
+    tx.begin();
+    entityManager().persist(scaloneta);
+    tx.commit();
+    Transporte scaloneta1 = entityManager().createQuery("from Transporte",Transporte.class).getResultList().get(0);
+    assertEquals(scaloneta1,scaloneta);
+  }
 }
