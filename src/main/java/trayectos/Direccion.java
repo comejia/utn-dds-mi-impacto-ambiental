@@ -1,6 +1,11 @@
 package trayectos;
 
-public class Direccion {
+import usuarios.EntidadPersistente;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Direccion extends EntidadPersistente {
   private String localidad;
   private String calle;
   private String altura;

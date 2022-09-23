@@ -4,17 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import organizaciones.FactorEmision;
 import transportes.Transporte;
+import usuarios.EntidadPersistente;
 
 import javax.persistence.*;
 
-@Data
 @NoArgsConstructor
 @Entity
-public class Tramo {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.TABLE)
-  private Long id;
+public class Tramo extends EntidadPersistente {
 
   @OneToOne(cascade = CascadeType.ALL)
   private Transporte transporte;
@@ -29,10 +25,6 @@ public class Tramo {
     this.transporte = transporte;
     this.puntoInicio = puntoInicio;
     this.puntoFinal = puntoFinal;
-  }
-
-  public Long getId() {
-    return id;
   }
 
   public double distancia() {

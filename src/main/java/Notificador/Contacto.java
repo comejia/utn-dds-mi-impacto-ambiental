@@ -1,6 +1,11 @@
 package Notificador;
 
-public class Contacto {
+import usuarios.EntidadPersistente;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Contacto extends EntidadPersistente {
   private String mail;
   private String telefono;
 

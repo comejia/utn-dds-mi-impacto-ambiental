@@ -5,11 +5,22 @@ import organizaciones.FactorEmision;
 import trayectos.Parada;
 import trayectos.Punto;
 
-public class TransportePublico implements Transporte {
+import javax.persistence.*;
 
+@Entity
+@DiscriminatorValue("PU")
+public class TransportePublico extends Transporte {
+
+  @Enumerated(EnumType.STRING)
   private TipoTransportePublico tipoTransportePublico;
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "Transporte_X_Parada")
   private List<Parada> paradas;
+
   private int linea;
+
+  @OneToOne(cascade = CascadeType.ALL)
   private FactorEmision factorEmision;
 
   public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea) {

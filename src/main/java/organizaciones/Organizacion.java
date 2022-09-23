@@ -6,22 +6,41 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import excepciones.TipoConsumoInexistente;
 import trayectos.Direccion;
+import usuarios.EntidadPersistente;
 
+import javax.persistence.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Organizacion {
+@Entity
+public class Organizacion extends EntidadPersistente {
 
   private String razonSocial;
+  @Enumerated(EnumType.STRING)
   private TipoOrganizacion tipoOrganizacion;
+
+  @OneToOne(cascade = CascadeType.ALL)
   private Direccion ubicacion;
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "sector_id")
   private final List<Sector> sectores = new ArrayList<>();
+
+  @Enumerated(EnumType.STRING)
   private Clasificacion clasificacion;
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "medicion_id")
   private final List<Medicion> mediciones = new ArrayList<>();
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "contacto_id")
   private final List<Contacto> contactos = new ArrayList<>();
+
+  @Transient
   private final List<Notificador> notificadores = new ArrayList<>();
 
   public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {

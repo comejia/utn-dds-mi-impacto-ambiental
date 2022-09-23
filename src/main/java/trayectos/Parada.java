@@ -1,6 +1,11 @@
 package trayectos;
 
-public class Parada {
+import usuarios.EntidadPersistente;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Parada extends EntidadPersistente {
 
   private double distanciaProximaParada;
 

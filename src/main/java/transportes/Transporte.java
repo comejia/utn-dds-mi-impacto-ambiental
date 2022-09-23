@@ -2,13 +2,19 @@ package transportes;
 
 import organizaciones.FactorEmision;
 import trayectos.Punto;
+import usuarios.EntidadPersistente;
 
-public interface Transporte {
+import javax.persistence.*;
 
-  double getDistancia(Punto puntoInicio, Punto puntoFin);
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo" , length = 2)
+public abstract class Transporte extends EntidadPersistente {
 
-  FactorEmision getFactorEmision();
+  public abstract double getDistancia(Punto puntoInicio, Punto puntoFin);
 
-  boolean seComparte();
+  public abstract FactorEmision getFactorEmision();
+
+  public abstract boolean seComparte();
 
 }

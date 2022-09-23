@@ -11,17 +11,13 @@ import organizaciones.Sector;
 import trayectos.Trayecto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import usuarios.EntidadPersistente;
 
 import javax.persistence.*;
 
-@Data
 @NoArgsConstructor
 @Entity
-public class Miembro {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.TABLE)
-  private Long id;
+public class Miembro extends EntidadPersistente {
 
   private String nombre;
   private String apellido;
@@ -47,10 +43,6 @@ public class Miembro {
 
   public void vincularASector(Sector sector) {
     trabajos.add(sector);
-  }
-
-  public Long getId() {
-    return id;
   }
 
   public List<Sector> getSector() {

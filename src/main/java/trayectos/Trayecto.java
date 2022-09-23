@@ -1,18 +1,15 @@
 package trayectos;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import usuarios.EntidadPersistente;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @Entity
-public class Trayecto {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.TABLE)
-  private Long id;
+public class Trayecto extends EntidadPersistente {
 
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "egreso_id")
@@ -20,10 +17,6 @@ public class Trayecto {
 
   public Trayecto(List<Tramo> tramos) {
     this.tramos = tramos;
-  }
-
-  public Long getId() {
-    return id;
   }
 
   public void agregarTramo(Tramo tramo) {

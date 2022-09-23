@@ -5,19 +5,15 @@ import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import miembros.Miembro;
+import usuarios.EntidadPersistente;
 
 import javax.persistence.*;
 
-@Data
 @Entity
-public class Sector {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.TABLE)
-  private Long id;
+public class Sector extends EntidadPersistente {
 
   @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "tipoDocumento_id")
+  @JoinColumn(name = "organizacion_id")
   private final Organizacion organizacion;
 
   @ManyToMany(cascade = CascadeType.ALL)
@@ -28,10 +24,6 @@ public class Sector {
     this.organizacion = organizacion;
     this.organizacion.agregarSector(this);
     this.miembros = miembros;
-  }
-
-  public Long getId() {
-    return id;
   }
 
   public boolean perteneceAOrganizacion(Organizacion org) {

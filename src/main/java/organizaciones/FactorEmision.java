@@ -1,11 +1,19 @@
 package organizaciones;
 
 import excepciones.UnidadIncompatibleException;
+import usuarios.EntidadPersistente;
 
-public class FactorEmision {
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Entity
+public class FactorEmision extends EntidadPersistente {
 
   private int valor;
   private String unidad;
+
+  @Enumerated(EnumType.STRING)
   private TipoConsumo tipoConsumo;
 
   public FactorEmision(int valor, String unidad, TipoConsumo tipoConsumo) {
