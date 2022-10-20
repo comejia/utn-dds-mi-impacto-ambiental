@@ -31,7 +31,7 @@ public class Miembro extends EntidadPersistente {
   private final List<Sector> trabajos = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "trayecto_id")
+  @JoinColumn(name = "trayectoId")
   private List<Trayecto> trayectos = new ArrayList<>();
 
   public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento) {

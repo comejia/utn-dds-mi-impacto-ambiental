@@ -1,9 +1,6 @@
 package transportes;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("VH")
@@ -13,6 +10,7 @@ public class VehiculoParticular extends TransportePrivado {
   private TipoVehiculo tipoVehiculo;
 
   @Enumerated(EnumType.STRING)
+  @Embedded
   private TipoCombustible tipoCombustible;
 
   public VehiculoParticular(){}

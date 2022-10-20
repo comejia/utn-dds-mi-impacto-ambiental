@@ -10,7 +10,7 @@ import java.util.List;
 public class Trayecto extends EntidadPersistente {
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "egreso_id")
+  @JoinColumn(name = "egresoId")
   private final List<Tramo> tramos;
 
   public Trayecto(List<Tramo> tramos) {

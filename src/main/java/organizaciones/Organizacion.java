@@ -30,18 +30,18 @@ public class Organizacion extends EntidadPersistente {
   private Direccion ubicacion;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "sector_id")
+  @JoinColumn(name = "sectorId")
   private final List<Sector> sectores = new ArrayList<>();
 
   @Enumerated(EnumType.STRING)
   private Clasificacion clasificacion;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "medicion_id")
+  @JoinColumn(name = "medicionId")
   private final List<Medicion> mediciones = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "contacto_id")
+  @JoinColumn(name = "contactoId")
   private final List<Contacto> contactos = new ArrayList<>();
 
   @Transient

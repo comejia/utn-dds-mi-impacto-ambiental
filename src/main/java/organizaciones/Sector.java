@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Sector extends EntidadPersistente {
 
   @ManyToOne(cascade = CascadeType.MERGE)
-  @JoinColumn(name = "organizacion_id")
+  @JoinColumn(name = "organizacionId")
   private final Organizacion organizacion;
 
   @ManyToMany(cascade = CascadeType.ALL)
