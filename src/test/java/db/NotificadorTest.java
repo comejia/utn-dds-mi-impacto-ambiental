@@ -1,15 +1,11 @@
 package db;
 
-import Notificador.Contacto;
-import miembros.AgenteSectorial;
+import Dominio.Notificador.Contacto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import organizaciones.*;
-import trayectos.Direccion;
-
-import java.util.List;
+import Dominio.organizaciones.*;
 
 public class NotificadorTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
     Contacto contacto;

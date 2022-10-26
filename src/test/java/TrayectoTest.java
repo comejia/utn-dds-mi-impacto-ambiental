@@ -1,12 +1,13 @@
-import API.Geolocalizacion;
-import excepciones.PuntoIncompatibleException;
+import Dominio.API.Geolocalizacion;
+import Dominio.excepciones.PuntoIncompatibleException;
+import Dominio.trayectos.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import transportes.APie;
-import transportes.Bicicleta;
-import transportes.TipoTransportePublico;
-import transportes.TransportePublico;
-import trayectos.*;
+import Dominio.transportes.APie;
+import Dominio.transportes.Bicicleta;
+import Dominio.transportes.TipoTransportePublico;
+import Dominio.transportes.TransportePublico;
+import Dominio.trayectos.*;
 
 import java.util.ArrayList;
 import java.util.List;

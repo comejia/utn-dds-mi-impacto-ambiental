@@ -1,12 +1,12 @@
-import Notificador.NotificacionCalendarizada;
-import Notificador.NotificarPorMail;
-import Notificador.NotificarPorWhatsApp;
+import Dominio.Notificador.NotificacionCalendarizada;
+import Dominio.Notificador.NotificarPorMail;
+import Dominio.Notificador.NotificarPorWhatsApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import organizaciones.Clasificacion;
-import organizaciones.Organizacion;
-import organizaciones.TipoOrganizacion;
-import trayectos.Direccion;
+import Dominio.organizaciones.Clasificacion;
+import Dominio.organizaciones.Organizacion;
+import Dominio.organizaciones.TipoOrganizacion;
+import Dominio.trayectos.Direccion;
 
 import java.io.File;
 import java.io.IOException;

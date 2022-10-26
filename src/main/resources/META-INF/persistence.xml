@@ -8,31 +8,31 @@
   <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-    <class>transportes.TransportePublico</class>
-    <class>transportes.Transporte</class>
-    <class>transportes.TransportePrivado</class>
-    <class>transportes.Transporte</class>
-    <class>transportes.ServicioContratado</class>
-    <class>transportes.Bicicleta</class>
-    <class>transportes.APie</class>
-    <class>transportes.VehiculoParticular</class>
+    <class>Dominio.transportes.TransportePublico</class>
+    <class>Dominio.transportes.Transporte</class>
+    <class>Dominio.transportes.TransportePrivado</class>
+    <class>Dominio.transportes.Transporte</class>
+    <class>Dominio.transportes.ServicioContratado</class>
+    <class>Dominio.transportes.Bicicleta</class>
+    <class>Dominio.transportes.APie</class>
+    <class>Dominio.transportes.VehiculoParticular</class>
 
-    <class>trayectos.Parada</class>
-    <class>trayectos.Punto</class>
-    <class>trayectos.Tramo</class>
-    <class>trayectos.Direccion</class>
-    <class>trayectos.Trayecto</class>
+    <class>Dominio.trayectos.Parada</class>
+    <class>Dominio.trayectos.Punto</class>
+    <class>Dominio.trayectos.Tramo</class>
+    <class>Dominio.trayectos.Direccion</class>
+    <class>Dominio.trayectos.Trayecto</class>
 
-    <class>organizaciones.Organizacion</class>
-    <class>organizaciones.FactorEmision</class>
-    <class>organizaciones.Medicion</class>
-    <class>organizaciones.TipoConsumo</class>
-    <class>organizaciones.Sector</class>
-    <class>organizaciones.SectorTerritorial</class>
+    <class>Dominio.organizaciones.Organizacion</class>
+    <class>Dominio.organizaciones.FactorEmision</class>
+    <class>Dominio.organizaciones.Medicion</class>
+    <class>Dominio.organizaciones.TipoConsumo</class>
+    <class>Dominio.organizaciones.Sector</class>
+    <class>Dominio.organizaciones.SectorTerritorial</class>
 
-    <class>miembros.Miembro</class>
+    <class>Dominio.miembros.Miembro</class>
 
-    <class>Notificador.Contacto</class>
+    <class>Dominio.Notificador.Contacto</class>
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>

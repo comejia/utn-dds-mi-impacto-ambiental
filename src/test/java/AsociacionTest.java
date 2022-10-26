@@ -1,14 +1,17 @@
-import miembros.Miembro;
-import miembros.TipoDocumento;
+import Dominio.excepciones.NoPuedoCompartirMiTrayecto;
+import Dominio.miembros.Miembro;
+import Dominio.miembros.TipoDocumento;
+import Dominio.transportes.*;
+import Dominio.trayectos.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import organizaciones.Clasificacion;
-import organizaciones.Organizacion;
-import organizaciones.Sector;
-import organizaciones.TipoOrganizacion;
-import transportes.*;
-import trayectos.*;
-import excepciones.*;
+import Dominio.organizaciones.Clasificacion;
+import Dominio.organizaciones.Organizacion;
+import Dominio.organizaciones.Sector;
+import Dominio.organizaciones.TipoOrganizacion;
+import Dominio.transportes.*;
+import Dominio.trayectos.*;
+import Dominio.excepciones.*;
 
 import java.util.ArrayList;
 import java.util.List;

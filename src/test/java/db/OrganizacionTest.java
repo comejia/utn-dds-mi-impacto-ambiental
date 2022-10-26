@@ -1,17 +1,15 @@
 package db;
 
-import miembros.AgenteSectorial;
+import Dominio.miembros.AgenteSectorial;
+import Dominio.organizaciones.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import organizaciones.*;
-import transportes.*;
-import trayectos.Direccion;
-import trayectos.Parada;
+import Dominio.organizaciones.*;
+import Dominio.transportes.*;
+import Dominio.trayectos.Direccion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
