@@ -1,5 +1,6 @@
 package Main;
 
+import Controllers.UsuarioController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -17,8 +18,16 @@ public class Routes {
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 
     //new de todos los controllers
+    UsuarioController usuarioController = new UsuarioController();
+
 
     //Rutas Spark
+    Spark.get("/login", usuarioController::getFormularioLogin, engine);
+    Spark.post("/login", usuarioController::iniciarSesion, engine);
+    Spark.get("/logout", usuarioController::cerrarSesion);
+
+    Spark.get("/registrarUsuario", usuarioController::getFormularioRegistrarUsuario, engine);
+    Spark.post("/registrarUsuario", usuarioController::registrarUsuario, engine);
 
   }
 }

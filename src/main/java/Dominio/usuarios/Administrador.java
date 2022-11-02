@@ -5,11 +5,13 @@ import org.passay.dictionary.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import Dominio.excepciones.ContraseniaDebilException;
 
+import javax.persistence.Entity;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-public class Administrador {
+@Entity
+public class Administrador extends EntidadPersistente{
 
   private String usuario;
   private String contrasenia;
@@ -21,6 +23,14 @@ public class Administrador {
     validarContrasenia(usuario, contrasenia);
     this.usuario = usuario;
     this.contrasenia = hashearContrasenia(contrasenia);
+  }
+
+  public String getUsuario() {
+    return usuario;
+  }
+
+  public String getContrasenia() {
+    return contrasenia;
   }
 
   private void validarContrasenia(String usuario, String contrasenia) {

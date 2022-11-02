@@ -32,6 +32,7 @@
     <class>Dominio.miembros.Miembro</class>
 
     <class>Dominio.Notificador.Contacto</class>
+    <class>Dominio.usuarios.Administrador</class>
 
 
 

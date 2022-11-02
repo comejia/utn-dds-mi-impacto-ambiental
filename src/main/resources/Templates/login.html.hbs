@@ -1,0 +1,44 @@
+{{#partial "titulo"}}
+    <title>Login</title>
+{{/partial}}
+
+{{#partial "contenido"}}
+    <section>
+
+        <h2 align="center">Inicio de Sesión</h2>
+
+        <form name="login-form" class="login-form" action="/login" method="post">
+            <table align="center">
+                <tr>
+                    <td>
+                        <input name="username" type="text" class="input username" placeholder="Usuario" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="password" type="password" class="input password" placeholder="Contraseña" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <a href="/registrarUsuario">Registrarme</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="submit" name="submit" value="Ingresar" class="button"/>
+                    </td>
+                </tr>
+                <tr>
+                	<td>
+                		<span name="errorLogin">{{errorLogin}}</span>
+                	</td>
+                </tr>
+        	</table>
+        </form>
+
+    </section>
+
+{{/partial}}
+
+{{> layout.html.hbs }}
