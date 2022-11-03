@@ -1,7 +1,9 @@
 package Main;
 
 import Controllers.UsuarioController;
+import Controllers.VinculacionController;
 import spark.Spark;
+import spark.TemplateViewRoute;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Routes {
@@ -19,6 +21,7 @@ public class Routes {
 
     //new de todos los controllers
     UsuarioController usuarioController = new UsuarioController();
+    VinculacionController vinculacionController = new VinculacionController();
 
 
     //Rutas Spark
@@ -28,6 +31,8 @@ public class Routes {
 
     Spark.get("/registrarUsuario", usuarioController::getFormularioRegistrarUsuario, engine);
     Spark.post("/registrarUsuario", usuarioController::registrarUsuario, engine);
+
+    Spark.get("/miembros/vinculacion", (request,response)->vinculacionController.getMiembroVinculacion(),engine);
 
   }
 }
