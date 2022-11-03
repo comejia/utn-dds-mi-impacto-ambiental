@@ -33,6 +33,7 @@ public class Routes {
     Spark.post("/registrarUsuario", usuarioController::registrarUsuario, engine);
 
     Spark.get("/miembros/vinculacion", (request,response)->vinculacionController.getMiembroVinculacion(),engine);
+    Spark.get("/organizacion/vinculacion", (request,response)->vinculacionController.getOrganizacionVinculacion(),engine);
 
   }
 }
