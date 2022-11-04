@@ -23,6 +23,9 @@ public class Routes {
     VinculacionController vinculacionController = new VinculacionController();
     MedicionesController medicionesController = new MedicionesController();
     TrayectosController trayectosController = new TrayectosController();
+    GuiaController guiaController = new GuiaController();
+    ReportesController reportesController = new ReportesController();
+    CalculadoraHCController calculadoraHCController = new CalculadoraHCController();
 
     //Rutas Spark
     Spark.get("/", homeController::home, engine);
@@ -46,5 +49,10 @@ public class Routes {
     Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);
     Spark.post("/trayectos", trayectosController::crear);
 
+    Spark.get("/guia-recomendaciones", guiaController::guia, engine);
+
+    Spark.get("/reportes", reportesController::reporte, engine);
+
+    Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
   }
 }
