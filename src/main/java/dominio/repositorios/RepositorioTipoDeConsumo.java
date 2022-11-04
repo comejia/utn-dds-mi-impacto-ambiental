@@ -1,6 +1,7 @@
 package dominio.repositorios;
 
 import dominio.organizaciones.TipoConsumo;
+import dominio.transportes.Transporte;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class RepositorioTipoDeConsumo implements WithGlobalEntityManager {
         .filter(t -> t.esMismoTipo(tipo))
         .findFirst()
         .orElseThrow(() -> new RuntimeException("Tipo de Consumo inexistente"));
+//    return entityManager().createQuery("from TipoConsumo where tipo = " + tipo, TipoConsumo.class).getSingleResult();
   }
 
   public void agregar(TipoConsumo tipoConsumo) {

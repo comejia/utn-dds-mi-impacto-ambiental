@@ -5,11 +5,13 @@ import dominio.excepciones.PuntoIncompatibleException;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
 import dominio.trayectos.Parada;
+import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("PU")
+@Getter
 public class TransportePublico extends Transporte {
 
   @Enumerated(EnumType.STRING)

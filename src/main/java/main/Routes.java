@@ -1,9 +1,6 @@
 package main;
 
-import controllers.HomeController;
-import controllers.MedicionesController;
-import controllers.UsuarioController;
-import controllers.VinculacionController;
+import controllers.*;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -25,6 +22,7 @@ public class Routes {
     UsuarioController usuarioController = new UsuarioController();
     VinculacionController vinculacionController = new VinculacionController();
     MedicionesController medicionesController = new MedicionesController();
+    TrayectosController trayectosController = new TrayectosController();
 
     //Rutas Spark
     Spark.get("/", homeController::home, engine);
@@ -44,6 +42,9 @@ public class Routes {
     Spark.get("/mediciones/csv", medicionesController::csv, engine);
     Spark.post("/mediciones/particular", medicionesController::crear);
     Spark.post("/mediciones/csv", medicionesController::cargar);
+
+    Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);
+    Spark.get("/trayectos", trayectosController::crear);
 
   }
 }
