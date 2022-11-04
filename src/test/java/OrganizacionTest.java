@@ -1,14 +1,13 @@
-import Dominio.Notificador.Contacto;
-import Dominio.excepciones.TipoConsumoInexistente;
-import Dominio.organizaciones.Clasificacion;
-import Dominio.organizaciones.Organizacion;
-import Dominio.organizaciones.TipoConsumo;
-import Dominio.organizaciones.TipoOrganizacion;
+import dominio.Notificador.Contacto;
+import dominio.excepciones.TipoConsumoInexistente;
+import dominio.organizaciones.Clasificacion;
+import dominio.organizaciones.Organizacion;
+import dominio.organizaciones.TipoConsumo;
+import dominio.organizaciones.TipoOrganizacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import Dominio.organizaciones.*;
-import Dominio.trayectos.Direccion;
+import dominio.trayectos.Direccion;
 
 import java.util.ArrayList;
 import java.util.List;

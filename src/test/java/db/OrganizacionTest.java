@@ -1,14 +1,12 @@
 package db;
 
-import Dominio.miembros.AgenteSectorial;
-import Dominio.organizaciones.*;
+import dominio.miembros.AgenteSectorial;
+import dominio.organizaciones.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import Dominio.organizaciones.*;
-import Dominio.transportes.*;
-import Dominio.trayectos.Direccion;
+import dominio.trayectos.Direccion;
 
 import java.util.List;
 

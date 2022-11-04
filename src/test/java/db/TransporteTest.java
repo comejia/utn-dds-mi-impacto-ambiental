@@ -1,12 +1,11 @@
 package db;
 
-import Dominio.transportes.*;
+import dominio.transportes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import Dominio.transportes.*;
-import Dominio.trayectos.Parada;
+import dominio.trayectos.Parada;
 
 import javax.persistence.EntityTransaction;
 import java.util.ArrayList;

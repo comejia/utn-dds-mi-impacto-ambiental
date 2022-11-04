@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
-import Dominio.excepciones.ContraseniaDebilException;
-import Dominio.usuarios.Administrador;
+import dominio.excepciones.ContraseniaDebilException;
+import dominio.usuarios.Administrador;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,9 +1,9 @@
-import Dominio.excepciones.UnidadIncompatibleException;
+import dominio.excepciones.UnidadIncompatibleException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import Dominio.organizaciones.FactorEmision;
-import Dominio.organizaciones.TipoConsumo;
+import dominio.organizaciones.FactorEmision;
+import dominio.organizaciones.TipoConsumo;
 
 public class FactorDeEmisionTest {
 

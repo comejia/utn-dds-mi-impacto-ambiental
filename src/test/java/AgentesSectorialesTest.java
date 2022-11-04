@@ -3,9 +3,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import Dominio.miembros.AgenteSectorial;
-import Dominio.organizaciones.SectorTerritorial;
-import Dominio.organizaciones.TipoSectorTerritorial;
+import dominio.miembros.AgenteSectorial;
+import dominio.organizaciones.SectorTerritorial;
+import dominio.organizaciones.TipoSectorTerritorial;
 
 public class AgentesSectorialesTest {
 

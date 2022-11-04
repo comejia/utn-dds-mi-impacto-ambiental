@@ -7,32 +7,32 @@
 
   <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>Dominio.transportes.TransportePublico</class>
-    <class>Dominio.transportes.Transporte</class>
-    <class>Dominio.transportes.TransportePrivado</class>
-    <class>Dominio.transportes.Transporte</class>
-    <class>Dominio.transportes.ServicioContratado</class>
-    <class>Dominio.transportes.Bicicleta</class>
-    <class>Dominio.transportes.APie</class>
-    <class>Dominio.transportes.VehiculoParticular</class>
+    <class>dominio.transportes.TransportePublico</class>
+    <class>dominio.transportes.Transporte</class>
+    <class>dominio.transportes.TransportePrivado</class>
+    <class>dominio.transportes.Transporte</class>
+    <class>dominio.transportes.ServicioContratado</class>
+    <class>dominio.transportes.Bicicleta</class>
+    <class>dominio.transportes.APie</class>
+    <class>dominio.transportes.VehiculoParticular</class>
 
-    <class>Dominio.trayectos.Parada</class>
-    <class>Dominio.trayectos.Punto</class>
-    <class>Dominio.trayectos.Tramo</class>
-    <class>Dominio.trayectos.Direccion</class>
-    <class>Dominio.trayectos.Trayecto</class>
+    <class>dominio.trayectos.Parada</class>
+    <class>dominio.trayectos.Punto</class>
+    <class>dominio.trayectos.Tramo</class>
+    <class>dominio.trayectos.Direccion</class>
+    <class>dominio.trayectos.Trayecto</class>
 
-    <class>Dominio.organizaciones.Organizacion</class>
-    <class>Dominio.organizaciones.FactorEmision</class>
-    <class>Dominio.organizaciones.Medicion</class>
-    <class>Dominio.organizaciones.TipoConsumo</class>
-    <class>Dominio.organizaciones.Sector</class>
-    <class>Dominio.organizaciones.SectorTerritorial</class>
+    <class>dominio.organizaciones.Organizacion</class>
+    <class>dominio.organizaciones.FactorEmision</class>
+    <class>dominio.organizaciones.Medicion</class>
+    <class>dominio.organizaciones.TipoConsumo</class>
+    <class>dominio.organizaciones.Sector</class>
+    <class>dominio.organizaciones.SectorTerritorial</class>
 
-    <class>Dominio.miembros.Miembro</class>
+    <class>dominio.miembros.Miembro</class>
 
-    <class>Dominio.Notificador.Contacto</class>
-    <class>Dominio.usuarios.Administrador</class>
+    <class>dominio.Notificador.Contacto</class>
+    <class>dominio.usuarios.Administrador</class>
 
 
 
