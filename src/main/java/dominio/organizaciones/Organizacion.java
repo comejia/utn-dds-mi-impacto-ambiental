@@ -23,6 +23,7 @@ public class Organizacion extends EntidadPersistente {
   @Enumerated(EnumType.STRING)
   private TipoOrganizacion tipoOrganizacion;
 
+  @Transient
   private List<Double> hcTotal;
 
   @OneToOne(cascade = CascadeType.ALL)

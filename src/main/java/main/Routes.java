@@ -1,5 +1,6 @@
 package main;
 
+import controllers.MedicionesController;
 import controllers.UsuarioController;
 import controllers.VinculacionController;
 import spark.Spark;
@@ -21,7 +22,7 @@ public class Routes {
     //new de todos los controllers
     UsuarioController usuarioController = new UsuarioController();
     VinculacionController vinculacionController = new VinculacionController();
-
+    MedicionesController medicionesController = new MedicionesController();
 
     //Rutas Spark
     Spark.get("/login", usuarioController::getFormularioLogin, engine);
@@ -31,8 +32,13 @@ public class Routes {
     Spark.get("/registrarUsuario", usuarioController::getFormularioRegistrarUsuario, engine);
     Spark.post("/registrarUsuario", usuarioController::registrarUsuario, engine);
 
-    Spark.get("/miembros/vinculacion", (request,response)->vinculacionController.getMiembroVinculacion(),engine);
-    Spark.get("/organizacion/vinculacion", (request,response)->vinculacionController.getOrganizacionVinculacion(),engine);
+    Spark.get("/miembros/vinculacion", (request, response) -> vinculacionController.getMiembroVinculacion(), engine);
+    Spark.get("/organizacion/vinculacion", (request, response) -> vinculacionController.getOrganizacionVinculacion(), engine);
+
+    Spark.get("/mediciones", medicionesController::mediciones, engine);
+    Spark.get("/mediciones/particular", medicionesController::particular, engine);
+    Spark.get("/mediciones/csv", medicionesController::csv, engine);
+    Spark.post("/mediciones", medicionesController::mediciones, engine);
 
   }
 }

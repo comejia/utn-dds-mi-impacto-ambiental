@@ -1,5 +1,6 @@
 package main;
 
+import dominio.organizaciones.TipoConsumo;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -11,8 +12,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
   }
 
   public void run() {
-
-    //todas cosa que querramos ya creadas en la BD
-
+    withTransaction(() -> {
+      persist(new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1));
+      persist(new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2));
+    });
   }
 }
