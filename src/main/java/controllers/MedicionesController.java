@@ -4,6 +4,8 @@ import dominio.organizaciones.Medicion;
 import dominio.organizaciones.TipoConsumo;
 import dominio.repositorios.RepositorioMediciones;
 import dominio.repositorios.RepositorioTipoDeConsumo;
+import dominio.usuarios.Administrador;
+import funciones.UsuarioSesion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -16,6 +18,16 @@ import java.util.Map;
 
 public class MedicionesController implements WithGlobalEntityManager, TransactionalOps {
   public ModelAndView mediciones(Request request, Response response) {
+//    Administrador usuario = UsuarioSesion.estaLogueado(request);
+//    if (usuario == null) {
+//      response.redirect("/login");
+//      return null;
+//    }
+//    Map<String, Object> model = new HashMap<>();
+//    UsuarioSesion.reconocerRol(usuario, model);
+//    model.put("sesion", "Estoy logueado");
+//    model.put("nombreUsuario", usuario.getUsuario());
+
     return new ModelAndView(null, "mediciones.html.hbs");
   }
 

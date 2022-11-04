@@ -22,10 +22,10 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
   }
 
   public ModelAndView iniciarSesion(Request request, Response response) {
-    Map<String, Object> viewModel = new HashMap<String, Object>();
+    Map<String, Object> viewModel = new HashMap<>();
     String username = request.queryParams("username");
     String password = request.queryParams("password");
-    Administrador usuario = null;
+    Administrador usuario;
 
     try {
       List<Administrador> usuarioList = RepositorioUsuarios.instancia.listar();
