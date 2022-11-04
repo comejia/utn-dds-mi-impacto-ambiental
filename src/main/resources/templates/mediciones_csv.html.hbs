@@ -4,7 +4,14 @@
 
 {{#partial "contenido"}}
     <section>
-        <h2 align="center">Ingresar ruta CSV</h2>
+        <h2 align="center">Cargar archivo CSV</h2>
+        <form method="post" action="/mediciones/csv">
+            <div class="form-group">
+                <label for="csvFile">Archivo CSV</label>
+                <input type="file" class="form-control-file" id="csvFileId">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
     </section>
 
 {{/partial}}

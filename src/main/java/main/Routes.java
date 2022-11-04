@@ -1,5 +1,6 @@
 package main;
 
+import controllers.HomeController;
 import controllers.MedicionesController;
 import controllers.UsuarioController;
 import controllers.VinculacionController;
@@ -20,11 +21,14 @@ public class Routes {
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
 
     //new de todos los controllers
+    HomeController homeController = new HomeController();
     UsuarioController usuarioController = new UsuarioController();
     VinculacionController vinculacionController = new VinculacionController();
     MedicionesController medicionesController = new MedicionesController();
 
     //Rutas Spark
+    Spark.get("/", homeController::home, engine);
+
     Spark.get("/login", usuarioController::getFormularioLogin, engine);
     Spark.post("/login", usuarioController::iniciarSesion, engine);
     Spark.get("/logout", usuarioController::cerrarSesion);
@@ -38,7 +42,8 @@ public class Routes {
     Spark.get("/mediciones", medicionesController::mediciones, engine);
     Spark.get("/mediciones/particular", medicionesController::particular, engine);
     Spark.get("/mediciones/csv", medicionesController::csv, engine);
-    Spark.post("/mediciones", medicionesController::mediciones, engine);
+    Spark.post("/mediciones/particular", medicionesController::crear);
+    Spark.post("/mediciones/csv", medicionesController::cargar);
 
   }
 }

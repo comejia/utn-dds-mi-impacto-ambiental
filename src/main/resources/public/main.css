@@ -38,7 +38,7 @@ body {
     min-width: 300px;
 }
 
-h2{
+h1, h2{
 display: flex;
 justify-content: center;
 margin-top: 1em;
@@ -65,4 +65,8 @@ z-index:9;
 
 .btn-block {
   margin-top: 5rem;
+}
+
+form {
+  margin-top: 3rem;
 }
