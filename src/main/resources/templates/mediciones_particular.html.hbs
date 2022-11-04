@@ -7,8 +7,8 @@
         <h2 align="center">Datos de medicion</h2>
         <form method="post" action="/mediciones/particular">
             <div class="form-group">
-                <label for="tipoConsumo">Tipo de Consumo</label>
-                <select class="form-control" id="tipoDeConsumoId">
+                <label for="tipoDeConsumo">Tipo de Consumo</label>
+                <select class="form-control" id="tipoDeConsumo" name="tipoDeConsumo">
                     {{#tiposDeConsumos}}
                     <option>{{tipo}}</option>
                     {{/tiposDeConsumos}}
@@ -16,18 +16,18 @@
             </div>
             <div class="form-group">
                 <label for="valor">Valor</label>
-                <input type="text" class="form-control" id="valorId" placeholder="Ingrese valor sin unidad">
+                <input type="text" class="form-control" id="valor" name="valor" placeholder="Ingrese valor sin unidad">
             </div>
             <div class="form-group">
                 <label for="periodicidad">Periodicidad</label>
-                <select class="form-control" id="periodicidadId">
+                <select class="form-control" id="periodicidad" name="periodicidad">
                     <option>Mensual</option>
                     <option>Anual</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="periodoImputacion">Periodo de imputacion</label>
-                <input type="text" class="form-control" id="periodoImputacionId" placeholder="Formato MM/AAAA o AAAA">
+                <input type="text" class="form-control" id="periodoImputacion" name="periodoImputacion" placeholder="Formato MM/AAAA o AAAA">
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
