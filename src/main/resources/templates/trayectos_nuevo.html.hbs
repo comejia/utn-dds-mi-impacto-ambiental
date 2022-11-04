@@ -5,10 +5,8 @@
 {{#partial "contenido"}}
     <section>
         <h2 align="center">Registro de Trayectos</h2>
-        <form method="post" action="/trayectos/nuevo">
-            <div class="form-group">
-                <p id="tramo">Tramo 1</p>
-            </div>
+        <form method="post" action="/trayectos">
+            <p id="tramo">Tramo</p>
             <div class="form-group">
                 <label for="tipoTransporte">Tipo de transporte</label>
                 <select class="form-control" id="tipoTransporte" name="tipoTransporte">
@@ -31,38 +29,42 @@
             </div>
 
             <div id="oculto1" hidden="hidden">
-                <p id="tramo">Tramo 2</p>
-                <div class="form-group">
-                    <label for="tipoTransporte">Tipo de transporte</label>
-                    <select class="form-control" id="tipoTransporte" name="tipoTransporte">
-                        <option>A Pie</option>
-                        <option>Bicicleta</option>
-                        <option>Taxi</option>
-                        <option>Remis</option>
-                        {{#each publicos}}
-                            <option>Linea {{linea}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inicio">Direccion de inicio</label>
-                    <input type="text" class="form-control" id="inicio" name="inicio" placeholder="Ej: Mozart 2200">
-                </div>
-                <div class="form-group">
-                    <label for="fin">Direccion de fin</label>
-                    <input type="text" class="form-control" id="fin" name="fin" placeholder="Ej: Medrano 950">
-                </div>
             </div>
 
-            <button type="button" class="btn btn-primary" id="nuevo_tramo" onclick="enable()">Agregar tramo</button>
-            <button type="submit" class="btn btn-secondary">Enviar</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-inline" id="nuevo_tramo" onclick="create()">
+                Agregar tramo
+            </button>
+            <button type="submit" class="btn btn-primary btn-lg btn-inline">Enviar</button>
         </form>
     </section>
 
     <script type='text/javascript'>
-        function enable(){
+        function create(){
             document.getElementById("oculto1").removeAttribute("hidden");
+            $("#oculto1").append('<p id="tramo">Tramo x</p>'+
+                '<div class="form-group">'+
+                    '<label for="tipoTransporte">Tipo de transporte</label>'+
+                    '<select class="form-control" id="tipoTransporte" name="tipoTransporte">'+
+                        '<option>A Pie</option>'+
+                        '<option>Bicicleta</option>'+
+                        '<option>Taxi</option>'+
+                        '<option>Remis</option>'+
+                        '{{#each publicos}}'+
+                            '<option>Linea {{linea}}</option>'+
+                        '{{/each}}'+
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group">'+
+                    '<label for="inicio">Direccion de inicio</label>'+
+                    '<input type="text" class="form-control" id="inicio" name="inicio" placeholder="Ej: Mozart 2200">'+
+                '</div>'+
+                '<div class="form-group">'+
+                    '<label for="fin">Direccion de fin</label>'+
+                    '<input type="text" class="form-control" id="fin" name="fin" placeholder="Ej: Medrano 950">'+
+                '</div>'
+            );
         }
+
     </script>
 
 {{/partial}}

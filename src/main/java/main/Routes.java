@@ -44,7 +44,7 @@ public class Routes {
     Spark.post("/mediciones/csv", medicionesController::cargar);
 
     Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);
-    Spark.get("/trayectos", trayectosController::crear);
+    Spark.post("/trayectos", trayectosController::crear);
 
   }
 }
