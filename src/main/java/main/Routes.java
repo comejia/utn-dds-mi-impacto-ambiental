@@ -37,8 +37,8 @@ public class Routes {
     Spark.post("/login", usuarioController::iniciarSesion, engine);
     Spark.get("/logout", usuarioController::cerrarSesion);
 
-    Spark.get("/registrarUsuario", usuarioController::getFormularioRegistrarUsuario, engine);
-    Spark.post("/registrarUsuario", usuarioController::registrarUsuario, engine);
+    Spark.get("/usuario/nuevo", usuarioController::getFormularioRegistrarUsuario, engine);
+    Spark.post("/usuario/nuevo", usuarioController::registrarUsuario, engine);
 
     Spark.get("/miembros/vinculacion", (request, response) -> vinculacionController.getMiembroVinculacion(), engine);
     Spark.get("/organizacion/vinculacion", (request, response) -> vinculacionController.getOrganizacionVinculacion(), engine);

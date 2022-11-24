@@ -7,8 +7,8 @@
         <h2 align="center">Cargar archivo CSV</h2>
         <form method="post" action="/medicion-csv/nuevo">
             <div class="form-group">
-                <label for="csvFile">Archivo CSV</label>
-                <input type="file" class="form-control-file" id="csvFileId">
+                <label for="csvFileId">Archivo CSV</label>
+                <input type="file" class="form-control-file" name="csvFileId" id="csvFileId" accept="*/*" formenctype="multipart/form-data">
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
