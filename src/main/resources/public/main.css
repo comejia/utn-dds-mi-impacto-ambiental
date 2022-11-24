@@ -29,10 +29,8 @@ body {
 }
 
 .formulario{
-
     background-color: #ffffff;
     margin: 5em auto;
-    font-family: Raleway;
     padding: 40px;
     width: 80%;
     min-width: 300px;
@@ -53,7 +51,7 @@ z-index:9;
 .footer{
   padding:2em 1em;
   color:white;
-  background-color: #343a40;
+  background-color: #305c26;
   min-height: 2rem;
   max-height: 5rem;
   display: grid;
@@ -69,4 +67,9 @@ z-index:9;
 
 form {
   margin-top: 3rem;
+}
+
+.navbar{
+  background-color: #305c26;
+  color:white;
 }
