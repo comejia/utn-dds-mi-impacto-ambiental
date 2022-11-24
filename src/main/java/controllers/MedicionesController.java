@@ -4,8 +4,9 @@ import dominio.organizaciones.Medicion;
 import dominio.organizaciones.TipoConsumo;
 import dominio.repositorios.RepositorioMediciones;
 import dominio.repositorios.RepositorioTipoDeConsumo;
-import dominio.usuarios.Administrador;
-import funciones.UsuarioSesion;
+import dominio.repositorios.RepositorioUsuarios;
+import dominio.usuarios.Role;
+import dominio.usuarios.Usuario;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -18,23 +19,22 @@ import java.util.Map;
 
 public class MedicionesController implements WithGlobalEntityManager, TransactionalOps {
   public ModelAndView mediciones(Request request, Response response) {
-//    Administrador usuario = UsuarioSesion.estaLogueado(request);
-//    if (usuario == null) {
-//      response.redirect("/login");
-//      return null;
-//    }
-//    Map<String, Object> model = new HashMap<>();
-//    UsuarioSesion.reconocerRol(usuario, model);
-//    model.put("sesion", "Estoy logueado");
-//    model.put("nombreUsuario", usuario.getUsuario());
+    Map<String, Object> model = new HashMap<>();
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instancia.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
 
-    return new ModelAndView(null, "mediciones.html.hbs");
+    model.put("mediciones", RepositorioMediciones.instance.listar());
+
+    return new ModelAndView(model, "mediciones.html.hbs");
   }
 
   public ModelAndView particular(Request request, Response response) {
-    Map<String, Object> modelo = new HashMap<>();
-    modelo.put("tiposDeConsumos", RepositorioTipoDeConsumo.instance.listar());
-    return new ModelAndView(modelo, "mediciones_particular.html.hbs");
+    Map<String, Object> model = new HashMap<>();
+    model.put("tiposDeConsumos", RepositorioTipoDeConsumo.instance.listar());
+    return new ModelAndView(model, "mediciones_particular.html.hbs");
   }
 
   public ModelAndView csv(Request request, Response response) {
@@ -51,14 +51,14 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
           request.queryParams("periodoImputacion"));
       RepositorioMediciones.instance.agregar(medicion);
     });
-    response.redirect("/");
+    response.redirect("/mediciones");
     return null;
   }
 
   public Void cargar(Request request, Response response) {
     withTransaction(() -> {
     });
-    response.redirect("/");
+    response.redirect("/mediciones");
     return null;
   }
 }
