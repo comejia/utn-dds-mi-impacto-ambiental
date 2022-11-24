@@ -1,0 +1,121 @@
+<html>
+<head>
+    {{# block "titulo" }}
+    {{/block}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/main.css">
+    <script src="https://kit.fontawesome.com/816b172e21.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+<header>
+    {{#each}}
+        {{debugger}}
+    {{/each}}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://i.imgur.com/rBftSQT.png" width="30"
+                     height="30" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                {{#if sesion}}
+                    {{#if admin}}
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/mediciones">Registrar Medicion <span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/miembros/vinculacion">Vircular a Organizacion <span class="sr-only">(current)</span></a>
+                        </div>
+    <!--                    <div class="navbar-nav">-->
+    <!--                        <a class="nav-item nav-link" href="/organizacion/vinculacion">Virculacion<span class="sr-only">(current)</span></a>-->
+    <!--                    </div>-->
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/trayectos/nuevo">Registrar Trayectos <span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/guia-recomendaciones">Guia Recomendacion <span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/calculadora-hc">Calculador HC <span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/reportes">Reportes <span class="sr-only">(current)</span></a>
+                        </div>
+                    {{else}}
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/miembros/vinculacion">Vircular a Organizacion <span class="sr-only">(current)</span></a>
+                        </div>
+                    {{/if}}
+                    <div class="navbar-nav ml-auto">
+                        <a class="nav-item nav-link">
+                            <strong>Bienvenido:</strong>
+                            {{nombreUsuario}} |
+                        </a>
+                        <a class="nav-item nav-link" href="/logout">Cerrar Sesión <i
+                                class="fas fa-sign-out-alt"></i><span class="sr-only">(current)</span></a>
+                    </div>
+                {{else}}
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+                        </div>
+
+                        <div class="navbar-nav ml-auto">
+                            <a class="nav-item nav-link" href="/login">Ingresar <i class="fas fa-sign-in-alt"></i><span class="sr-only">(current)</span></a>
+                        </div>
+                {{/if}}
+            </div>
+    </nav>
+    {{#if mensaje}}
+        <div class="alert alert-{{tipoMensaje}} alert-dismissible fade show" role="alert">
+            <strong>{{tituloMensaje}}</strong> {{textoMensaje}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+</header>
+<div class="container-fluid text-center w-80">
+    <div class="row content">
+        <div class="col-sm-4 sidenav">
+
+        </div>
+        <div class="col-sm-4 text-left">
+            <main>
+                {{# block "contenido" }}
+                {{/block}}
+            </main>
+        </div>
+        <div class="col-sm-4 sidenav">
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>Copyright 2022 - Mi impacto ambiental</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,11 +1,16 @@
 package db;
 
+import dominio.transportes.TipoCombustible;
+import dominio.transportes.TipoVehiculo;
+import dominio.transportes.VehiculoParticular;
+import dominio.trayectos.Direccion;
+import dominio.trayectos.Punto;
+import dominio.trayectos.Tramo;
+import dominio.trayectos.Trayecto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
-import transportes.*;
-import trayectos.*;
 
 import javax.persistence.EntityTransaction;
 import java.util.ArrayList;

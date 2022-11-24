@@ -8,51 +8,52 @@
   <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-    <class>transportes.TransportePublico</class>
-    <class>transportes.Transporte</class>
-    <class>transportes.TransportePrivado</class>
-    <class>transportes.Transporte</class>
-    <class>transportes.ServicioContratado</class>
-    <class>transportes.Bicicleta</class>
-    <class>transportes.APie</class>
-    <class>transportes.VehiculoParticular</class>
+    <class>dominio.transportes.TransportePublico</class>
+    <class>dominio.transportes.Transporte</class>
+    <class>dominio.transportes.TransportePrivado</class>
+    <class>dominio.transportes.Transporte</class>
+    <class>dominio.transportes.ServicioContratado</class>
+    <class>dominio.transportes.Bicicleta</class>
+    <class>dominio.transportes.APie</class>
+    <class>dominio.transportes.VehiculoParticular</class>
 
-    <class>trayectos.Parada</class>
-    <class>trayectos.Punto</class>
-    <class>trayectos.Tramo</class>
-    <class>trayectos.Direccion</class>
-    <class>trayectos.Trayecto</class>
+    <class>dominio.trayectos.Parada</class>
+    <class>dominio.trayectos.Punto</class>
+    <class>dominio.trayectos.Tramo</class>
+    <class>dominio.trayectos.Direccion</class>
+    <class>dominio.trayectos.Trayecto</class>
 
-    <class>organizaciones.Organizacion</class>
-    <class>organizaciones.FactorEmision</class>
-    <class>organizaciones.Medicion</class>
-    <class>organizaciones.TipoConsumo</class>
-    <class>organizaciones.Sector</class>
-    <class>organizaciones.SectorTerritorial</class>
+    <class>dominio.organizaciones.Organizacion</class>
+    <class>dominio.organizaciones.FactorEmision</class>
+    <class>dominio.organizaciones.Medicion</class>
+    <class>dominio.organizaciones.TipoConsumo</class>
+    <class>dominio.organizaciones.Sector</class>
+    <class>dominio.organizaciones.SectorTerritorial</class>
 
-    <class>miembros.Miembro</class>
+    <class>dominio.miembros.Miembro</class>
 
-    <class>Notificador.Contacto</class>
+    <class>dominio.Notificador.Contacto</class>
+    <class>dominio.usuarios.Administrador</class>
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>
 
-      <!--property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
-      <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/<database_name>"/>
-      <property name="hibernate.connection.username" value="root"/>
-      <property name="hibernate.connection.password" value=""/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/-->
+<!--      <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>-->
+<!--      <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/tp"/>-->
+<!--      <property name="hibernate.connection.username" value="root"/>-->
+<!--      <property name="hibernate.connection.password" value=""/>-->
+<!--      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
 
-      <!--<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/<database_name>" />
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" />
       <property name="hibernate.connection.username" value="root" />
-      <property name="hibernate.connection.password" value="" /-->
+      <property name="hibernate.connection.password" value="" />
 
-      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
-      <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
-      <property name="hibernate.connection.username" value="sa"/>
-      <property name="hibernate.connection.password" value=""/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+<!--      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>-->
+<!--      <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>-->
+<!--      <property name="hibernate.connection.username" value="sa"/>-->
+<!--      <property name="hibernate.connection.password" value=""/>-->
+<!--      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
 
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>

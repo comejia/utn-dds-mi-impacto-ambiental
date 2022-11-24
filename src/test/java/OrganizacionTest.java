@@ -1,10 +1,13 @@
-import Notificador.Contacto;
-import excepciones.TipoConsumoInexistente;
+import dominio.Notificador.Contacto;
+import dominio.excepciones.TipoConsumoInexistente;
+import dominio.organizaciones.Clasificacion;
+import dominio.organizaciones.Organizacion;
+import dominio.organizaciones.TipoConsumo;
+import dominio.organizaciones.TipoOrganizacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import organizaciones.*;
-import trayectos.Direccion;
+import dominio.trayectos.Direccion;
 
 import java.util.ArrayList;
 import java.util.List;

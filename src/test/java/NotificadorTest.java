@@ -1,7 +1,7 @@
-import Notificador.Contacto;
-import Notificador.Notificador;
-import Notificador.NotificarPorMail;
-import Notificador.NotificarPorWhatsApp;
+import dominio.Notificador.Contacto;
+import dominio.Notificador.Notificador;
+import dominio.Notificador.NotificarPorMail;
+import dominio.Notificador.NotificarPorWhatsApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
