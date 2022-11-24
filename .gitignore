@@ -35,3 +35,6 @@ target/**
 .classpath
 .project
 /target/
+
+#VSCode
+.vscode/
