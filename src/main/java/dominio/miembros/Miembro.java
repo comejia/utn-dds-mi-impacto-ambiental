@@ -9,12 +9,10 @@ import dominio.trayectos.Trayecto;
 import dominio.excepciones.NoPuedoCompartirMiTrayecto;
 import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.Sector;
-import lombok.NoArgsConstructor;
 import dominio.usuarios.EntidadPersistente;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @Entity
 public class Miembro extends EntidadPersistente {
 

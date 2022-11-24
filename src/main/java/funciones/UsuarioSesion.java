@@ -2,26 +2,27 @@ package funciones;
 
 import dominio.repositorios.RepositorioUsuarios;
 import dominio.usuarios.Administrador;
+import dominio.usuarios.Usuario;
 import spark.Request;
 
 import java.util.Map;
 
 public class UsuarioSesion {
 
-  private UsuarioSesion(){}
+  private UsuarioSesion() {}
 
-  public static Administrador estaLogueado(Request request) {
-    Long id = request.session().attribute("idUsuario");
+  public static Usuario estaLogueado(Request request) {
+    Integer id = request.session().attribute("idUsuario");
     if (UsuarioSesion.verificarVacio(id))
       return null;
-    Administrador usuario = RepositorioUsuarios.instancia.getById(id);
+    Usuario usuario = RepositorioUsuarios.instancia.getById(id);
     if (UsuarioSesion.verificarVacio(usuario)) {
       return null;
     }
     return usuario;
   }
 
-  public static void reconocerRol(Administrador usuario, Map<String, Object> modelo) {
+  public static void reconocerRol(Usuario usuario, Map<String, Object> modelo) {
     return;
   }
 

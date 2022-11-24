@@ -2,8 +2,8 @@ package controllers;
 
 import dominio.repositorios.RepositorioUsuarios;
 import dominio.usuarios.Administrador;
+import dominio.usuarios.Usuario;
 import funciones.UsuarioNotificacion;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
@@ -12,7 +12,6 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class UsuarioController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
@@ -25,15 +24,9 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
     Map<String, Object> viewModel = new HashMap<>();
     String username = request.queryParams("username");
     String password = request.queryParams("password");
-    Administrador usuario;
+    Usuario usuario = RepositorioUsuarios.instancia.buscarPorUsuarioYContrasenia(username, password);
 
-    try {
-      List<Administrador> usuarioList = RepositorioUsuarios.instancia.listar();
-      usuario = RepositorioUsuarios.instancia.listar().stream().filter(u ->
-          BCrypt.checkpw(password, u.getContrasenia()) &&
-              u.getUsuario().equals(username))
-          .findFirst().get();
-    } catch (Exception e) {
+    if (usuario == null) {
       UsuarioNotificacion.notificar(viewModel, "danger", "Error: ", "Se debe registrar como usuario.");
       return new ModelAndView(viewModel, "login.html.hbs");
     }
@@ -51,7 +44,7 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
     Map<String, Object> viewModel = new HashMap<String, Object>();
     String username = request.queryParams("username");
     String password = request.queryParams("password");
-    Administrador usuario = null;
+    Usuario usuario = null;
     try {
       usuario = RepositorioUsuarios.instancia.listar().stream().filter(u -> u.getContrasenia().equals(password) && u.getUsuario().equals(username)).findFirst().get();
       UsuarioNotificacion.notificar(viewModel, "warning", "Advertencia: ", "El usuario ya se encuentra registrado.");
@@ -68,8 +61,8 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
     }
   }
 
-  private Administrador getUsuarioLogueado(Request request) {
-    Long id = request.session().attribute("idUsuario");
+  private Usuario getUsuarioLogueado(Request request) {
+    Integer id = request.session().attribute("idUsuario");
     if (id == null) {
       return null;
     }
