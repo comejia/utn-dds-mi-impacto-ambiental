@@ -4,41 +4,21 @@
 
 {{#partial "contenido"}}
     <section>
-
         <h2 align="center">Inicio de Sesión</h2>
-
-        <form name="login-form" class="login-form" action="/login" method="post">
-            <table align="center">
-                <tr>
-                    <td>
-                        <input name="username" type="text" class="input username" placeholder="Usuario" required/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input name="password" type="password" class="input password" placeholder="Contraseña" required/>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <a href="/registrarUsuario">Registrarme</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <input type="submit" name="submit" value="Ingresar" class="button"/>
-                    </td>
-                </tr>
-                <tr>
-                	<td>
-                		<span name="errorLogin">{{errorLogin}}</span>
-                	</td>
-                </tr>
-        	</table>
+        <span name="errorLogin">{{errorLogin}}</span>
+        <form name="login-form" class="login-form formulario" action="/login" method="post">
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                </br>
+                <input name="username" type="text" class="input username form-control" placeholder="Ingrese un usuario" required/>
+            </div>
+            <div class="form-group">
+                <label for="contraseña">Contraseña</label>
+                </br>
+                <input name="password" type="password" class="input password form-control" placeholder="Ingrese una contraseña" required/>
+            </div>
+            <button type="submit" name="submit" class="btn btn-success btn-block" style="margin-top: 3rem;"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</button>
         </form>
-
     </section>
-
 {{/partial}}
-
 {{> layout.html.hbs }}
