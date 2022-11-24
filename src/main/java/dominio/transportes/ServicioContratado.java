@@ -12,6 +12,8 @@ public class ServicioContratado extends TransportePrivado {
   @Enumerated(EnumType.STRING)
   private TipoServicioContratado tipoServicioContratado;
 
+  public ServicioContratado() {}
+
   public ServicioContratado(TipoServicioContratado tipoServicioContratado) {
     super();
     this.tipoServicioContratado = tipoServicioContratado;

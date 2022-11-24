@@ -12,11 +12,13 @@ public class Sector extends EntidadPersistente {
 
   @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "organizacionId")
-  private final Organizacion organizacion;
+  private Organizacion organizacion;
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "Miembros_X_Sector")
   private List<Miembro> miembros;
+
+  public Sector() {}
 
   public Sector(Organizacion organizacion, List<Miembro> miembros) {
     this.organizacion = organizacion;

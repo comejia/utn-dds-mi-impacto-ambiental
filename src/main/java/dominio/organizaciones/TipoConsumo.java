@@ -12,6 +12,8 @@ public class TipoConsumo extends EntidadPersistente {
   private String actividad;
   private int alcance;
 
+  public TipoConsumo() {}
+
   public TipoConsumo(String tipo, String unidad, String actividad, int alcance) {
     this.tipo = tipo;
     this.unidad = unidad;

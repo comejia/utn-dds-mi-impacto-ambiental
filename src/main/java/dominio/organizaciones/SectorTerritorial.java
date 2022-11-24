@@ -17,6 +17,8 @@ public class SectorTerritorial extends EntidadPersistente {
   @Enumerated(EnumType.STRING)
   private TipoSectorTerritorial tipoSectorTerritorial;
 
+  public SectorTerritorial() {}
+
   public SectorTerritorial(TipoSectorTerritorial sector) {
     this.tipoSectorTerritorial = sector;
   }

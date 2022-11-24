@@ -33,6 +33,8 @@ public class Miembro extends EntidadPersistente {
   @JoinColumn(name = "trayectoId")
   private List<Trayecto> trayectos = new ArrayList<>();
 
+  public Miembro() {}
+
   public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento) {
     this.nombre = nombre;
     this.apellido = apellido;

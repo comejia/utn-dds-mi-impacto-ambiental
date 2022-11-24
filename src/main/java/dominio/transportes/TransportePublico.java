@@ -26,7 +26,7 @@ public class TransportePublico extends Transporte {
   @OneToOne(cascade = CascadeType.ALL)
   private FactorEmision factorEmision;
 
-  public TransportePublico(){}
+  public TransportePublico() {}
 
   public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea) {
     this.tipoTransportePublico = tipoTransportePublico;

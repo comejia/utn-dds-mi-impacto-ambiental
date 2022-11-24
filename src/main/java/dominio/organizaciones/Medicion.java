@@ -14,6 +14,8 @@ public class Medicion extends EntidadPersistente {
   private String periodicidad;
   private String periodicidadDeImputacion;
 
+  public Medicion() {}
+
   public Medicion(TipoConsumo tipoConsumo, BigDecimal valor, String periodicidad, String periodicidadDeImputacion) {
     this.tipoConsumo = tipoConsumo;
     this.valor = valor;

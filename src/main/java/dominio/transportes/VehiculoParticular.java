@@ -13,7 +13,7 @@ public class VehiculoParticular extends TransportePrivado {
   @Embedded
   private TipoCombustible tipoCombustible;
 
-  public VehiculoParticular(){}
+  public VehiculoParticular() {}
 
   public VehiculoParticular(TipoVehiculo tipoVehiculo, TipoCombustible tipoCombustible) {
     super();

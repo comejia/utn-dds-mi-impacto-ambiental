@@ -6,17 +6,17 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-@DiscriminatorValue("AD")
-public class Administrador extends Usuario {
+@DiscriminatorValue("PE")
+public class Persona extends Usuario {
 
   @Enumerated(EnumType.STRING)
   private Role role;
 
-  private Administrador() {
+  public Persona() {
   }
 
-  public Administrador(String usuario, String contrasenia) {
-    role = Role.ADMIN;
+  public Persona(String usuario, String contrasenia) {
+    role = Role.USUARIO;
     if (usuario == null) {
       throw new RuntimeException("Debe ingresar un usuario");
     }
@@ -29,5 +29,4 @@ public class Administrador extends Usuario {
   public Role getRole() {
     return this.role;
   }
-
 }

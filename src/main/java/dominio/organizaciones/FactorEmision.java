@@ -14,6 +14,8 @@ public class FactorEmision extends EntidadPersistente {
   @OneToOne(cascade = CascadeType.ALL)
   private TipoConsumo tipoConsumo;
 
+  public FactorEmision() {}
+
   public FactorEmision(int valor, String unidad, TipoConsumo tipoConsumo) {
     validarUnidad(unidad, tipoConsumo);
     this.valor = valor;

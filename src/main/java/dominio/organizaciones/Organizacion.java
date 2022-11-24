@@ -47,6 +47,8 @@ public class Organizacion extends EntidadPersistente {
   @Transient
   private final List<Notificador> notificadores = new ArrayList<>();
 
+  public Organizacion() {}
+
   public Organizacion(String razonSocial, TipoOrganizacion tipoOrganizacion, Direccion ubicacion, Clasificacion clasificacion) {
     this.razonSocial = razonSocial;
     this.tipoOrganizacion = tipoOrganizacion;
