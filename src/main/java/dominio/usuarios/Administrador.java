@@ -11,12 +11,17 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 @Entity
-public class Administrador extends EntidadPersistente{
+public class Administrador extends EntidadPersistente {
 
   private String usuario;
   private String contrasenia;
 
+  private Role role;
+  private Administrador() {
+  }
+
   public Administrador(String usuario, String contrasenia) {
+    role = Role.ADMIN;
     if (usuario == null) {
       throw new RuntimeException("Debe ingresar un usuario");
     }

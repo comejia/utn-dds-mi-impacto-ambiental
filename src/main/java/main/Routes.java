@@ -1,7 +1,10 @@
 package main;
 
 import controllers.*;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import spark.ModelAndView;
 import spark.Spark;
+import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Routes {
@@ -26,6 +29,8 @@ public class Routes {
     GuiaController guiaController = new GuiaController();
     ReportesController reportesController = new ReportesController();
     CalculadoraHCController calculadoraHCController = new CalculadoraHCController();
+
+    DebugScreen.enableDebugScreen();
 
     //Rutas Spark
     Spark.get("/", homeController::home, engine);
@@ -54,5 +59,30 @@ public class Routes {
     Spark.get("/reportes", reportesController::reporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
+
+//    Spark.get("/blog", (request, response) -> {
+//      //String cookie = request.cookie("contador");
+//      String cookie = request.session().attribute("contador");
+//      int nro = cookie == null ? 0 : Integer.parseInt(cookie);
+//      //response.cookie("contador", String.valueOf(nro + 1));
+//      request.session().attribute("contador", String.valueOf(nro + 1));
+//      return new ModelAndView(request.session().attribute("contador"), "bb.hmlt.hbs");
+//    }, engine);
+
+//    Spark.before((request, response) -> {
+//      PerThreadEntityManagers.getEntityManager().clear();
+//
+//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
+//        response.redirect("/login");
+//      }
+//    });
+
+//    Spark.before("/admin", (request, response) -> {
+//      PerThreadEntityManagers.getEntityManager().clear();
+//
+//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
+//        response.redirect("/login");
+//      }
+//    });
   }
 }
