@@ -41,7 +41,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
             organizacion,empleado);
       RepositorioVinculaciones.instance.agregar(vinculacion);
     });
-    response.redirect("/vinculaciones");
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 
@@ -49,7 +49,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     int id_empleado = Integer.parseInt(request.params("empleado_id"));
     Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
     RepositorioVinculaciones.instance.agregar(vinculacion);
-    response.redirect("/vinculaciones");
+    response.redirect("/organizacion/vinculacion/aceptado");
     return null;
   }
 
@@ -57,7 +57,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     int id_empleado = Integer.parseInt(request.params("empleado_id"));
     Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
     RepositorioVinculaciones.instance.quitar(vinculacion);
-    response.redirect("/vinculaciones");
+    response.redirect("/organizacion/vinculacion/rechazado");
     return null;
   }
 }
