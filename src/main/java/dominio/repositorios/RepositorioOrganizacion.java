@@ -9,6 +9,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RepositorioOrganizacion implements WithGlobalEntityManager {
 
     public static RepositorioOrganizacion instance = new RepositorioOrganizacion();
@@ -26,9 +27,11 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
         return organizaciones;
     }
 
-    public Organizacion buscarOrganizacion(int id) {
+    public Organizacion buscarOrganizacion(String razonSocial) {
+        System.out.print(razonSocial);
         return entityManager()
-                .createQuery("from Organizacion where id = :id", Organizacion.class)
+                .createQuery("from Organizacion O where O.razonSocial =:razonSocial", Organizacion.class)
+                .setParameter("razonSocial",razonSocial)
                 .getResultList().get(0);
     }
 }

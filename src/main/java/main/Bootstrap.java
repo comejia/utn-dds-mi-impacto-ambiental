@@ -9,6 +9,7 @@ import dominio.trayectos.Direccion;
 import dominio.trayectos.Parada;
 import dominio.usuarios.Administrador;
 import dominio.usuarios.Persona;
+import dominio.usuarios.Usuario;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;

@@ -21,7 +21,6 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
   public Usuario getById(int id) {
     return entityManager().find(Usuario.class, id);
   }
-
   public void agregar(Usuario usuario) {
     entityManager().persist(usuario);
   }
@@ -37,5 +36,10 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
               .createQuery("from Usuario where id = :id_empleado", Usuario.class)
               .getResultList().get(0);
     }
-
+  public Usuario buscarEmpleado(String usuario) {
+    return entityManager()
+            .createQuery("from Usuario where usuario = :usuario", Usuario.class)
+            .setParameter("usuario",usuario)
+            .getResultList().get(0);
   }
+}
