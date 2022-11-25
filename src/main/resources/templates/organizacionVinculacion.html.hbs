@@ -1,29 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
+{{#partial "titulo"}}
     <title>Vinculacion a organizacion</title>
-</head>
-<body>
-<header>
-    <h2 align="center">Aceptacion o rechazo de una propuesta de vinculacion </h2>
-</header>
+{{/partial}}
+
+{{#partial "contenido"}}
 <section>
-    <table align="center">
-        <tr>
-            <th>Prupuestas de vinculacion</th>
-        </tr>
-        <tr>
-            <td>Propuesta 1</td>
-        </tr>
-        <tr>
-            <td>Propuesta 2</td>
-        </tr>
-    </table>
-    <div align="center">
-        <input type="button" id="i", align="center", value="Aceptar">
-        <input type="button" id="i", align="center", value="Rechazar">
-    </div>
+    <h2 align="center">Aceptacion o rechazo de una propuesta de vinculacion </h2>
+    <table class="table">
+         <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Emleado</th>
+                    <th scope="col">Organizacion</th>
+                    <th scope="col">Vincular</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Empleado x</td>
+                        <td>Organizacion x</td>
+                        <td><button type="button" class="btn btn-primary">Aceptar</button></td>
+                        <td><button type="button" class="btn btn-danger">Rechazar</button></td>
+                    </tr>
+                </tbody>
+        </thead>
+   </table>
 </section>
-</body>
-</html>
+{{/partial}}
+
+{{> layout.html.hbs }}

@@ -5,6 +5,24 @@
 {{#partial "contenido"}}
     <section>
         <h1 align="center">Calculadora HC</h1>
+         <form method="post" action="/medicion-particular/nuevo">
+                    <div class="form-group">
+                        <label for="tipoDeConsumo">Organizaciones</label>
+                        <select class="form-control" id="organizacion" name="organizacion">
+                            {{#organizaciones}}
+                            <option>{{organizacion}}</option>
+                            {{/organizaciones}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="periodicidad">Unidades</label>
+                        <select class="form-control" id="periodicidad" name="periodicidad">
+                            <option select>Todas</option>
+                            <option>kgCO2eq/kWh</option>
+                        </select>
+                    </div>
+                    <button type="button" onclick="calcularHC()" class="btn btn-primary">Calcular</button>
+                </form>
     </section>
 
 {{/partial}}
