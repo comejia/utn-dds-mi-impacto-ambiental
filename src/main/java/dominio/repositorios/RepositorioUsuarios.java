@@ -35,4 +35,10 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
   public Usuario buscarEmpleado(int id_empleado) {
       return entityManager().find(Usuario.class, id_empleado);
     }
+  public Usuario buscarUsuario(String usuario) {
+    return entityManager().createQuery("from Usuario U where U.usuario = :usuario", Usuario.class)
+            .setParameter("usuario", usuario)
+            .getResultList()
+            .get(0);
+  }
     }
