@@ -2,6 +2,7 @@ package dominio.organizaciones;
 
 import dominio.trayectos.Direccion;
 import dominio.usuarios.EntidadPersistente;
+import dominio.usuarios.Usuario;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,13 +11,14 @@ import java.util.List;
 public class Vinculacion extends EntidadPersistente {
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private int organizacionID;
+    private Organizacion organizacion;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private int miembroID;
+    private Usuario empleado;
 
-    public Vinculacion(int organizacionID, int miembroID) {
-        this.organizacionID = organizacionID;
-        this.miembroID = miembroID;
+    public Vinculacion(Organizacion organizacion, Usuario empleado) {
+        this.organizacion = organizacion;
+        this.empleado = empleado;
     }
+
 }
