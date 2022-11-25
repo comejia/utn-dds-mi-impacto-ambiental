@@ -33,8 +33,5 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
                 .setParameter("razonSocial", razonSocial)
                 .getResultList().get(0);
     }
-    public Organizacion buscarOrganizacion(int id) {
-            return entityManager().find(Organizacion.class, id);
-        }
     }
 

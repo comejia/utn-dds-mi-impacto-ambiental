@@ -21,16 +21,28 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VinculacionController implements WithGlobalEntityManager, TransactionalOps { //Revisar tema login
-  public ModelAndView getMiembroVinculacion() {
+public class VinculacionController implements WithGlobalEntityManager, TransactionalOps {
+
+
+  public ModelAndView getMiembroVinculacion(Request request, Response response) {
     Map<String, Object> model = new HashMap<>();
+    int id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
     model.put("organizaciones", RepositorioOrganizacion.instance.listar());
     model.put("miembros", RepositorioUsuarios.instance.listar());
     return new ModelAndView(model, "miembroVinculacion.html.hbs");
   }
 
-  public ModelAndView getOrganizacionVinculacion() {
+  public ModelAndView getOrganizacionVinculacion(Request request, Response response) {
     Map<String, Object> model = new HashMap<>();
+    int id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
     model.put("sesion", true);
     model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
     return new ModelAndView(model, "organizacionVinculacion.html.hbs");
