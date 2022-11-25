@@ -58,6 +58,20 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
 
   public Void cargar(Request request, Response response) {
     withTransaction(() -> {
+      String[] rawBody = request.body().replaceAll("(.*Web.*)", "").replaceAll("(Content.*)", "")
+          .replaceAll("\r", "").replaceAll("(\n){2,10}", "")
+          .split("\n");
+
+      for (String line : rawBody) {
+        String[] lineSplited = line.split(",");
+        TipoConsumo tipoConsumo = RepositorioTipoDeConsumo.instance.buscarPorTipo(lineSplited[0]);
+        Medicion medicion = new Medicion(
+            tipoConsumo,
+            BigDecimal.valueOf(Integer.parseInt(lineSplited[1])),
+            lineSplited[2],
+            lineSplited[3]);
+        RepositorioMediciones.instance.agregar(medicion);
+      }
     });
     response.redirect("/mediciones");
     return null;

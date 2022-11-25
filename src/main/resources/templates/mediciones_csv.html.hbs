@@ -5,10 +5,10 @@
 {{#partial "contenido"}}
     <section>
         <h2 align="center">Cargar archivo CSV</h2>
-        <form method="post" action="/medicion-csv/nuevo">
+        <form method="post" action="/medicion-csv/nuevo" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="csvFileId">Archivo CSV</label>
-                <input type="file" class="form-control-file" name="csvFileId" id="csvFileId" accept="*/*" formenctype="multipart/form-data">
+                <input type="file" class="form-control-file" name="csvFileId" id="csvFileId" accept="*/*">
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
