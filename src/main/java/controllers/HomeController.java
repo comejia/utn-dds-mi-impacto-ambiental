@@ -20,7 +20,7 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
       return new ModelAndView(null, "index.html.hbs");
     }
 
-    Usuario usuario = RepositorioUsuarios.instancia.getById(id);
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
 
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);

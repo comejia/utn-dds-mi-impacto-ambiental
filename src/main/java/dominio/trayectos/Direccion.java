@@ -12,8 +12,10 @@ public class Direccion extends EntidadPersistente {
   private String calle;
   private String altura;
 
+  public Direccion() {}
+
   public Direccion(String localidad, String calle, String altura) {
-    this.localidad = localidad;
+      this.localidad = localidad;
     this.calle = calle;
     this.altura = altura;
   }

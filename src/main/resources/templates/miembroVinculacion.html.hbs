@@ -1,31 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Vinculacion de miembro</title>
-</head>
-<body>
-<header>
-    <h2 align="center">Proponer vinculacion de miembro </h2>
-</header>
+{{#partial "titulo"}}
+    <title>Vinculacion</title>
+{{/partial}}
+
+{{#partial "contenido"}}
 <section>
-    <table align="center">
-        <tr>
-            <td>
-                <input type="text" name="Miembro", align="center", placeholder="Miembro">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="text" name="Organizacion", align="center", placeholder="Organizacion">
-            </td>
-        </tr>
-    </table>
-    <div align="center">
-        <input type="button" id="i", align="center", value="Ingresar">
-    </div>
+    <h2 align="center">Proponer vinculacion de miembro </h2>
+    <form method="post" action="/organizacion/vinculacion">
+        <div class="form-group">
+            <label for="organizacion">Organizacion</label>
+            <select class="form-control" id="organizacion" name="organizacion">
+                {{#each organizaciones}}
+                    <option >{{razonSocial}}</option>
+                {{/each}}
+            </select>
+         </div>
+        <div class="form-group">
+             <label for="miembro">Miembros</label>
+             <select class="form-control" id="miembro" name="miembro">
+                {{#each miembros}}
+                <option >{{usuario}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Vincular</button>
+    </form>
 </section>
-</body>
-</html>
+{{/partial}}
+
+{{> layout.html.hbs }}
 
 

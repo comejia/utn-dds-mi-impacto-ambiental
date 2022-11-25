@@ -41,8 +41,12 @@ public class Routes {
     Spark.get("/usuario/nuevo", usuarioController::getFormularioRegistrarUsuario, engine);
     Spark.post("/usuario/nuevo", usuarioController::registrarUsuario, engine);
 
-    Spark.get("/miembros/vinculacion", (request, response) -> vinculacionController.getMiembroVinculacion(), engine);
-    Spark.get("/organizacion/vinculacion", (request, response) -> vinculacionController.getOrganizacionVinculacion(), engine);
+    Spark.get("/organizacion/vinculacion", vinculacionController::getOrganizacionVinculacion, engine);
+    Spark.get("/miembros/vinculacion", vinculacionController::getMiembroVinculacion, engine);
+    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getVinculacionesAceptadas, engine);
+    Spark.post("/organizacion/vinculacion/nuevo", vinculacionController::crear);
+    Spark.post("/organizacion/vinculacion/rechazado", vinculacionController::rechazar);
+    Spark.post("/organizacion/vinculacion/aceptado", vinculacionController::aceptar);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
     Spark.get("/medicion-particular", medicionesController::particular, engine);
@@ -57,6 +61,7 @@ public class Routes {
     Spark.get("/guia-recomendaciones", guiaController::guia, engine);
 
     Spark.get("/reportes", reportesController::reporte, engine);
+    Spark.post("/reportes", reportesController::generarReporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
 

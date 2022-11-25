@@ -3,9 +3,74 @@
 {{/partial}}
 
 {{#partial "contenido"}}
-    <section>
         <h1 align="center">Reportes de HC</h1>
-    </section>
+        <span name="errorLogin">{{errorLogin}}</span>
+        <form name="reportes-form" class="reportes-form formulario" action="/reportes" method="post">
+
+        <div class="form-group">
+            <label for="tipoGrafico">Seleccione un tipo de gráfico</label>
+            <select class="form-control" name="tipoGrafico">
+                <option value="1">Barra</option>
+                <option value="2">Torta</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="tipoReporte">Seleccione un reporte</label>
+            <select id="reporteSelect" class="form-control" name="tipoReporte" onchange="mostrarSelect()">
+                <option value="1">HC total por sector territorial</option>
+                <option value="2">HC total por tipo de Organización</option>
+                <option value="3">Composición de HC total de un sector territorial</option>
+                <option value="4">Composición de HC total de una Organización</option>
+                <option value="5">Evolución de HC total de un sector territorial</option>
+                <option value="6">Evolución de HC total de una Organización</option>
+            </select>
+        </div>
+
+        <div id="organizacionDiv" class="form-group" hidden>
+            <label for="organizacion">Seleccione una organizacion</label>
+            <select class="form-control" name="organizacion">
+                <option value>seleccione</option>
+                <option value="1">org1</option>
+                <option value="2">org2</option>
+            </select>
+        </div>
+
+        <div id="sectorTerritorialDiv" class="form-group" hidden>
+            <label for="sectorTerritorial">Seleccione un sector</label>
+            <select class="form-control" name="sectorTerritorial">
+                <option value>seleccione</option>
+                <option value="1">sector1</option>
+                <option value="2">sector2</option>
+            </select>
+        </div>
+
+        <button type="submit" name="submit" class="btn btn-success btn-block">Generar</button>
+        </form>
+
+        {{#if torta}}
+        <div id="torta" style="height: 370px; width: 100%;"></div>
+        {{/if}}
+        {{#if barra}}
+        <div id="barra" style="height: 370px; width: 100%;"></div>
+        {{/if}}
+
+<script>
+        function mostrarSelect() {
+            var selectValue = document.getElementById("reporteSelect").value;
+            if(selectValue == 3 || selectValue == 5){
+                document.getElementById("sectorTerritorialDiv").removeAttribute("hidden");
+                document.getElementById("organizacionDiv").setAttribute("hidden",true);
+            }
+            else if(selectValue == 4 || selectValue == 6){
+                document.getElementById("organizacionDiv").removeAttribute("hidden");
+                document.getElementById("sectorTerritorialDiv").setAttribute("hidden",true);
+            } else {
+                document.getElementById("sectorTerritorialDiv").setAttribute("hidden",true);
+                document.getElementById("organizacionDiv").setAttribute("hidden",true);
+            }
+        }
+</script>
 
 {{/partial}}
 

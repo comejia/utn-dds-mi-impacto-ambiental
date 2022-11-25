@@ -21,7 +21,7 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
   public ModelAndView mediciones(Request request, Response response) {
     Map<String, Object> model = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
-    Usuario usuario = RepositorioUsuarios.instancia.getById(id);
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
