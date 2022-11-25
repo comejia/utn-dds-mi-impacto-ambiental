@@ -2,6 +2,8 @@ package controllers;
 
 import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.SectorTerritorial;
+import dominio.repositorios.RepositorioOrganizacion;
+import dominio.repositorios.RepositorioSectorTerritorial;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -9,11 +11,19 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ReportesController implements WithGlobalEntityManager, TransactionalOps {
   public ModelAndView reporte(Request request, Response response) {
-    return new ModelAndView(null, "reportes.html.hbs");
+    Map<String, Object> viewModel = new HashMap<String, Object>();
+
+    List<Organizacion> organizacionList = RepositorioOrganizacion.getInstance().listar();
+    viewModel.put("organizaciones", organizacionList);
+    List<SectorTerritorial> sectorTerritorialList = RepositorioSectorTerritorial.getInstance().listar();
+    viewModel.put("sectores", sectorTerritorialList);
+
+    return new ModelAndView(viewModel, "reportes.html.hbs");
   }
 
   public ModelAndView generarReporte(Request request, Response response) {

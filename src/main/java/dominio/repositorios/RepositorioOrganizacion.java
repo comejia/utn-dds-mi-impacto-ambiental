@@ -22,6 +22,13 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
         entityManager().persist(organizacion);
     }
 
+    public static RepositorioOrganizacion getInstance() {
+        if (instance == null) {
+            instance = new RepositorioOrganizacion();
+        }
+        return instance;
+    }
+
     public List<Organizacion> listar() {
         List<Organizacion> organizaciones = new ArrayList<>();
         organizaciones.add(UTN);

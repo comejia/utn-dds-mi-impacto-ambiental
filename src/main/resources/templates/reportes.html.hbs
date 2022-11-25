@@ -31,8 +31,9 @@
             <label for="organizacion">Seleccione una organizacion</label>
             <select class="form-control" name="organizacion">
                 <option value>seleccione</option>
-                <option value="1">org1</option>
-                <option value="2">org2</option>
+                {{#each organizaciones}}
+                <option value={{this.id}}>{{this.razonSocial}}</option>
+                {{/each}}
             </select>
         </div>
 
@@ -40,8 +41,9 @@
             <label for="sectorTerritorial">Seleccione un sector</label>
             <select class="form-control" name="sectorTerritorial">
                 <option value>seleccione</option>
-                <option value="1">sector1</option>
-                <option value="2">sector2</option>
+                {{#each sectores}}
+                <option value={{this.id}}>{{this}}</option>
+                {{/each}}
             </select>
         </div>
 
