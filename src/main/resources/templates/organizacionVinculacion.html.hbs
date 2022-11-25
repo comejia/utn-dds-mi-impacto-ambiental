@@ -1,72 +1,87 @@
 {{#partial "titulo"}}
-    <title>Vinculacion a organizacion</title>
+    <title>Aceptacion o rechazo de una propuesta de Vinculacion</title>
 {{/partial}}
 
 {{#partial "contenido"}}
-<section>
-    <h2 align="center">Aceptacion o rechazo de una propuesta de vinculacion </h2>
-    <table class="table">
-         <thead class="thead-dark">
+    <section>
+        <h1 align="center">Vinculaciones</h1>
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Empleado</th>
+                <th scope="col">Organizacion</th>
+                <th scope="col">Aceptar</th>
+                <th scope="col">Rechazar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#vinculaciones}}
                 <tr>
-                    <th scope="col">Empleado</th>
-                    <th scope="col">Organizacion</th>
-                    <th scope="col">Vincular</th>
-                    <th scope="col">Eliminar</th>
+                    <td>{{empleado.usuario}}</td>
+                    <td>{{organizacion.razonSocial}}</td>
+                    <td><button align="center" type="button" class="btn btn-primary" data-toggle="modal" data-target="#aceptarVinculacion">
+                        Aceptar Vinculacion
+                    </button></td>
+                        <td><button type="button" align="center" class="btn btn-danger" data-toggle="modal" data-target="#rechazarVinculacion">
+                            Rechazar Vinculacion
+                        </button></td>
                 </tr>
-                </thead>
-                <tbody>
-                 {{#each vinculaciones}}
-                    <tr>
-                        <td>{{nombre}}</td>
-                        <td>{{razonSocial}}</td>
-                        <td><button type="button" id="aceptarVinculacion" data-toggle="modal" data-target="#aceptarVinculacion" class="btn btn-primary">Aceptar</button></td>
-                        <td><button type="button" id="rechazarVinculacion" data-toggle="modal" data-target="#rechazarVinculacion" class="btn btn-danger">Rechazar</button></td>
-                    </tr>
-                 {{/each}}
-                </tbody>
-        </thead>
-   </table>
-</section>
+            {{/vinculaciones}}
+            </tbody>
+        </table>
 
-<div class="modal fade" id="aceptarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Aceptar vinculacion</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ¿Estas seguro que desea aceptar esta vinculacion?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal fade" id="aceptarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estas seguro que desea aceptar esta vinculacion?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="modal fade" id="rechazarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Rechazar vinculacion</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ¿Estas seguro que desea rechazar esta vinculacion?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal fade" id="rechazarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Rechazar vinculacion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estas seguro que desea rechazar esta vinculacion?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="rechazar" class="btn btn-primary">Rechazar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        document.getElementById("aceptar").onclick = function () {
+            location.href = "/organizacion/vinculacion/aceptadas";
+        };
+    </script>
+
+    <script type="text/javascript">
+        document.getElementById("rechazar").onclick = function () {
+            location.href = "/organizacion/vinculacion";
+        };
+    </script>
 {{/partial}}
 
 {{> layout.html.hbs }}

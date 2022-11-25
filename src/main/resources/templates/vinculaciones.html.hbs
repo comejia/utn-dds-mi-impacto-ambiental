@@ -1,0 +1,29 @@
+{{#partial "titulo"}}
+    <title>Vinculaciones Aceptadas</title>
+{{/partial}}
+
+{{#partial "contenido"}}
+    <section>
+        <h1 align="center">Vinculaciones</h1>
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Empleado</th>
+                <th scope="col">Organizacion</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each vinculaciones}}
+                <tr>
+                    <td>{{empleado.usuario}}</td>
+                    <td>{{organizacion.razonSocial}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </section>
+
+{{/partial}}
+
+{{> layout.html.hbs }}
