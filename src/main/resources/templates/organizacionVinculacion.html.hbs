@@ -8,7 +8,7 @@
     <table class="table">
          <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Emleado</th>
+                    <th scope="col">Empleado</th>
                     <th scope="col">Organizacion</th>
                     <th scope="col">Vincular</th>
                     <th scope="col">Eliminar</th>
@@ -17,9 +17,9 @@
                 <tbody>
                  {{#vinculaciones}}
                     <tr>
-                        <td>{{miembro}}</td>
-                        <td>{{organizacion}}</td>
-                        <td><button type="button" id="aceptarVinculacion" data-toggle="modal" data-target="#aceptarVinculacion" class="btn btn-primary">Aceptar</button></td>
+                        <td>{{miembro.nombre}}</td>
+                        <td>{{organizacion.razonSocial}}</td>
+                        <td><button type="button"  id="aceptarVinculacion" data-toggle="modal" data-target="#aceptarVinculacion" class="btn btn-primary">Aceptar</button></td>
                         <td><button type="button" id="rechazarVinculacion" data-toggle="modal" data-target="#rechazarVinculacion" class="btn btn-danger">Rechazar</button></td>
                     </tr>
                  {{/vinculaciones}}
