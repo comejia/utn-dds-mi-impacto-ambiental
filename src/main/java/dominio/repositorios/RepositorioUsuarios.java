@@ -8,9 +8,13 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.List;
 
-public class RepositorioUsuarios implements WithGlobalEntityManager {
+public class RepositorioUsuarios implements WithGlobalEntityManager, Repositorio<Usuario> {
 
   public static RepositorioUsuarios instance = new RepositorioUsuarios();
+
+  public void agregar(Usuario usuario) {
+    entityManager().persist(usuario);
+  }
 
   public List<Usuario> listar() {
     return entityManager()
@@ -20,9 +24,6 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
 
   public Usuario getById(int id) {
     return entityManager().find(Usuario.class, id);
-  }
-  public void agregar(Usuario usuario) {
-    entityManager().persist(usuario);
   }
 
   public Usuario buscarPorUsuarioYContrasenia(String username, String password) {

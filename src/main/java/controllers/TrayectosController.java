@@ -1,12 +1,15 @@
 package controllers;
 
-import dominio.repositorios.RepositorioTransportePublico;
+import dominio.repositorios.RepositorioTransportes;
 import dominio.repositorios.RepositorioTrayectos;
+import dominio.repositorios.RepositorioUsuarios;
 import dominio.transportes.*;
 import dominio.trayectos.Direccion;
 import dominio.trayectos.Punto;
 import dominio.trayectos.Tramo;
 import dominio.trayectos.Trayecto;
+import dominio.usuarios.Role;
+import dominio.usuarios.Usuario;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -20,9 +23,22 @@ import java.util.Map;
 
 public class TrayectosController implements WithGlobalEntityManager, TransactionalOps {
 
+  public ModelAndView trayectos(Request request, Response response) {
+    Map<String, Object> model = new HashMap<>();
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instancia.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
+
+    model.put("trayectos", RepositorioTrayectos.instance.listar());
+
+    return new ModelAndView(model, "trayectos.html.hbs");
+  }
+
   public ModelAndView nuevo(Request request, Response response) {
     Map<String, Object> modelo = new HashMap<>();
-    modelo.put("publicos", RepositorioTransportePublico.instance.listar());
+    modelo.put("transportes", RepositorioTransportes.instance.listar());
     return new ModelAndView(modelo, "trayectos_nuevo.html.hbs");
   }
 
@@ -37,23 +53,25 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
       Trayecto trayecto = new Trayecto(tramos);
       RepositorioTrayectos.instance.agregar(trayecto);
     });
-    response.redirect("/");
+    response.redirect("/trayectos");
     return null;
   }
 
   private Transporte getTransporte(String tipo) {
-    if(tipo.contains("Linea")) {
-      return RepositorioTransportePublico.instance.buscarPorLinea(Integer.parseInt(tipo.split(" ")[1]));
+    if(tipo.contains("LINEA")) {
+      return RepositorioTransportes.instance.buscarPorLinea(Integer.parseInt(tipo.split(" ")[2]));
     }
     switch (tipo) {
-      case "A Pie":
+      case "A PIE":
         return new APie();
-      case "Bicicleta":
+      case "BICICLETA":
         return new Bicicleta();
-      case "Taxi":
+      case "TAXI":
         return new ServicioContratado(TipoServicioContratado.TAXI);
-      case "Remis":
+      case "REMIS":
         return new ServicioContratado(TipoServicioContratado.REMIS);
+      case "CAMIONETA":
+        return new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA);
       default:
         throw new RuntimeException("Error al recuperar un Transporte");
     }

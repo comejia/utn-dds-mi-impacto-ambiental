@@ -1,0 +1,38 @@
+{{#partial "titulo"}}
+    <title>Trayectos</title>
+{{/partial}}
+
+{{#partial "contenido"}}
+    <section>
+        <h1 align="center">Trayectos</h1>
+
+        <div style="overflow:auto; max-height:450px;">
+            {{#trayectos}}
+                {{#each tramos}}
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" style="width: 40%;">Transporte</th>
+                            <th scope="col" style="width: 30%;">Direccion inicio</th>
+                            <th scope="col" style="width: 30%;">Direccion fin</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{transporte}}</td>
+                            <td>{{puntoInicio.direccion.calle}}</td>
+                            <td>{{puntoFinal.direccion.calle}}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                {{/each}}
+            {{/trayectos}}
+        </div>
+
+        <a href="/trayectos/nuevo" class="btn btn-primary btn-lg btn-block ctive" role="button" aria-pressed="true">Agregar trayecto</a>
+    </section>
+
+{{/partial}}
+
+{{> layout.html.hbs }}

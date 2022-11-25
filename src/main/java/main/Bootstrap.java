@@ -1,6 +1,5 @@
 package main;
 
-
 import dominio.organizaciones.*;
 import dominio.repositorios.*;
 import dominio.transportes.*;
@@ -32,23 +31,23 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
       RepositorioTipoDeConsumo.instance.agregar(new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1));
       RepositorioTipoDeConsumo.instance.agregar(new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2));
-      //persist(new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1));
-      //persist(new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2));
 
       List<Parada> paradas = new ArrayList<>();
       paradas.add(new Parada(20));
       paradas.add(new Parada(30));
-      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
-      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
-      RepositorioTransportePrivado.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
-      RepositorioTransportePrivado.instance.agregar(new Bicicleta());
       Organizacion UTN = new Organizacion(
               "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
       RepositorioOrganizacion.instance.agregar(UTN);
-    Vinculacion vinculacion = new Vinculacion(UTN, administrador);
-    RepositorioVinculaciones.instance.agregar(vinculacion);
-        RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));
-        RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
-      });
+      Vinculacion vinculacion = new Vinculacion(UTN, administrador);
+      RepositorioVinculaciones.instance.agregar(vinculacion);
+      RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));
+      RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
+      RepositorioTransportes.instance.agregar(new APie());
+      RepositorioTransportes.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
+      RepositorioTransportes.instance.agregar(new Bicicleta());
+      RepositorioTransportes.instance.agregar(new ServicioContratado(TipoServicioContratado.TAXI));
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
+    });
   }
 }

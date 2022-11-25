@@ -10,13 +10,16 @@
             <div class="form-group">
                 <label for="tipoTransporte">Tipo de transporte</label>
                 <select class="form-control" id="tipoTransporte" name="tipoTransporte">
-                    <option>A Pie</option>
-                    <option>Bicicleta</option>
-                    <option>Taxi</option>
-                    <option>Remis</option>
-                    {{#each publicos}}
-                        <option>Linea {{linea}}</option>
-                    {{/each}}
+                    {{#transportes}}
+                        <option>{{this}}</option>
+<!--                    <option>A Pie</option>-->
+<!--                    <option>Bicicleta</option>-->
+<!--                    <option>Taxi</option>-->
+<!--                    <option>Remis</option>-->
+<!--                    {{#each publicos}}-->
+<!--                        <option>Linea {{linea}}</option>-->
+<!--                    {{/each}}-->
+                    {{/transportes}}
                 </select>
             </div>
             <div class="form-group">

@@ -6,26 +6,28 @@
     <section>
         <h1 align="center">Mediciones</h1>
 
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Tipo de Consumo</th>
-                <th scope="col">Valor</th>
-                <th scope="col">Periodicidad</th>
-                <th scope="col">Periodo de imputacion</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#mediciones}}
+        <div style="overflow:auto; max-height:450px;">
+            <table class="table" style="{{display}}">
+                <thead class="thead-dark">
                 <tr>
-                    <td>{{tipoConsumo.tipo}}</td>
-                    <td>{{valor}}</td>
-                    <td>{{periodicidad}}</td>
-                    <td>{{periodicidadDeImputacion}}</td>
+                    <th scope="col">Tipo de Consumo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Periodicidad</th>
+                    <th scope="col">Periodo de imputacion</th>
                 </tr>
-            {{/mediciones}}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {{#mediciones}}
+                    <tr>
+                        <td>{{tipoConsumo.tipo}}</td>
+                        <td>{{valor}}</td>
+                        <td>{{periodicidad}}</td>
+                        <td>{{periodicidadDeImputacion}}</td>
+                    </tr>
+                {{/mediciones}}
+                </tbody>
+            </table>
+        </div>
 
         <a href="/medicion-particular" class="btn btn-primary btn-lg btn-block ctive" role="button" aria-pressed="true">Cargar medicion particular</a>
         <a href="/medicion-csv" class="btn btn-secondary btn-lg btn-block active" role="button" aria-pressed="true">Cargar medicion desde CSV</a>

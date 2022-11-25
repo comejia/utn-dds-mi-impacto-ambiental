@@ -1,6 +1,7 @@
 package main;
 
 import controllers.*;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -37,8 +38,8 @@ public class Routes {
     Spark.post("/login", usuarioController::iniciarSesion, engine);
     Spark.get("/logout", usuarioController::cerrarSesion);
 
-    Spark.get("/registrarUsuario", usuarioController::getFormularioRegistrarUsuario, engine);
-    Spark.post("/registrarUsuario", usuarioController::registrarUsuario, engine);
+    Spark.get("/usuario/nuevo", usuarioController::getFormularioRegistrarUsuario, engine);
+    Spark.post("/usuario/nuevo", usuarioController::registrarUsuario, engine);
 
     Spark.get("/organizacion/vinculacion", vinculacionController::getOrganizacionVinculacion, engine);
     Spark.get("/miembros/vinculacion", vinculacionController::getMiembroVinculacion, engine);
@@ -53,6 +54,7 @@ public class Routes {
     Spark.post("/medicion-particular/nuevo", medicionesController::crear);
     Spark.post("/medicion-csv/nuevo", medicionesController::cargar);
 
+    Spark.get("/trayectos", trayectosController::trayectos, engine);
     Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);
     Spark.post("/trayectos", trayectosController::crear);
 
@@ -62,6 +64,9 @@ public class Routes {
     Spark.post("/reportes", reportesController::generarReporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
+
+
+    Spark.after((request, response) -> PerThreadEntityManagers.getEntityManager().clear());
 
 //    Spark.get("/blog", (request, response) -> {
 //      //String cookie = request.cookie("contador");

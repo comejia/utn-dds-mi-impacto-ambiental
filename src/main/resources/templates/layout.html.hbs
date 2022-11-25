@@ -14,9 +14,9 @@
 <body>
 
 <header>
-    {{#each}}
-        {{debugger}}
-    {{/each}}
+<!--    {{#each}}-->
+<!--        {{debugger}}-->
+<!--    {{/each}}-->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -38,9 +38,9 @@
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" href="/organizacion/vinculacion">Vinculaciones<span class="sr-only">(current)</span></a>
                         </div>
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link" href="/trayectos/nuevo">Registrar Trayectos <span class="sr-only">(current)</span></a>
-                        </div>
+<!--                        <div class="navbar-nav">-->
+<!--                            <a class="nav-item nav-link" href="/trayectos">Trayectos <span class="sr-only">(current)</span></a>-->
+<!--                        </div>-->
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" href="/guia-recomendaciones">Guia Recomendacion <span class="sr-only">(current)</span></a>
                         </div>
@@ -56,6 +56,9 @@
                         </div>
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" href="/miembros/vinculacion">Vincular a Organizacion <span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/trayectos">Trayectos <span class="sr-only">(current)</span></a>
                         </div>
                     {{/if}}
                     <div class="navbar-nav ml-auto">
@@ -76,6 +79,7 @@
                         </div>
                 {{/if}}
             </div>
+        </div>
     </nav>
     {{#if mensaje}}
         <div class="alert alert-{{tipoMensaje}} alert-dismissible fade show" role="alert">

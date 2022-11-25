@@ -1,4 +1,5 @@
 package dominio.transportes;
+
 import java.util.List;
 
 import dominio.excepciones.PuntoIncompatibleException;
@@ -15,7 +16,7 @@ import javax.persistence.*;
 public class TransportePublico extends Transporte {
 
   @Enumerated(EnumType.STRING)
-  private TipoTransportePublico tipoTransportePublico;
+  private TipoTransportePublico tipo;
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "Transporte_X_Parada")
@@ -26,10 +27,10 @@ public class TransportePublico extends Transporte {
   @OneToOne(cascade = CascadeType.ALL)
   private FactorEmision factorEmision;
 
-  public TransportePublico() {}
+  public TransportePublico() { }
 
   public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea) {
-    this.tipoTransportePublico = tipoTransportePublico;
+    this.tipo = tipoTransportePublico;
     this.paradas = paradas;
     this.linea = linea;
   }
@@ -61,5 +62,10 @@ public class TransportePublico extends Transporte {
   @Override
   public boolean seComparte() {
     return false;
+  }
+
+  @Override
+  public String toString() {
+    return tipo + " LINEA " + linea;
   }
 }
