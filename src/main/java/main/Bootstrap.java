@@ -1,5 +1,6 @@
 package main;
 
+
 import dominio.organizaciones.*;
 import dominio.repositorios.*;
 import dominio.transportes.*;
@@ -46,6 +47,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioOrganizacion.instance.agregar(UTN);
     Vinculacion vinculacion = new Vinculacion(UTN, administrador);
     RepositorioVinculaciones.instance.agregar(vinculacion);
+        RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));
+        RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
       });
   }
 }
