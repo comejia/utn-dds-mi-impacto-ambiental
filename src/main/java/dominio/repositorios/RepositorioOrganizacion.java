@@ -4,6 +4,7 @@ import dominio.organizaciones.Medicion;
 import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.TipoOrganizacion;
 import dominio.trayectos.Direccion;
+import dominio.usuarios.Usuario;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.ArrayList;
@@ -27,8 +28,7 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
     }
 
     public Organizacion buscarOrganizacion(int id) {
-        return entityManager()
-                .createQuery("from Organizacion where id = :id", Organizacion.class)
-                .getResultList().get(0);
+            return entityManager().find(Organizacion.class, id);
+        }
     }
-}
+
