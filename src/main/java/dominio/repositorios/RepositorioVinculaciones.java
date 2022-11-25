@@ -1,5 +1,7 @@
 package dominio.repositorios;
 
+import dominio.organizaciones.Organizacion;
+import dominio.organizaciones.TipoConsumo;
 import dominio.organizaciones.Vinculacion;
 import dominio.usuarios.Usuario;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -16,12 +18,21 @@ public class RepositorioVinculaciones implements WithGlobalEntityManager {
                 .getResultList();
     }
 
-    public Vinculacion getById(int id) {
-        return entityManager().find(Vinculacion.class, id);
+    public Vinculacion buscarEmpleado(String id_empleado) {
+        return entityManager().createQuery("from Vinculacion v where v.miembroID = :id_empleado", Vinculacion.class)
+                .setParameter("id_org", id_empleado).getResultList().get(0); // buscar vinculacion segun empleado
+    }
+
+    public Vinculacion getById(int id_empleado) {
+        return entityManager().find(Vinculacion.class, id_empleado);
     }
 
     public void agregar(Vinculacion vinculacion) {
         entityManager().persist(vinculacion);
+    }
+
+    public void quitar(Vinculacion vinculacion) {
+        entityManager().remove(vinculacion);
     }
 
 }

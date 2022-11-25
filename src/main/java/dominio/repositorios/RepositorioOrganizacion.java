@@ -18,4 +18,10 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
                 .createQuery("from Organizacion", Organizacion.class)
                 .getResultList();
     }
+
+    public Organizacion buscarOrganizacion(int id) {
+        return entityManager()
+                .createQuery("from Organizacion where id = :id", Organizacion.class)
+                .getResultList().get(0);
+    }
 }

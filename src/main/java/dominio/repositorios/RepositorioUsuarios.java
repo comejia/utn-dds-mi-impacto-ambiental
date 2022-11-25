@@ -1,5 +1,7 @@
 package dominio.repositorios;
 
+import dominio.organizaciones.Organizacion;
+import dominio.organizaciones.Vinculacion;
 import dominio.usuarios.Usuario;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class RepositorioUsuarios implements WithGlobalEntityManager {
 
-  public static RepositorioUsuarios instancia = new RepositorioUsuarios();
+  public static RepositorioUsuarios instance = new RepositorioUsuarios();
 
   public List<Usuario> listar() {
     return entityManager()
@@ -29,4 +31,11 @@ public class RepositorioUsuarios implements WithGlobalEntityManager {
         .filter(u -> BCrypt.checkpw(password, u.getContrasenia()) && u.getUsuario().equals(username))
         .findFirst().orElse(null);
   }
-}
+
+  public Usuario buscarEmpleado(int id_empleado) {
+      return entityManager()
+              .createQuery("from Usuario where id = :id_empleado", Usuario.class)
+              .getResultList().get(0);
+    }
+
+  }

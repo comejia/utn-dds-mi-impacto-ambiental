@@ -27,8 +27,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
     withTransaction(() -> {
       Administrador administrador = new Administrador("admin", "Admin2022@");
       Persona persona = new Persona("dds", "Dds2022@");
-      RepositorioUsuarios.instancia.agregar(administrador);
-      RepositorioUsuarios.instancia.agregar(persona);
+      RepositorioUsuarios.instance.agregar(administrador);
+      RepositorioUsuarios.instance.agregar(persona);
 
       RepositorioTipoDeConsumo.instance.agregar(new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1));
       RepositorioTipoDeConsumo.instance.agregar(new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2));
