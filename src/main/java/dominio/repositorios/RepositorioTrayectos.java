@@ -6,7 +6,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioTrayectos implements WithGlobalEntityManager {
+public class RepositorioTrayectos implements WithGlobalEntityManager, Repositorio<Trayecto> {
 
   public static RepositorioTrayectos instance = new RepositorioTrayectos();
 

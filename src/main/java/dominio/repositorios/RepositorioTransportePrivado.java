@@ -6,10 +6,9 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioTransportePrivado implements WithGlobalEntityManager {
+public class RepositorioTransportePrivado implements WithGlobalEntityManager, Repositorio<Transporte> {
 
   public static RepositorioTransportePrivado instance = new RepositorioTransportePrivado();
-  private final List<Transporte> transportes = new ArrayList<>();
 
   public void agregar(Transporte transporte) {
     entityManager().persist(transporte);

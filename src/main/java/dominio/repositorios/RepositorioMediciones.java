@@ -5,7 +5,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.List;
 
-public class RepositorioMediciones implements WithGlobalEntityManager {
+public class RepositorioMediciones implements WithGlobalEntityManager, Repositorio<Medicion> {
 
   public static RepositorioMediciones instance = new RepositorioMediciones();
 

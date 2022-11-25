@@ -1,10 +1,7 @@
 package main;
 
 import dominio.organizaciones.TipoConsumo;
-import dominio.repositorios.RepositorioTipoDeConsumo;
-import dominio.repositorios.RepositorioTransportePrivado;
-import dominio.repositorios.RepositorioTransportePublico;
-import dominio.repositorios.RepositorioUsuarios;
+import dominio.repositorios.*;
 import dominio.transportes.*;
 import dominio.trayectos.Parada;
 import dominio.usuarios.Administrador;
@@ -37,10 +34,15 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       List<Parada> paradas = new ArrayList<>();
       paradas.add(new Parada(20));
       paradas.add(new Parada(30));
-      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
-      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
-      RepositorioTransportePrivado.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
-      RepositorioTransportePrivado.instance.agregar(new Bicicleta());
+//      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
+//      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
+//      RepositorioTransportePrivado.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
+//      RepositorioTransportePrivado.instance.agregar(new Bicicleta());
+      RepositorioTransportes.instance.agregar(new APie());
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
+      RepositorioTransportes.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
+      RepositorioTransportes.instance.agregar(new Bicicleta());
     });
   }
 }

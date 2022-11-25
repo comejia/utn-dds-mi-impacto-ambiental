@@ -5,7 +5,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.List;
 
-public class RepositorioTransportePublico implements WithGlobalEntityManager {
+public class RepositorioTransportePublico implements WithGlobalEntityManager, Repositorio<TransportePublico> {
 
   public static RepositorioTransportePublico instance = new RepositorioTransportePublico();
 

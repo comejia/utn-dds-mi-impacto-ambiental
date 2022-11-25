@@ -63,4 +63,9 @@ public class TransportePublico extends Transporte {
   public boolean seComparte() {
     return false;
   }
+
+  @Override
+  public String toString() {
+    return tipo + " LINEA " + linea;
+  }
 }

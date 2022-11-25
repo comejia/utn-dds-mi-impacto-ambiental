@@ -1,19 +1,23 @@
 package dominio.repositorios;
 import dominio.organizaciones.FactorEmision;
+import dominio.organizaciones.Medicion;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioFactorEmision {
+public class RepositorioFactorEmision implements WithGlobalEntityManager, Repositorio<FactorEmision> {
 
-  private static final RepositorioFactorEmision instance = new RepositorioFactorEmision();
-  private final List<FactorEmision> factoresDeEmision = new ArrayList<>();
+  public static final RepositorioFactorEmision instance = new RepositorioFactorEmision();
 
-  public static RepositorioFactorEmision getInstance() {
-    return instance;
+  public void agregar(FactorEmision medicion) {
+    entityManager().persist(medicion);
   }
 
-  public void agregarFactorEmision(FactorEmision fe) {
-    this.factoresDeEmision.add(fe);
+  public List<FactorEmision> listar() {
+    return entityManager()
+        .createQuery("from Medicion", FactorEmision.class)
+        .getResultList();
   }
 
 }

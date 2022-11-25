@@ -20,4 +20,9 @@ public class Bicicleta extends TransportePrivado {
   public boolean seComparte() {
     return false;
   }
+
+  @Override
+  public String toString() {
+    return tipo;
+  }
 }

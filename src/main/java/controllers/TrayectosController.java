@@ -1,6 +1,7 @@
 package controllers;
 
 import dominio.repositorios.RepositorioTransportePublico;
+import dominio.repositorios.RepositorioTransportes;
 import dominio.repositorios.RepositorioTrayectos;
 import dominio.repositorios.RepositorioUsuarios;
 import dominio.transportes.*;
@@ -38,7 +39,7 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
 
   public ModelAndView nuevo(Request request, Response response) {
     Map<String, Object> modelo = new HashMap<>();
-    modelo.put("publicos", RepositorioTransportePublico.instance.listar());
+    modelo.put("transportes", RepositorioTransportes.instance.listar());
     return new ModelAndView(modelo, "trayectos_nuevo.html.hbs");
   }
 
@@ -58,17 +59,17 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
   }
 
   private Transporte getTransporte(String tipo) {
-    if(tipo.contains("Linea")) {
-      return RepositorioTransportePublico.instance.buscarPorLinea(Integer.parseInt(tipo.split(" ")[1]));
+    if(tipo.contains("LINEA")) {
+      return RepositorioTransportes.instance.buscarPorLinea(Integer.parseInt(tipo.split(" ")[2]));
     }
     switch (tipo) {
-      case "A Pie":
+      case "A PIE":
         return new APie();
-      case "Bicicleta":
+      case "BICICLETA":
         return new Bicicleta();
-      case "Taxi":
+      case "TAXI":
         return new ServicioContratado(TipoServicioContratado.TAXI);
-      case "Remis":
+      case "REMIS":
         return new ServicioContratado(TipoServicioContratado.REMIS);
       default:
         throw new RuntimeException("Error al recuperar un Transporte");

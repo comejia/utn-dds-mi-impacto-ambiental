@@ -26,4 +26,9 @@ public class ServicioContratado extends TransportePrivado {
   public boolean seComparte() {
     return true;
   }
+
+  @Override
+  public String toString() {
+    return String.valueOf(tipo);
+  }
 }

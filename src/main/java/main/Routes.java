@@ -1,6 +1,7 @@
 package main;
 
 import controllers.*;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -58,6 +59,9 @@ public class Routes {
     Spark.get("/reportes", reportesController::reporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
+
+
+    Spark.after((request, response) -> PerThreadEntityManagers.getEntityManager().clear());
 
 //    Spark.get("/blog", (request, response) -> {
 //      //String cookie = request.cookie("contador");

@@ -21,4 +21,8 @@ public class APie extends TransportePrivado {
     return false;
   }
 
+  @Override
+  public String toString() {
+    return tipo;
+  }
 }

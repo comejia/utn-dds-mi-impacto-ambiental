@@ -13,7 +13,7 @@ public class VehiculoParticular extends TransportePrivado {
   private TipoVehiculo tipo;
 
   @Enumerated(EnumType.STRING)
-  @Embedded
+  //@Embedded
   private TipoCombustible tipoCombustible;
 
   public VehiculoParticular() {}
@@ -27,5 +27,10 @@ public class VehiculoParticular extends TransportePrivado {
   @Override
   public boolean seComparte() {
     return true;
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(tipo);
   }
 }
