@@ -7,6 +7,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import dominio.trayectos.Direccion;
 import dominio.usuarios.EntidadPersistente;
+import lombok.Getter;
 
 import java.util.stream.Collectors;
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Organizacion extends EntidadPersistente {
 
   private String razonSocial;
