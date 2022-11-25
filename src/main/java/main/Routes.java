@@ -57,6 +57,7 @@ public class Routes {
     Spark.get("/guia-recomendaciones", guiaController::guia, engine);
 
     Spark.get("/reportes", reportesController::reporte, engine);
+    Spark.post("/reportes", reportesController::generarReporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
 
