@@ -7,6 +7,7 @@ import dominio.organizaciones.TipoConsumo;
 import dominio.organizaciones.Vinculacion;
 import dominio.repositorios.*;
 import dominio.usuarios.Administrador;
+import dominio.usuarios.Role;
 import dominio.usuarios.Usuario;
 import funciones.UsuarioNotificacion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -62,6 +63,17 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     RepositorioVinculaciones.instance.quitar(vinculacion);
     response.redirect("/organizacion/vinculacion/rechazado");
     return null;
+  }
+
+  public ModelAndView getVinculacionesAceptadas(Request request, Response response) {
+    Map<String, Object> model = new HashMap<>();
+    int id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
+    model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
+    return new ModelAndView(model, "vinculaciones.html.hbs");
   }
 }
 

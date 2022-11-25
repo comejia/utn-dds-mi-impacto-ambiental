@@ -18,8 +18,8 @@
             <tbody>
             {{#vinculaciones}}
                 <tr>
-                    <td>{{vinculacion.Usuario}}</td>
-                    <td>{{vinculacion.Organizacion}}</td>
+                    <td>{{empleado.usuario}}</td>
+                    <td>{{organizacion.razonSocial}}</td>
                     <td><button align="center" type="button" class="btn btn-primary" data-toggle="modal" data-target="#aceptarVinculacion">
                         Aceptar Vinculacion
                     </button></td>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Aceptar</button>
+                        <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -64,13 +64,24 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Rechazar</button>
+                        <button type="button" id="rechazar" class="btn btn-primary">Rechazar</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <script type="text/javascript">
+        document.getElementById("aceptar").onclick = function () {
+            location.href = "/organizacion/vinculacion/aceptadas";
+        };
+    </script>
+
+    <script type="text/javascript">
+        document.getElementById("myButton").onclick = function () {
+            location.href = "/organizacion/vinculacion";
+        };
+    </script>
 {{/partial}}
 
 {{> layout.html.hbs }}
