@@ -14,6 +14,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,10 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
   }
 
   public ModelAndView getOrganizacionVinculacion() {
-    return new ModelAndView(null, "organizacionVinculacion.html.hbs");
+    Map<String, Object> model = new HashMap<>();
+    model.put("sesion", true);
+    model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
+    return new ModelAndView(model, "organizacionVinculacion.html.hbs");
   }
 
   public Void crear(Request request, Response response) {

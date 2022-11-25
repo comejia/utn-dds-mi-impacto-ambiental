@@ -15,16 +15,58 @@
                 </tr>
                 </thead>
                 <tbody>
+                 {{#vinculaciones}}
                     <tr>
-                        <td>Empleado x</td>
-                        <td>Organizacion x</td>
-                        <td><button type="button" class="btn btn-primary">Aceptar</button></td>
-                        <td><button type="button" class="btn btn-danger">Rechazar</button></td>
+                        <td>{{miembro}}</td>
+                        <td>{{organizacion}}</td>
+                        <td><button type="button" id="aceptarVinculacion" data-toggle="modal" data-target="#aceptarVinculacion" class="btn btn-primary">Aceptar</button></td>
+                        <td><button type="button" id="rechazarVinculacion" data-toggle="modal" data-target="#rechazarVinculacion" class="btn btn-danger">Rechazar</button></td>
                     </tr>
+                 {{/vinculaciones}}
                 </tbody>
         </thead>
    </table>
 </section>
+
+<div class="modal fade" id="aceptarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aceptar vinculacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Estas seguro que desea aceptar esta vinculacion?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="rechazarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Rechazar vinculacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Estas seguro que desea rechazar esta vinculacion?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 {{/partial}}
 
 {{> layout.html.hbs }}

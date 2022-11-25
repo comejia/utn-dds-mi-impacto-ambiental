@@ -21,9 +21,44 @@
                             <option>kgCO2eq/kWh</option>
                         </select>
                     </div>
-                    <button type="button" onclick="calcularHC()" class="btn btn-primary">Calcular</button>
+                    <button type="button" onclick = "fun()" class="btn btn-primary">Calcular</button>
                 </form>
     </section>
+
+    <div class="modal fade" id="calculadoraHC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">Aceptar vinculacion</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+           <div class="modal-body">
+             El valor del hc es: <p id="valor"> </p>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           </div>
+         </div>
+       </div>
+     </div>
+
+    <script>
+        function fun() {
+            alert("Welcome to the javaTpoint.com");
+            var url = "/medicion-csv/nuevo"
+            var data = {
+                organizacion: document.getElementById("organizacion")
+            }
+            fetch(url)
+              .then(function(response) {
+                // Transforma la respuesta. En este caso lo convierte a JSON
+                document.getElementById("valor").value = response.json();
+                $('#calculadoraHC').modal('show');
+              });
+        }
+    </script>
 
 {{/partial}}
 

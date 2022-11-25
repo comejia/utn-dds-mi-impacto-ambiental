@@ -1,5 +1,6 @@
 package dominio.organizaciones;
 
+import dominio.miembros.Miembro;
 import dominio.trayectos.Direccion;
 import dominio.usuarios.EntidadPersistente;
 import dominio.usuarios.Usuario;
