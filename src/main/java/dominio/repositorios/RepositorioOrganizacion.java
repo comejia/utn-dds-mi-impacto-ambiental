@@ -10,6 +10,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RepositorioOrganizacion implements WithGlobalEntityManager {
 
     public static RepositorioOrganizacion instance = new RepositorioOrganizacion();
@@ -25,6 +26,13 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
                 .getResultList();
     }
 
+    public Organizacion buscarOrganizacion(String razonSocial) {
+        System.out.print(razonSocial);
+        return entityManager()
+                .createQuery("from Organizacion O where O.razonSocial =:razonSocial", Organizacion.class)
+                .setParameter("razonSocial", razonSocial)
+                .getResultList().get(0);
+    }
     public Organizacion buscarOrganizacion(int id) {
             return entityManager().find(Organizacion.class, id);
         }
