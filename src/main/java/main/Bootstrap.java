@@ -28,21 +28,17 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
       RepositorioTipoDeConsumo.instance.agregar(new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1));
       RepositorioTipoDeConsumo.instance.agregar(new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2));
-      //persist(new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1));
-      //persist(new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2));
 
       List<Parada> paradas = new ArrayList<>();
       paradas.add(new Parada(20));
       paradas.add(new Parada(30));
-//      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
-//      RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
-//      RepositorioTransportePrivado.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
-//      RepositorioTransportePrivado.instance.agregar(new Bicicleta());
+
       RepositorioTransportes.instance.agregar(new APie());
-      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
-      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
       RepositorioTransportes.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
       RepositorioTransportes.instance.agregar(new Bicicleta());
+      RepositorioTransportes.instance.agregar(new ServicioContratado(TipoServicioContratado.TAXI));
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
     });
   }
 }

@@ -27,4 +27,11 @@ public class RepositorioTransportes implements WithGlobalEntityManager, Reposito
         .get(0);
   }
 
+  public Transporte buscarPorTipo(String tipo) {
+    return entityManager().createQuery("from Transporte t where t.tipo = :tipo", Transporte.class)
+        .setParameter("tipo", tipo)
+        .getResultList()
+        .get(0);
+  }
+
 }

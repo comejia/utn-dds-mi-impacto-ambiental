@@ -1,6 +1,5 @@
 package controllers;
 
-import dominio.repositorios.RepositorioTransportePublico;
 import dominio.repositorios.RepositorioTransportes;
 import dominio.repositorios.RepositorioTrayectos;
 import dominio.repositorios.RepositorioUsuarios;
@@ -71,6 +70,8 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
         return new ServicioContratado(TipoServicioContratado.TAXI);
       case "REMIS":
         return new ServicioContratado(TipoServicioContratado.REMIS);
+      case "CAMIONETA":
+        return new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA);
       default:
         throw new RuntimeException("Error al recuperar un Transporte");
     }

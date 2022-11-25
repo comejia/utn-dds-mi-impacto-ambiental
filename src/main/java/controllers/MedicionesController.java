@@ -27,6 +27,7 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
     model.put("nombreUsuario", usuario.getUsuario());
 
     model.put("mediciones", RepositorioMediciones.instance.listar());
+    model.put("display", RepositorioMediciones.instance.listar().size() > 0 ? "" : "display:none");
 
     return new ModelAndView(model, "mediciones.html.hbs");
   }
