@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo" , length = 2)
+@DiscriminatorColumn(name = "tipo_transporte" , length = 2)
 public abstract class Transporte extends EntidadPersistente {
 
   public abstract double getDistancia(Punto puntoInicio, Punto puntoFin);

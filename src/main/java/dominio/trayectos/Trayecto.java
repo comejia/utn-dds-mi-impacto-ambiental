@@ -2,16 +2,21 @@ package dominio.trayectos;
 
 
 import dominio.usuarios.EntidadPersistente;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
+@NoArgsConstructor
 @Entity
+@Getter
 public class Trayecto extends EntidadPersistente {
 
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "egresoId")
-  private final List<Tramo> tramos;
+  @OrderColumn(name = "indice")
+  private List<Tramo> tramos;
 
   public Trayecto(List<Tramo> tramos) {
     this.tramos = tramos;

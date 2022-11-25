@@ -1,13 +1,16 @@
 package dominio.transportes;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("VH")
+@Getter
 public class VehiculoParticular extends TransportePrivado {
 
   @Enumerated(EnumType.STRING)
-  private TipoVehiculo tipoVehiculo;
+  private TipoVehiculo tipo;
 
   @Enumerated(EnumType.STRING)
   @Embedded
@@ -17,7 +20,7 @@ public class VehiculoParticular extends TransportePrivado {
 
   public VehiculoParticular(TipoVehiculo tipoVehiculo, TipoCombustible tipoCombustible) {
     super();
-    this.tipoVehiculo = tipoVehiculo;
+    this.tipo = tipoVehiculo;
     this.tipoCombustible = tipoCombustible;
   }
 

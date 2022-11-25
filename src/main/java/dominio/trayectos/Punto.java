@@ -1,11 +1,13 @@
 package dominio.trayectos;
 
 import dominio.usuarios.EntidadPersistente;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
+@NoArgsConstructor
 @Entity
 public class Punto extends EntidadPersistente {
 

@@ -1,9 +1,11 @@
 package dominio.trayectos;
 
 import dominio.usuarios.EntidadPersistente;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
+@NoArgsConstructor
 @Entity
 public class Direccion extends EntidadPersistente {
   private String localidad;

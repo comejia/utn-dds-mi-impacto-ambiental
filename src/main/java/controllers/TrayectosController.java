@@ -2,11 +2,14 @@ package controllers;
 
 import dominio.repositorios.RepositorioTransportePublico;
 import dominio.repositorios.RepositorioTrayectos;
+import dominio.repositorios.RepositorioUsuarios;
 import dominio.transportes.*;
 import dominio.trayectos.Direccion;
 import dominio.trayectos.Punto;
 import dominio.trayectos.Tramo;
 import dominio.trayectos.Trayecto;
+import dominio.usuarios.Role;
+import dominio.usuarios.Usuario;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -19,6 +22,19 @@ import java.util.List;
 import java.util.Map;
 
 public class TrayectosController implements WithGlobalEntityManager, TransactionalOps {
+
+  public ModelAndView trayectos(Request request, Response response) {
+    Map<String, Object> model = new HashMap<>();
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instancia.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
+
+    model.put("trayectos", RepositorioTrayectos.instance.listar());
+
+    return new ModelAndView(model, "trayectos.html.hbs");
+  }
 
   public ModelAndView nuevo(Request request, Response response) {
     Map<String, Object> modelo = new HashMap<>();
@@ -37,7 +53,7 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
       Trayecto trayecto = new Trayecto(tramos);
       RepositorioTrayectos.instance.agregar(trayecto);
     });
-    response.redirect("/");
+    response.redirect("/trayectos");
     return null;
   }
 

@@ -49,6 +49,7 @@ public class Routes {
     Spark.post("/medicion-particular/nuevo", medicionesController::crear);
     Spark.post("/medicion-csv/nuevo", medicionesController::cargar);
 
+    Spark.get("/trayectos", trayectosController::trayectos, engine);
     Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);
     Spark.post("/trayectos", trayectosController::crear);
 

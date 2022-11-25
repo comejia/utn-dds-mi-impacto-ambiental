@@ -12,15 +12,13 @@ public class RepositorioTransportePrivado implements WithGlobalEntityManager {
   private final List<Transporte> transportes = new ArrayList<>();
 
   public void agregar(Transporte transporte) {
-    //entityManager().persist(transporte);
-    this.transportes.add(transporte);
+    entityManager().persist(transporte);
   }
 
   public List<Transporte> listar() {
-    return transportes;
-//    return entityManager()
-//        .createQuery("from Transporte", Transporte.class)
-//        .getResultList();
+    return entityManager()
+        .createQuery("from Transporte", Transporte.class)
+        .getResultList();
   }
 
 }

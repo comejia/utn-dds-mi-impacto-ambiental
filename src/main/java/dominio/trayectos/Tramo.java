@@ -1,5 +1,6 @@
 package dominio.trayectos;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import dominio.organizaciones.FactorEmision;
 import dominio.transportes.Transporte;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
+@Getter
 public class Tramo extends EntidadPersistente {
 
   @OneToOne(cascade = CascadeType.ALL)
