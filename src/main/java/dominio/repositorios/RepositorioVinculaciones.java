@@ -8,7 +8,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import java.util.List;
 
 public class RepositorioVinculaciones implements WithGlobalEntityManager {
-    public static RepositorioVinculaciones instancia = new RepositorioVinculaciones();
+    public static RepositorioVinculaciones instance = new RepositorioVinculaciones();
 
     public List<Vinculacion> listar() {
         return entityManager()

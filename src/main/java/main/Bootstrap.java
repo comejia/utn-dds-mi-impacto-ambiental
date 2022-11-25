@@ -1,5 +1,6 @@
 package main;
 
+import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.TipoConsumo;
 import dominio.repositorios.RepositorioTipoDeConsumo;
 import dominio.repositorios.RepositorioTransportePrivado;
@@ -41,6 +42,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
       RepositorioTransportePrivado.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
       RepositorioTransportePrivado.instance.agregar(new Bicicleta());
+
     });
   }
 }
