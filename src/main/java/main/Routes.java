@@ -1,8 +1,6 @@
 package main;
 
 import controllers.*;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-import spark.ModelAndView;
 import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -44,12 +42,16 @@ public class Routes {
 
     Spark.get("/miembros/vinculacion", (request, response) -> vinculacionController.getMiembroVinculacion(), engine);
     Spark.get("/organizacion/vinculacion", (request, response) -> vinculacionController.getOrganizacionVinculacion(), engine);
+    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getVinculacionesAceptadas, engine);
+    Spark.post("/organizacion/vinculacion/nuevo", vinculacionController::crear);
+    Spark.post("/organizacion/vinculacion/rechazado", vinculacionController::rechazar);
+    Spark.post("/organizacion/vinculacion/aceptado", vinculacionController::aceptar);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
-    Spark.get("/mediciones/particular", medicionesController::particular, engine);
-    Spark.get("/mediciones/csv", medicionesController::csv, engine);
-    Spark.post("/mediciones/particular", medicionesController::crear);
-    Spark.post("/mediciones/csv", medicionesController::cargar);
+    Spark.get("/medicion-particular", medicionesController::particular, engine);
+    Spark.get("/medicion-csv", medicionesController::csv, engine);
+    Spark.post("/medicion-particular/nuevo", medicionesController::crear);
+    Spark.post("/medicion-csv/nuevo", medicionesController::cargar);
 
     Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);
     Spark.post("/trayectos", trayectosController::crear);

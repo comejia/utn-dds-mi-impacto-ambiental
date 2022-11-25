@@ -1,13 +1,79 @@
 package controllers;
 
+import dominio.miembros.Miembro;
+import dominio.organizaciones.Medicion;
+import dominio.organizaciones.Organizacion;
+import dominio.organizaciones.TipoConsumo;
+import dominio.organizaciones.Vinculacion;
+import dominio.repositorios.*;
+import dominio.usuarios.Administrador;
+import dominio.usuarios.Role;
+import dominio.usuarios.Usuario;
+import funciones.UsuarioNotificacion;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
 
-public class VinculacionController {
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+
+public class VinculacionController implements WithGlobalEntityManager, TransactionalOps { //Revisar tema login
   public ModelAndView getMiembroVinculacion() {
-    return new ModelAndView(null, "miembroVinculacion.html.hbs");
+    Map<String, Object> model = new HashMap<>();
+    model.put("organizaciones", RepositorioOrganizacion.instance.listar());
+    model.put("miembros", RepositorioUsuarios.instance.listar());
+    return new ModelAndView(model, "miembroVinculacion.html.hbs");
   }
 
   public ModelAndView getOrganizacionVinculacion() {
-    return new ModelAndView(null, "organizacionVinculacion.html.hbs");
+    Map<String, Object> model = new HashMap<>();
+    model.put("sesion", true);
+    model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
+    return new ModelAndView(model, "organizacionVinculacion.html.hbs");
+  }
+
+  public Void crear(Request request, Response response) {
+    withTransaction(() -> {
+      Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion((request.queryParams("organizacion")));
+      Usuario miembro = RepositorioUsuarios.instance.buscarEmpleado(request.queryParams("miembro"));
+
+      Vinculacion vinculacion = new Vinculacion(
+            organizacion,miembro);
+      RepositorioVinculaciones.instance.agregar(vinculacion);
+    });
+    response.redirect("/organizacion/vinculacion");
+    return null;
+  }
+
+  public Void aceptar(Request request, Response response) {
+    int id_empleado = Integer.parseInt(request.params("empleado_id"));
+    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
+    RepositorioVinculaciones.instance.agregar(vinculacion);
+    response.redirect("/organizacion/vinculacion/aceptado");
+    return null;
+  }
+
+  public Void rechazar(Request request, Response response) {
+    int id_empleado = Integer.parseInt(request.params("empleado_id"));
+    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
+    RepositorioVinculaciones.instance.quitar(vinculacion);
+    response.redirect("/organizacion/vinculacion/rechazado");
+    return null;
+  }
+
+  public ModelAndView getVinculacionesAceptadas(Request request, Response response) {
+    Map<String, Object> model = new HashMap<>();
+    int id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
+    model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
+    return new ModelAndView(model, "vinculaciones.html.hbs");
   }
 }
+

@@ -15,7 +15,7 @@ public class UsuarioSesion {
     Integer id = request.session().attribute("idUsuario");
     if (UsuarioSesion.verificarVacio(id))
       return null;
-    Usuario usuario = RepositorioUsuarios.instancia.getById(id);
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
     if (UsuarioSesion.verificarVacio(usuario)) {
       return null;
     }

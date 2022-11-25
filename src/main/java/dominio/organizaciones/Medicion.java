@@ -1,11 +1,13 @@
 package dominio.organizaciones;
 
 import dominio.usuarios.EntidadPersistente;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Getter
 public class Medicion extends EntidadPersistente {
 
   @OneToOne(cascade = CascadeType.ALL)

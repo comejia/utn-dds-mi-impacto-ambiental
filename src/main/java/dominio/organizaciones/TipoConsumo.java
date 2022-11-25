@@ -1,10 +1,12 @@
 package dominio.organizaciones;
 
 import dominio.usuarios.EntidadPersistente;
+import lombok.Getter;
 
 import javax.persistence.Entity;
 
 @Entity
+@Getter
 public class TipoConsumo extends EntidadPersistente {
 
   private String tipo;
@@ -19,14 +21,6 @@ public class TipoConsumo extends EntidadPersistente {
     this.unidad = unidad;
     this.actividad = actividad;
     this.alcance = alcance;
-  }
-
-  public String getUnidad() {
-    return this.unidad;
-  }
-
-  public String getTipo() {
-    return this.tipo;
   }
 
   public boolean esMismoTipo(String tipo) {

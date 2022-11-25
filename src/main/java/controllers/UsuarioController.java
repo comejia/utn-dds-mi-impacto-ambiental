@@ -24,7 +24,7 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
     Map<String, Object> viewModel = new HashMap<>();
     String username = request.queryParams("username");
     String password = request.queryParams("password");
-    Usuario usuario = RepositorioUsuarios.instancia.buscarPorUsuarioYContrasenia(username, password);
+    Usuario usuario = RepositorioUsuarios.instance.buscarPorUsuarioYContrasenia(username, password);
 
     if (usuario == null) {
       UsuarioNotificacion.notificar(viewModel, "danger", "Error: ", "Se debe registrar como usuario.");
@@ -46,13 +46,13 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
     String password = request.queryParams("password");
     Usuario usuario = null;
     try {
-      usuario = RepositorioUsuarios.instancia.listar().stream().filter(u -> u.getContrasenia().equals(password) && u.getUsuario().equals(username)).findFirst().get();
+      usuario = RepositorioUsuarios.instance.listar().stream().filter(u -> u.getContrasenia().equals(password) && u.getUsuario().equals(username)).findFirst().get();
       UsuarioNotificacion.notificar(viewModel, "warning", "Advertencia: ", "El usuario ya se encuentra registrado.");
       return new ModelAndView(viewModel, "login.html.hbs");
     } catch (Exception e) {
       Administrador usr = new Administrador(username, password);
       withTransaction(() -> {
-        RepositorioUsuarios.instancia.agregar(usr);
+        RepositorioUsuarios.instance.agregar(usr);
       });
       request.session().attribute("idUsuario", usr.getId());
       UsuarioNotificacion.notificar(viewModel, "success", "Éxito!: ", "Se ha registrado el usuario.");
@@ -66,7 +66,7 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
     if (id == null) {
       return null;
     }
-    return RepositorioUsuarios.instancia.getById(id);
+    return RepositorioUsuarios.instance.getById(id);
   }
 
   private boolean estaLogueado(Request request) {
