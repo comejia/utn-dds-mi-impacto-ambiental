@@ -17,8 +17,6 @@ public class Direccion extends EntidadPersistente {
     this.calle = calle;
     this.altura = altura;
   }
-  public Direccion() {
-  }
 
   public String getLocalidad() {
     return localidad;
