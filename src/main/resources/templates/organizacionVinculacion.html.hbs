@@ -15,14 +15,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                 {{#vinculaciones}}
+                 {{#each vinculaciones}}
                     <tr>
-                        <td>{{miembro.nombre}}</td>
-                        <td>{{organizacion.razonSocial}}</td>
-                        <td><button type="button"  id="aceptarVinculacion" data-toggle="modal" data-target="#aceptarVinculacion" class="btn btn-primary">Aceptar</button></td>
+                        <td>{{nombre}}</td>
+                        <td>{{razonSocial}}</td>
+                        <td><button type="button" id="aceptarVinculacion" data-toggle="modal" data-target="#aceptarVinculacion" class="btn btn-primary">Aceptar</button></td>
                         <td><button type="button" id="rechazarVinculacion" data-toggle="modal" data-target="#rechazarVinculacion" class="btn btn-danger">Rechazar</button></td>
                     </tr>
-                 {{/vinculaciones}}
+                 {{/each}}
                 </tbody>
         </thead>
    </table>

@@ -1,12 +1,11 @@
 package main;
 
-import dominio.organizaciones.Organizacion;
-import dominio.organizaciones.TipoConsumo;
-import dominio.repositorios.RepositorioTipoDeConsumo;
-import dominio.repositorios.RepositorioTransportePrivado;
-import dominio.repositorios.RepositorioTransportePublico;
-import dominio.repositorios.RepositorioUsuarios;
+import dominio.Notificador.Contacto;
+import dominio.Notificador.Notificador;
+import dominio.organizaciones.*;
+import dominio.repositorios.*;
 import dominio.transportes.*;
+import dominio.trayectos.Direccion;
 import dominio.trayectos.Parada;
 import dominio.usuarios.Administrador;
 import dominio.usuarios.Persona;
@@ -42,6 +41,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
       RepositorioTransportePrivado.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
       RepositorioTransportePrivado.instance.agregar(new Bicicleta());
+
+
+      Organizacion UTN = new Organizacion(
+              "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+
+      RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));
+      RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
 
     });
   }

@@ -1,5 +1,6 @@
 package controllers;
 
+import dominio.miembros.Miembro;
 import dominio.organizaciones.Medicion;
 import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.TipoConsumo;
@@ -21,7 +22,10 @@ import java.util.Map;
 
 public class VinculacionController implements WithGlobalEntityManager, TransactionalOps { //Revisar tema login
   public ModelAndView getMiembroVinculacion() {
-    return new ModelAndView(null, "miembroVinculacion.html.hbs");
+    Map<String, Object> model = new HashMap<>();
+    model.put("organizaciones", RepositorioOrganizacion.instance.listar());
+    model.put("miembros", RepositorioUsuarios.instance.listar());
+    return new ModelAndView(model, "miembroVinculacion.html.hbs");
   }
 
   public ModelAndView getOrganizacionVinculacion() {
@@ -33,15 +37,14 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
 
   public Void crear(Request request, Response response) {
     withTransaction(() -> {
-      String idEmpleado = request.params(":id_empleado");
-      String idOrganizacion = request.params(":id_organizacion");
-      Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion(Integer.parseInt(idOrganizacion));
-      Usuario empleado = RepositorioUsuarios.instance.buscarEmpleado(Integer.parseInt(idEmpleado));
+      Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion(Integer.parseInt(request.queryParams("organizacion")));
+      Usuario miembro = RepositorioUsuarios.instance.getById(Integer.parseInt(request.queryParams("miembro")));
+
       Vinculacion vinculacion = new Vinculacion(
-            organizacion,empleado);
+            organizacion,miembro);
       RepositorioVinculaciones.instance.agregar(vinculacion);
     });
-    response.redirect("/vinculaciones");
+    response.redirect("/vinculacion");
     return null;
   }
 
