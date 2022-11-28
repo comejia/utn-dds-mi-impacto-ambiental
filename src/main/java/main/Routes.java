@@ -14,7 +14,7 @@ public class Routes {
     new Bootstrap().run();
 
     System.out.println("Iniciando servidor...");
-    Spark.port(9090);
+    Spark.port(8080);
     Spark.staticFileLocation("/public");
 
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
