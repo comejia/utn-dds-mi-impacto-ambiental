@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", length = 2)
+@DiscriminatorColumn(name = "tipo_usuario", length = 2)
 public abstract class Usuario extends EntidadPersistente {
 
   protected String usuario;

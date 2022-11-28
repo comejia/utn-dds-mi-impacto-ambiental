@@ -140,7 +140,7 @@
               <archive>
                 <manifest>
                   <mainClass>
-                    main.Bootstrap
+                    main.Routes
                   </mainClass>
                 </manifest>
               </archive>
