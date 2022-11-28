@@ -13,7 +13,6 @@ public class VehiculoParticular extends TransportePrivado {
   private TipoVehiculo tipo;
 
   @Enumerated(EnumType.STRING)
-  //@Embedded
   private TipoCombustible tipoCombustible;
 
   public VehiculoParticular() {}

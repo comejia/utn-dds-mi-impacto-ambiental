@@ -1,7 +1,6 @@
 package dominio.repositorios;
 
 import dominio.transportes.Transporte;
-import dominio.transportes.TransportePublico;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.List;
