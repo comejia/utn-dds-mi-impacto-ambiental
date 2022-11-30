@@ -1,5 +1,6 @@
 package dominio.organizaciones;
 
+import com.sun.istack.internal.NotNull;
 import dominio.usuarios.EntidadPersistente;
 import lombok.Getter;
 
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 @Getter
 public class TipoConsumo extends EntidadPersistente {
 
+  @NotNull
   private String tipo;
   private String unidad;
   private String actividad;
