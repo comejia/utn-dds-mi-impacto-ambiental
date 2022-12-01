@@ -40,11 +40,11 @@
 
       <!-- HSQL Database Connector -->
 
-      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
-      <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
-      <property name="hibernate.connection.username" value="sa"/>
-      <property name="hibernate.connection.password" value=""/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+<!--      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>-->
+<!--      <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>-->
+<!--      <property name="hibernate.connection.username" value="sa"/>-->
+<!--      <property name="hibernate.connection.password" value=""/>-->
+<!--      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>-->
 
 
       <!-- Cloud Database Connector -->
@@ -57,13 +57,11 @@
       -->
 
       <!-- MySQL Database Connector -->
-      <!--
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" />
+      <property name="hibernate.connection.url" value="jdbc:mysql://34.95.223.78:3306/tp?useSSL=false" />
       <property name="hibernate.connection.username" value="root" />
       <property name="hibernate.connection.password" value="" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-      -->
 
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />
