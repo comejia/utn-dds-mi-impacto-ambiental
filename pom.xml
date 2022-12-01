@@ -31,6 +31,11 @@
       <version>1.0-alpha-1</version>
     </dependency>
     <!-- drivers jdbc -->
+    <dependency>
+      <groupId>com.google.cloud.sql</groupId>
+      <artifactId>mysql-socket-factory-connector-j-8</artifactId>
+      <version>1.7.2</version>
+    </dependency>
     <!-- mysql -->
     <dependency>
       <groupId>mysql</groupId>
