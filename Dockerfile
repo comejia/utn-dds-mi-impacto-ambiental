@@ -4,7 +4,7 @@ EXPOSE 8080
 
 WORKDIR .
 
-RUN git clone -b db https://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@github.com/dds-utn/2022-tpa-vi-no-grupo-05.git
+RUN git clone https://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@github.com/dds-utn/2022-tpa-vi-no-grupo-05.git
 
 RUN ls
 
