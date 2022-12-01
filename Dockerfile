@@ -29,3 +29,4 @@ CMD  ["java", "-jar", "target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar"]
 
 # gcloud auth login
 # gcloud config set project utndds
+# gcloud auth application-default login
