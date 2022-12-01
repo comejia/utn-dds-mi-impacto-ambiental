@@ -57,7 +57,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
             organizacion,miembro);
       RepositorioVinculaciones.instance.agregar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion");
+    response.redirect("/miembros/vinculacion");
     return null;
   }
 

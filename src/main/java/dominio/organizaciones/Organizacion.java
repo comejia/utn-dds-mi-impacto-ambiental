@@ -37,9 +37,6 @@ public class Organizacion extends EntidadPersistente {
   @JoinColumn(name = "sectorId")
   private final List<Sector> sectores = new ArrayList<>();
 
-  @ManyToMany
-  @JoinTable(name = "Organizacion_X_Miembros")
-  private List<Miembro> miembros = new ArrayList<>();
 
   @Enumerated(EnumType.STRING)
   private Clasificacion clasificacion;
@@ -129,9 +126,6 @@ public class Organizacion extends EntidadPersistente {
     this.contactos.forEach(contacto -> notificarUnContacto(contacto, "Guia de recomendaciones", "link"));
   }
 
-  public void agregarMiembro(Miembro miembro) {
-    miembros.add(miembro);
-  }
 }
 
 //TODO: Revisar
