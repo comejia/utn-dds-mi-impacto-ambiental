@@ -49,4 +49,8 @@ public class Sector extends EntidadPersistente {
   public double getCantidadIntegrantes() {
     return miembros.size();
   }
+
+  public List<Miembro> getMiembros() {
+    return miembros;
+  }
 }

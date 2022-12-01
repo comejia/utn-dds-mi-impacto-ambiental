@@ -5,6 +5,7 @@ import dominio.excepciones.TipoConsumoInexistente;
 import dominio.Notificador.Notificador;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import dominio.miembros.Miembro;
 import dominio.trayectos.Direccion;
 import dominio.usuarios.EntidadPersistente;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Entity
 @Getter
@@ -48,6 +50,7 @@ public class Organizacion extends EntidadPersistente {
 
   @Transient
   private final List<Notificador> notificadores = new ArrayList<>();
+
 
   public Organizacion(String razonSocial) {
     this.razonSocial = razonSocial;
@@ -121,4 +124,7 @@ public class Organizacion extends EntidadPersistente {
   public void notificarGuiaRecomendaciones() {
     this.contactos.forEach(contacto -> notificarUnContacto(contacto, "Guia de recomendaciones", "link"));
   }
+
+
+
 }

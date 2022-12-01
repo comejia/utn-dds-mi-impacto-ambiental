@@ -31,6 +31,9 @@ public class Miembro extends EntidadPersistente {
   @JoinColumn(name = "trayectoId")
   private List<Trayecto> trayectos = new ArrayList<>();
 
+  @ManyToMany
+  @JoinTable(name = "Organizacion_X_Miembros")
+  private List<Miembro> miembros = new ArrayList<>();
   public Miembro() {}
 
   public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento) {
@@ -90,5 +93,9 @@ public class Miembro extends EntidadPersistente {
       throw new NoPerteneceAOrganizacionException("El miembro no pertenece a la organizacion");
     }
     return this.getHC(unidad) / org.getHCTotal(unidad);
+  }
+
+  public void agregarMiembro(Miembro miembro) {
+    miembros.add(miembro);
   }
 }
