@@ -28,6 +28,7 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
             return entityManager().find(Organizacion.class, id);
         }
     public Organizacion buscarOrganizacion(String razonSocial) {
+
         return entityManager().createQuery("from Organizaion O where O.razonSocial = :razonSocial", Organizacion.class)
                 .setParameter("razonSocial", razonSocial)
                 .getResultList()

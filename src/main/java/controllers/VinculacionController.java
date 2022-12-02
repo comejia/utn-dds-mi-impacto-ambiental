@@ -50,18 +50,25 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
   }
 
   public Void aceptar(Request request, Response response) {
-    int id_empleado = Integer.parseInt(request.params("empleado_id"));
-    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
-    RepositorioVinculaciones.instance.agregar(vinculacion);
-    response.redirect("/organizacion/vinculacion/aceptado");
+    withTransaction(() -> {
+      System.out.println("ver: " + request.params("id"));
+      int id_empleado = Integer.parseInt(request.params("id"));
+      Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
+      RepositorioVinculaciones.instance.quitar(vinculacion);
+    });
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 
   public Void rechazar(Request request, Response response) {
-    int id_empleado = Integer.parseInt(request.params("empleado_id"));
-    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
-    RepositorioVinculaciones.instance.quitar(vinculacion);
-    response.redirect("/organizacion/vinculacion/rechazado");
+    withTransaction(() -> {
+      System.out.println("rechazar: " + request.params("id"));
+      int id_empleado = Integer.parseInt(request.params("id"));
+      Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
+      System.out.println("vinculacion: " + vinculacion.getEmpleado());
+      RepositorioVinculaciones.instance.quitar(vinculacion);
+    });
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 

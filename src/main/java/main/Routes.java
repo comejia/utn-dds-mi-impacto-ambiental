@@ -13,7 +13,7 @@ public class Routes {
     new Bootstrap().run();
 
     System.out.println("Iniciando servidor...");
-    Spark.port(9090);
+    Spark.port(8080);
     Spark.staticFileLocation("/public");
 
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -42,10 +42,9 @@ public class Routes {
 
     Spark.get("/miembros/vinculacion", (request, response) -> vinculacionController.getMiembroVinculacion(), engine);
     Spark.get("/organizacion/vinculacion", (request, response) -> vinculacionController.getOrganizacionVinculacion(), engine);
-    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getVinculacionesAceptadas, engine);
     Spark.post("/organizacion/vinculacion/nuevo", vinculacionController::crear);
-    Spark.post("/organizacion/vinculacion/rechazado", vinculacionController::rechazar);
-    Spark.post("/organizacion/vinculacion/aceptado", vinculacionController::aceptar);
+    Spark.get("/organizacion/vinculacion/rechazado/:id", vinculacionController::rechazar);
+    Spark.get("/organizacion/vinculacion/aceptado/:id", vinculacionController::aceptar);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
     Spark.get("/medicion-particular", medicionesController::particular, engine);

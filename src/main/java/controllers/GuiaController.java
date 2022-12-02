@@ -6,8 +6,13 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GuiaController implements WithGlobalEntityManager, TransactionalOps {
   public ModelAndView guia(Request request, Response response) {
-    return new ModelAndView(null, "guia.html.hbs");
+    Map<String, Object> model = new HashMap<>();
+    model.put("sesion", true);
+    return new ModelAndView(model, "guia.html.hbs");
   }
 }
