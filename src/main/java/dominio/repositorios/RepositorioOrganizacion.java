@@ -1,8 +1,5 @@
 package dominio.repositorios;
-import dominio.organizaciones.Clasificacion;
-import dominio.organizaciones.Medicion;
-import dominio.organizaciones.Organizacion;
-import dominio.organizaciones.TipoOrganizacion;
+import dominio.organizaciones.*;
 import dominio.trayectos.Direccion;
 import dominio.usuarios.Usuario;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -32,6 +29,6 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
                 .createQuery("from Organizacion O where O.razonSocial =:razonSocial", Organizacion.class)
                 .setParameter("razonSocial", razonSocial)
                 .getResultList().get(0);
-    }
-    }
+    }}
+
 

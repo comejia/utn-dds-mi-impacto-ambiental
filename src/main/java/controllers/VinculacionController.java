@@ -51,29 +51,37 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
   public Void crear(Request request, Response response) {
     withTransaction(() -> {
       Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion((request.queryParams("organizacion")));
-      Usuario miembro = RepositorioUsuarios.instance.buscarEmpleado(request.queryParams("miembro"));
+
+      Usuario miembro = RepositorioUsuarios.instance.buscarUsuario(request.queryParams("miembro"));
 
       Vinculacion vinculacion = new Vinculacion(
             organizacion,miembro);
       RepositorioVinculaciones.instance.agregar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion");
+    response.redirect("/miembros/vinculacion");
     return null;
   }
 
   public Void aceptar(Request request, Response response) {
-    int id_empleado = Integer.parseInt(request.params("empleado_id"));
-    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
-    RepositorioVinculaciones.instance.agregar(vinculacion);
-    response.redirect("/organizacion/vinculacion/aceptado");
+    withTransaction(() -> {
+      System.out.println("ver: " + request.params("id"));
+      int id_empleado = Integer.parseInt(request.params("id"));
+      Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
+      RepositorioVinculaciones.instance.quitar(vinculacion);
+    });
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 
   public Void rechazar(Request request, Response response) {
-    int id_empleado = Integer.parseInt(request.params("empleado_id"));
-    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
-    RepositorioVinculaciones.instance.quitar(vinculacion);
-    response.redirect("/organizacion/vinculacion/rechazado");
+    withTransaction(() -> {
+      System.out.println("rechazar: " + request.params("id"));
+      int id_empleado = Integer.parseInt(request.params("id"));
+      Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
+      System.out.println("vinculacion: " + vinculacion.getEmpleado());
+      RepositorioVinculaciones.instance.quitar(vinculacion);
+    });
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 
