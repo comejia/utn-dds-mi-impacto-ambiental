@@ -64,12 +64,11 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
 
   public Void aceptar(Request request, Response response) {
     withTransaction(() -> {
-      System.out.println("ver: " + request.params("id"));
       int id_empleado = Integer.parseInt(request.params("id"));
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
       RepositorioVinculaciones.instance.quitar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion");
+    response.redirect("/organizacion/vinculacion/aceptado");
     return null;
   }
 
@@ -81,7 +80,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       System.out.println("vinculacion: " + vinculacion.getEmpleado());
       RepositorioVinculaciones.instance.quitar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion");
+    response.redirect("/organizacion/vinculacion/aceptado");
     return null;
   }
 
