@@ -40,7 +40,6 @@ public class Routes {
 
     Spark.get("/usuario/nuevo", usuarioController::getFormularioRegistrarUsuario, engine);
     Spark.post("/usuario/nuevo", usuarioController::registrarUsuario, engine);
-    Spark.get("/organizacion/vinculacion/aceptado",vinculacionController::getVinculacionesAceptadas,engine);
     Spark.get("/miembros/vinculacion", vinculacionController::getMiembroVinculacion, engine);
     Spark.get("/organizacion/vinculacion", vinculacionController::getOrganizacionVinculacion, engine);
     Spark.post("/organizacion/vinculacion/nuevo", vinculacionController::crear);

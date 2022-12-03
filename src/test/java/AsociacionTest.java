@@ -1,23 +1,30 @@
+import controllers.VinculacionController;
 import dominio.excepciones.NoPuedoCompartirMiTrayecto;
 import dominio.miembros.Miembro;
 import dominio.miembros.TipoDocumento;
+import dominio.repositorios.RepositorioUsuarios;
 import dominio.transportes.*;
 import dominio.trayectos.*;
+import dominio.usuarios.Administrador;
+import dominio.usuarios.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import dominio.organizaciones.Clasificacion;
 import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.Sector;
 import dominio.organizaciones.TipoOrganizacion;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AsociacionTest {
+public class AsociacionTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
   APie aPie;
-
+VinculacionController controlador = new VinculacionController();
   Direccion direccionMinisterio = new Direccion("Capital", "Av.Libertador", "2552");
 
   Direccion direccionEstudio = new Direccion("Capital", "Antezana", "247");
@@ -29,7 +36,6 @@ public class AsociacionTest {
   Sector contaduria = new Sector(estudioContable, new ArrayList<>());
   Miembro goku = new Miembro("Son", "Goku", TipoDocumento.DNI, 1525135681);
   Miembro vegetta = new Miembro("Son", "Vegetta", TipoDocumento.DNI, 1333804417);
-
 
   @Test
   public void unMiembroConoceSuSector() {
@@ -105,5 +111,23 @@ public class AsociacionTest {
     tramos.add(tramoColectivo);
     Trayecto trayecto = new Trayecto(tramos);
     Assertions.assertThrows(NoPuedoCompartirMiTrayecto.class, () -> goku.agregarTrayecto(vegetta, trayecto));
+  }
+
+  @Test
+  public void idk() {
+    RepositorioUsuarios repo = new RepositorioUsuarios();
+    Usuario usuario = new Administrador("pepito", "Admin2022@");
+    int usuario_id = usuario.getId();
+    entityManager().persist(usuario);
+    List<String> ux = entityManager().createNativeQuery("SELECT * FROM Usuario").getResultList();
+    Usuario barou = repo.buscarEmpleado(usuario_id);
+
+    //List<Usuario> users = repo.listaUsuario("pepito");
+    System.out.print("Lista de usuarios" + ux);
+
+    //Usuario usuarie = repo.buscarUsuario("pepito");
+
+    assertEquals(barou,usuario);
+    rollbackTransaction();
   }
 }

@@ -13,10 +13,12 @@ import java.util.List;
 @Getter
 public class Vinculacion extends EntidadPersistente {
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name="id")
     private Organizacion organizacion;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name="id")//Tirar join column a ver que pasa
     private Usuario empleado;
 
     public Vinculacion() {

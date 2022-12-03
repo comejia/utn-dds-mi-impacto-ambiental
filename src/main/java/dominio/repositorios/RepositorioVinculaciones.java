@@ -32,9 +32,7 @@ public class RepositorioVinculaciones implements WithGlobalEntityManager {
     }
 
     public void quitar(Vinculacion vinculacion) {
-        entityManager().createNativeQuery("delete from Vinculacion where id = :id")
-                .setParameter("id", vinculacion.getId())
-                .executeUpdate();
+        entityManager().remove(vinculacion);
     }
 
 }

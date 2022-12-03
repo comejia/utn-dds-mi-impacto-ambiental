@@ -52,10 +52,10 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     withTransaction(() -> {
       Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion((request.queryParams("organizacion")));
 
-      Usuario miembro = RepositorioUsuarios.instance.buscarUsuario(request.queryParams("miembro"));
+      Usuario usuario = RepositorioUsuarios.instance.buscarUsuario(request.queryParams("usuario"));
 
       Vinculacion vinculacion = new Vinculacion(
-            organizacion,miembro);
+            organizacion,usuario);
       RepositorioVinculaciones.instance.agregar(vinculacion);
     });
     response.redirect("/miembros/vinculacion");
@@ -68,19 +68,19 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
       RepositorioVinculaciones.instance.quitar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion/aceptado");
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
+
 
   public Void rechazar(Request request, Response response) {
     withTransaction(() -> {
       System.out.println("rechazar: " + request.params("id"));
       int id_empleado = Integer.parseInt(request.params("id"));
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
-      System.out.println("vinculacion: " + vinculacion.getEmpleado());
       RepositorioVinculaciones.instance.quitar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion/aceptado");
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 
@@ -94,5 +94,6 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
     return new ModelAndView(model, "vinculaciones.html.hbs");
   }
+
 }
 
