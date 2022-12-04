@@ -46,8 +46,6 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     withTransaction(() -> {
       Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion((request.queryParams("organizacion")));
       Usuario usuario = RepositorioUsuarios.instance.buscarUsuario(request.queryParams("miembro"));
-      System.out.println("usuario: " + usuario.getUsuario());
-      System.out.println("organizacion: " + organizacion.getId());
       Vinculacion vinculacion = new Vinculacion(
             organizacion,usuario);
       RepositorioVinculaciones.instance.agregar(vinculacion);
