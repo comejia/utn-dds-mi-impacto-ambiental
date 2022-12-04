@@ -36,6 +36,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager, Repositorio
       return entityManager().find(Usuario.class, id_empleado);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
   public Usuario buscarEmpleado(String usuario) {
     return entityManager()
             .createQuery("from Usuario where usuario = :usuario", Usuario.class)
@@ -52,3 +53,19 @@ public class RepositorioUsuarios implements WithGlobalEntityManager, Repositorio
   }
     }
 >>>>>>> 19e44dc07da3b816bf61d814e170910c463743a9
+=======
+
+  public Usuario buscarUsuario(String usuario) {
+    return entityManager().createQuery("from Usuario U where U.usuario =:usuario", Usuario.class)
+            .setParameter("usuario", usuario)
+            .getResultList()
+            .get(0);
+  }
+
+  public List<Usuario> listaUsuario(String usuario) {
+    return entityManager().createQuery("from Usuario U where U.usuario =:usuario", Usuario.class)
+            .setParameter("usuario", usuario)
+            .getResultList();
+  }
+    }
+>>>>>>> ca4a5943c6045fe55f13b84fa214be06a7ebdd03

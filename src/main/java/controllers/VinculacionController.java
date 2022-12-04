@@ -53,6 +53,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion((request.queryParams("organizacion")));
       Usuario miembro = RepositorioUsuarios.instance.buscarEmpleado(request.queryParams("miembro"));
 
+
       Vinculacion vinculacion = new Vinculacion(
             organizacion,miembro);
       RepositorioVinculaciones.instance.agregar(vinculacion);
@@ -62,18 +63,24 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
   }
 
   public Void aceptar(Request request, Response response) {
-    int id_empleado = Integer.parseInt(request.params("empleado_id"));
-    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
-    RepositorioVinculaciones.instance.agregar(vinculacion);
-    response.redirect("/organizacion/vinculacion/aceptado");
+    withTransaction(() -> {
+      int id_empleado = Integer.parseInt(request.params("id"));
+      Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
+      RepositorioVinculaciones.instance.quitar(vinculacion);
+    });
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 
+
   public Void rechazar(Request request, Response response) {
-    int id_empleado = Integer.parseInt(request.params("empleado_id"));
-    Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);;
-    RepositorioVinculaciones.instance.quitar(vinculacion);
-    response.redirect("/organizacion/vinculacion/rechazado");
+    withTransaction(() -> {
+      System.out.println("rechazar: " + request.params("id"));
+      int id_empleado = Integer.parseInt(request.params("id"));
+      Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
+      RepositorioVinculaciones.instance.quitar(vinculacion);
+    });
+    response.redirect("/organizacion/vinculacion");
     return null;
   }
 
@@ -87,5 +94,6 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
     return new ModelAndView(model, "vinculaciones.html.hbs");
   }
+
 }
 

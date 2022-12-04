@@ -40,23 +40,22 @@
 
       <!-- HSQL Database Connector -->
 
-      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://ddsdb.cnfpsmaogvzb.us-east-1.rds.amazonaws.com:3306/ddsdb" />
-      <property name="hibernate.connection.username" value="admin" />
-      <property name="hibernate.connection.password" value="adminadmin" />
+      <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
+      <property name="hibernate.connection.url" value="jdbc:mysql://containers-us-west-130.railway.app:5526/railway" />
+      <property name="hibernate.connection.username" value="root" />
+      <property name="hibernate.connection.password" value="ap91lf4HgwnIr3BUCOxd" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 
 
       <!-- Cloud Database Connector -->
-      <!--
-      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://" />
-      <property name="hibernate.connection.username" value="" />
-      <property name="hibernate.connection.password" value="" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-      -->
 
-      <!-- MySQL Database Connector -->
+      <!-- <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+       <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
+       <property name="hibernate.connection.username" value="sa"/>
+       <property name="hibernate.connection.password" value=""/>
+       <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/> -->
+
+       <!-- MySQL Database Connector -->
       <!--
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
       <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" />
