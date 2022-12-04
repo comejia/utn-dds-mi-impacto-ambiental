@@ -1,15 +1,10 @@
 package controllers;
 
-import dominio.miembros.Miembro;
-import dominio.organizaciones.Medicion;
 import dominio.organizaciones.Organizacion;
-import dominio.organizaciones.TipoConsumo;
 import dominio.organizaciones.Vinculacion;
 import dominio.repositorios.*;
-import dominio.usuarios.Administrador;
 import dominio.usuarios.Role;
 import dominio.usuarios.Usuario;
-import funciones.UsuarioNotificacion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -17,7 +12,6 @@ import spark.Request;
 import spark.Response;
 
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +47,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion((request.queryParams("organizacion")));
       Usuario usuario = RepositorioUsuarios.instance.buscarUsuario(request.queryParams("miembro"));
       System.out.println("usuario: " + usuario.getUsuario());
+      System.out.println("organizacion: " + organizacion.getId());
       Vinculacion vinculacion = new Vinculacion(
             organizacion,usuario);
       RepositorioVinculaciones.instance.agregar(vinculacion);
@@ -74,11 +69,11 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
 
   public Void rechazar(Request request, Response response) {
     withTransaction(() -> {
-      System.out.println("rechazar: " + request.params("id"));
       int id_empleado = Integer.parseInt(request.params("id"));
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
       RepositorioVinculaciones.instance.quitar(vinculacion);
     });
+    entityManager().getEntityManagerFactory().getCache().evictAll();
     response.redirect("/organizacion/vinculacion");
     return null;
   }

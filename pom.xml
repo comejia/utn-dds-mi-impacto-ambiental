@@ -29,6 +29,7 @@
       <groupId>org.uqbar-project</groupId>
       <artifactId>jpa-java8-extras</artifactId>
       <version>1.0-alpha-1</version>
+      <exclusions>javassist</exclusions>
     </dependency>
     <!-- drivers jdbc -->
     <!-- mysql -->
@@ -171,27 +172,7 @@
           </violationIgnore>
         </configuration>
         <executions>
-          <execution>
-            <id>Validar Formateo</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.2.0</version>
-        <executions>
-          <execution>
-            <id>Validar Code Smells</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
+
         </executions>
       </plugin>
       <plugin>
@@ -199,33 +180,6 @@
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.2</version>
         <executions>
-          <execution>
-            <id>default-prepare-agent</id>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>Validar Cobertura</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <rule>
-                  <element>PACKAGE</element>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.60</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-              </rules>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
       <plugin>

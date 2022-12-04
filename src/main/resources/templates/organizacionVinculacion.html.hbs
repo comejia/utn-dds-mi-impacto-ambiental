@@ -16,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            {{#vinculaciones}}
+            {{#each vinculaciones}}
                 <tr>
                     <td>{{empleado.usuario}}</td>
                     <td>{{organizacion.razonSocial}}</td>
@@ -28,7 +28,7 @@
                             <a class="btn btn-danger nav-item nav-link" href="/organizacion/vinculacion/rechazado/{{id}}">Rechazar Vinculacion</a>
                         </td>
                 </tr>
-            {{/vinculaciones}}
+            {{/each}}
             </tbody>
         </table>
     </section>

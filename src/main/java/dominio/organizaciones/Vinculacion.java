@@ -14,11 +14,9 @@ import java.util.List;
 public class Vinculacion extends EntidadPersistente {
 
     @OneToOne
-    @JoinColumn(name="id")
     private Organizacion organizacion;
 
     @OneToOne
-    @JoinColumn(name="id")//Tirar join column a ver que pasa
     private Usuario empleado;
 
     public Vinculacion() {

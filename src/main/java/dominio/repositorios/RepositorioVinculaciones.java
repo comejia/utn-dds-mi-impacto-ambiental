@@ -1,12 +1,9 @@
 package dominio.repositorios;
 
-import dominio.organizaciones.Organizacion;
-import dominio.organizaciones.TipoConsumo;
 import dominio.organizaciones.Vinculacion;
-import dominio.usuarios.Usuario;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import javax.persistence.Query;
 import java.util.List;
 
 public class RepositorioVinculaciones implements WithGlobalEntityManager {
@@ -29,10 +26,14 @@ public class RepositorioVinculaciones implements WithGlobalEntityManager {
 
     public void agregar(Vinculacion vinculacion) {
         entityManager().persist(vinculacion);
+        entityManager().flush();
+        entityManager().refresh(vinculacion);
     }
 
     public void quitar(Vinculacion vinculacion) {
         entityManager().remove(vinculacion);
+        entityManager().flush();
+        //entityManager().refresh(vinculacion);
     }
 
 }

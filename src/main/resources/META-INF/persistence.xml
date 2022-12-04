@@ -34,6 +34,7 @@
 
     <class>dominio.Notificador.Contacto</class>
     <class>dominio.usuarios.Administrador</class>
+    <class>dominio.organizaciones.Vinculacion</class>
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>
