@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 @Getter
 public class TipoConsumo extends EntidadPersistente {
 
+
   private String tipo;
   private String unidad;
   private String actividad;
