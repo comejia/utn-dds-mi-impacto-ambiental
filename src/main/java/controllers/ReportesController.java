@@ -2,6 +2,10 @@ package controllers;
 
 import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.SectorTerritorial;
+import dominio.repositorios.RepositorioUsuarios;
+import dominio.usuarios.Role;
+import dominio.usuarios.Usuario;
+import funciones.UsuarioSesion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -13,11 +17,34 @@ import java.util.Map;
 
 public class ReportesController implements WithGlobalEntityManager, TransactionalOps {
   public ModelAndView reporte(Request request, Response response) {
-    return new ModelAndView(null, "reportes.html.hbs");
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
+    Map<String, Object> model = new HashMap<>();
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
+    return new ModelAndView(model, "reportes.html.hbs");
   }
 
   public ModelAndView generarReporte(Request request, Response response) {
-    Map<String, Object> viewModel = new HashMap<String, Object>();
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
+    Map<String, Object> viewModel = new HashMap<>();
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    viewModel.put("sesion", true);
+    viewModel.put("admin", usuario.getRole() == Role.ADMIN);
+    viewModel.put("nombreUsuario", usuario.getUsuario());
     Organizacion organizacion;
     SectorTerritorial sectorTerritorial;
 

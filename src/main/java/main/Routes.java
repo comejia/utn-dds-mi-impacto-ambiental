@@ -66,30 +66,5 @@ public class Routes {
 
 
     Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());
-
-//    Spark.get("/blog", (request, response) -> {
-//      //String cookie = request.cookie("contador");
-//      String cookie = request.session().attribute("contador");
-//      int nro = cookie == null ? 0 : Integer.parseInt(cookie);
-//      //response.cookie("contador", String.valueOf(nro + 1));
-//      request.session().attribute("contador", String.valueOf(nro + 1));
-//      return new ModelAndView(request.session().attribute("contador"), "bb.hmlt.hbs");
-//    }, engine);
-
-//    Spark.before((request, response) -> {
-//      PerThreadEntityManagers.getEntityManager().clear();
-//
-//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
-//        response.redirect("/login");
-//      }
-//    });
-
-//    Spark.before("/admin", (request, response) -> {
-//      PerThreadEntityManagers.getEntityManager().clear();
-//
-//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
-//        response.redirect("/login");
-//      }
-//    });
   }
 }

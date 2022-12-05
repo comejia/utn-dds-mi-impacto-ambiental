@@ -5,6 +5,7 @@ import dominio.organizaciones.Vinculacion;
 import dominio.repositorios.*;
 import dominio.usuarios.Role;
 import dominio.usuarios.Usuario;
+import funciones.UsuarioSesion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -16,10 +17,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static spark.Spark.after;
+
 public class VinculacionController implements WithGlobalEntityManager, TransactionalOps {
 
-
   public ModelAndView getMiembroVinculacion(Request request, Response response) {
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
     Map<String, Object> model = new HashMap<>();
     int id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
@@ -32,6 +40,12 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
   }
 
   public ModelAndView getOrganizacionVinculacion(Request request, Response response) {
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
     Map<String, Object> model = new HashMap<>();
     int id = request.session().attribute("idUsuario");
     Stream<Vinculacion> vinculacionesStream = RepositorioVinculaciones.instance.listar().stream();
@@ -53,7 +67,12 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
             organizacion,usuario);
       RepositorioVinculaciones.instance.agregar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion");
+    int idLogeado = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(idLogeado);
+    if (usuario.getRole() == Role.ADMIN)
+      response.redirect("/organizacion/vinculacion");
+    else
+      response.redirect("/organizacion/vinculacion");
     return null;
   }
 

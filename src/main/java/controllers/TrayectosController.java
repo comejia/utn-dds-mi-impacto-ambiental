@@ -10,6 +10,7 @@ import dominio.trayectos.Tramo;
 import dominio.trayectos.Trayecto;
 import dominio.usuarios.Role;
 import dominio.usuarios.Usuario;
+import funciones.UsuarioSesion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -24,6 +25,12 @@ import java.util.Map;
 public class TrayectosController implements WithGlobalEntityManager, TransactionalOps {
 
   public ModelAndView trayectos(Request request, Response response) {
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
     Map<String, Object> model = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
@@ -37,7 +44,18 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
   }
 
   public ModelAndView nuevo(Request request, Response response) {
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
     Map<String, Object> modelo = new HashMap<>();
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    modelo.put("sesion", true);
+    modelo.put("admin", usuario.getRole() == Role.ADMIN);
+    modelo.put("nombreUsuario", usuario.getUsuario());
     modelo.put("transportes", RepositorioTransportes.instance.listar());
     return new ModelAndView(modelo, "trayectos_nuevo.html.hbs");
   }
