@@ -1,14 +1,14 @@
 package dominio.repositorios;
-import dominio.organizaciones.Clasificacion;
-import dominio.organizaciones.Medicion;
-import dominio.organizaciones.Organizacion;
-import dominio.organizaciones.TipoOrganizacion;
+import dominio.organizaciones.*;
 import dominio.trayectos.Direccion;
 import dominio.usuarios.Usuario;
+import funciones.ContenidoReportes;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class RepositorioOrganizacion implements WithGlobalEntityManager {
@@ -17,6 +17,10 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
 
     Organizacion UTN = new Organizacion(
             "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+    Organizacion microsoft = new Organizacion(
+        "Microsoft", TipoOrganizacion.EMPRESA, new Direccion("CABA", "Carlos M. Della Paolera", "261"), Clasificacion.EMPRESA_SECTOR_PRIMARIO);
+    Organizacion legislatura = new Organizacion(
+        "Legislatura Porteña", TipoOrganizacion.GUBERNAMENTAL, new Direccion("CABA", "Peru", "160"), Clasificacion.MINISTERIO);
 
     public void agregar(Organizacion organizacion) {
         entityManager().persist(organizacion);
@@ -32,6 +36,8 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
     public List<Organizacion> listar() {
         List<Organizacion> organizaciones = new ArrayList<>();
         organizaciones.add(UTN);
+        organizaciones.add(microsoft);
+        organizaciones.add(legislatura);
         return organizaciones;
     }
 
@@ -45,5 +51,27 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
     public Organizacion buscarOrganizacion(int id) {
             return entityManager().find(Organizacion.class, id);
         }
+
+    public Map<String, Double> hcPorOrganizacion(String unidad) {
+        List<ContenidoReportes> contenidosAux = new ArrayList<>();
+        List<Organizacion> organizaciones = this.listar();
+        Map<String, Double> contenidosFinal;
+
+        organizaciones.forEach(organizacion -> {
+            ContenidoReportes contenido = new ContenidoReportes(
+                organizacion.getTipoOrganizacion().toString(),
+                organizacion.getHCTotal(unidad)
+            );
+            contenidosAux.add(contenido);
+        });
+
+        contenidosFinal = contenidosAux.stream()
+            .collect(Collectors.groupingBy(
+                ContenidoReportes::getCabecera,
+                Collectors.summingDouble(ContenidoReportes::getValor)
+            ));
+
+        return contenidosFinal;
     }
+}
 

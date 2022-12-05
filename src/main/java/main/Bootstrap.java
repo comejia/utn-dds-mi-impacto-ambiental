@@ -42,11 +42,24 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportePublico.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
       RepositorioTransportePrivado.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
       RepositorioTransportePrivado.instance.agregar(new Bicicleta());
+
       Organizacion UTN = new Organizacion(
-              "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+              "DDS", TipoOrganizacion.INSTITUCION, new Direccion("CABA", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
       RepositorioOrganizacion.instance.agregar(UTN);
-      SectorTerritorial buenosAires = new SectorTerritorial(TipoSectorTerritorial.PROVINCIA);
+      Organizacion microsoft = new Organizacion(
+          "Microsoft", TipoOrganizacion.EMPRESA, new Direccion("CABA", "Carlos M. Della Paolera", "261"), Clasificacion.EMPRESA_SECTOR_PRIMARIO);
+      RepositorioOrganizacion.instance.agregar(microsoft);
+      Organizacion legislatura = new Organizacion(
+          "Legislatura Porteña", TipoOrganizacion.GUBERNAMENTAL, new Direccion("CABA", "Peru", "160"), Clasificacion.MINISTERIO);
+      RepositorioOrganizacion.instance.agregar(legislatura);
+
+      SectorTerritorial buenosAires = new SectorTerritorial("Buenos Aires",TipoSectorTerritorial.PROVINCIA);
       RepositorioSectorTerritorial.instance.agregar(buenosAires);
+      SectorTerritorial formosa = new SectorTerritorial("Formosa",TipoSectorTerritorial.PROVINCIA);
+      RepositorioSectorTerritorial.instance.agregar(formosa);
+      SectorTerritorial jujuy = new SectorTerritorial("Jujuy",TipoSectorTerritorial.PROVINCIA);
+      RepositorioSectorTerritorial.instance.agregar(jujuy);
+
     Vinculacion vinculacion = new Vinculacion(UTN, administrador);
     RepositorioVinculaciones.instance.agregar(vinculacion);
         RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));

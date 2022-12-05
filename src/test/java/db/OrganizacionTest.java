@@ -8,6 +8,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import dominio.trayectos.Direccion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,11 +18,11 @@ public class OrganizacionTest extends AbstractPersistenceTest implements WithGlo
     SectorTerritorial KISS;
     Organizacion organizacion;
     AgenteSectorial pum;
-    List<String> unidades;
+    List<String> unidades = new ArrayList<>();
 
     @BeforeEach
     public void init(){
-        KISS = new SectorTerritorial(TipoSectorTerritorial.DEPARTAMENTO);
+        KISS = new SectorTerritorial("KISS",TipoSectorTerritorial.DEPARTAMENTO);
         organizacion = new Organizacion("DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
         pum = new AgenteSectorial(KISS);
         unidades.add("kgCO2eq/kWh");

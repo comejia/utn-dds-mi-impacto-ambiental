@@ -17,14 +17,21 @@ public class SectorTerritorial extends EntidadPersistente {
   @Enumerated(EnumType.STRING)
   private TipoSectorTerritorial tipoSectorTerritorial;
 
+  private String nombre;
+
   public SectorTerritorial() {}
 
-  public SectorTerritorial(TipoSectorTerritorial sector) {
+  public SectorTerritorial(String nombre, TipoSectorTerritorial sector) {
     this.tipoSectorTerritorial = sector;
+    this.nombre = nombre;
   }
 
   public TipoSectorTerritorial getTipoDeSector() {
     return tipoSectorTerritorial;
+  }
+
+  public String getNombre() {
+    return nombre;
   }
 
   public double getCalculoHCTotal(String unidad) {
