@@ -14,7 +14,7 @@ public class Routes {
     new Bootstrap().run();
 
     System.out.println("Iniciando servidor...");
-    Spark.port(8080); //TODO: Modificar al momento de pushear
+    Spark.port(9090); //TODO: Modificar al momento de pushear
     Spark.staticFileLocation("/public");
 
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -65,7 +65,7 @@ public class Routes {
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
 
 
-    Spark.after((request, response) -> PerThreadEntityManagers.getEntityManager().clear());
+    Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());
 
 //    Spark.get("/blog", (request, response) -> {
 //      //String cookie = request.cookie("contador");

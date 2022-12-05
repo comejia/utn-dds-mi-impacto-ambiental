@@ -10,10 +10,11 @@ import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
-
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class VinculacionController implements WithGlobalEntityManager, TransactionalOps {
 
@@ -33,12 +34,14 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
   public ModelAndView getOrganizacionVinculacion(Request request, Response response) {
     Map<String, Object> model = new HashMap<>();
     int id = request.session().attribute("idUsuario");
+    Stream<Vinculacion> vinculacionesStream = RepositorioVinculaciones.instance.listar().stream();
+    List<Vinculacion> vinculacionesPendientes = vinculacionesStream.filter(vinculacion -> !vinculacion.estaAprobada()).collect(Collectors.toList());
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
-    model.put("sesion", true);
     model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
+    model.put("vinculacionesPendientes", vinculacionesPendientes);
     return new ModelAndView(model, "organizacionVinculacion.html.hbs");
   }
 
@@ -58,7 +61,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     withTransaction(() -> {
       int id_empleado = Integer.parseInt(request.params("id"));
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
-      RepositorioVinculaciones.instance.quitar(vinculacion);
+      vinculacion.setEstado();
     });
     response.redirect("/organizacion/vinculacion");
     return null;
@@ -71,20 +74,8 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
       RepositorioVinculaciones.instance.quitar(vinculacion);
     });
-    entityManager().getEntityManagerFactory().getCache().evictAll();
     response.redirect("/organizacion/vinculacion");
     return null;
-  }
-
-  public ModelAndView getVinculacionesAceptadas(Request request, Response response) {
-    Map<String, Object> model = new HashMap<>();
-    int id = request.session().attribute("idUsuario");
-    Usuario usuario = RepositorioUsuarios.instance.getById(id);
-    model.put("sesion", true);
-    model.put("admin", usuario.getRole() == Role.ADMIN);
-    model.put("nombreUsuario", usuario.getUsuario());
-    model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
-    return new ModelAndView(model, "vinculaciones.html.hbs");
   }
 
 }

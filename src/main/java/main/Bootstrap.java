@@ -38,10 +38,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioOrganizacion.instance.agregar(UTN);
       RepositorioUsuarios.instance.agregar(administrador);
       RepositorioUsuarios.instance.agregar(persona);
-      //Vinculacion vinculacion = new Vinculacion(UTN, administrador);
-      //RepositorioVinculaciones.instance.agregar(vinculacion);
+      Vinculacion vinculacion = new Vinculacion(UTN, administrador);
+      RepositorioVinculaciones.instance.agregar(vinculacion);
       RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));
-      //RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
+      RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
       RepositorioTransportes.instance.agregar(new APie());
       RepositorioTransportes.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
       RepositorioTransportes.instance.agregar(new Bicicleta());

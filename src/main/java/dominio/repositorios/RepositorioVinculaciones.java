@@ -14,26 +14,18 @@ public class RepositorioVinculaciones implements WithGlobalEntityManager {
                 .createQuery("from Vinculacion", Vinculacion.class)
                 .getResultList();
     }
-
-    public Vinculacion buscarEmpleado(String id_empleado) {
-        return entityManager().createQuery("from Vinculacion v where v.miembroID = :id_empleado", Vinculacion.class)
-                .setParameter("id_org", id_empleado).getResultList().get(0); // buscar vinculacion segun empleado
-    }
-
     public Vinculacion getById(int id_empleado) {
         return entityManager().find(Vinculacion.class, id_empleado);
     }
 
     public void agregar(Vinculacion vinculacion) {
+        entityManager().persist(vinculacion.getEmpleado());
+        entityManager().persist(vinculacion.getOrganizacion());
         entityManager().persist(vinculacion);
-        entityManager().flush();
-        entityManager().refresh(vinculacion);
     }
 
     public void quitar(Vinculacion vinculacion) {
         entityManager().remove(vinculacion);
-        entityManager().flush();
-        //entityManager().refresh(vinculacion);
     }
 
 }
