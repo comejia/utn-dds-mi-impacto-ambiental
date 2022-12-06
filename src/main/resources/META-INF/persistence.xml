@@ -40,12 +40,12 @@
       <property name="hibernate.archive.autodetection" value="class"/>
 
       <!-- HSQL Database Connector -->
-
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
       <property name="hibernate.connection.url" value="jdbc:postgresql://containers-us-west-143.railway.app:6128/railway" />
       <property name="hibernate.connection.username" value="postgres" />
       <property name="hibernate.connection.password" value="dBVfEmzdoPVdIvJhmg7L" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" />
+
 
 
       <!-- Cloud Database Connector -->
@@ -58,12 +58,10 @@
 
        <!-- MySQL Database Connector -->
       <!--
-      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" />
-      <property name="hibernate.connection.username" value="root" />
-      <property name="hibernate.connection.password" value="" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-      -->
+
+
+      <!-- Google Cloud Database Connector -->
+
 
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />
