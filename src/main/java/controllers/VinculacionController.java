@@ -72,7 +72,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     if (usuario.getRole() == Role.ADMIN)
       response.redirect("/organizacion/vinculacion");
     else
-      response.redirect("/organizacion/vinculacion");
+      response.redirect("/miembros/vinculacion");
     return null;
   }
 
