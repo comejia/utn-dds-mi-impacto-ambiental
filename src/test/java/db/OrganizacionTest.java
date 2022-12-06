@@ -21,7 +21,7 @@ public class OrganizacionTest extends AbstractPersistenceTest implements WithGlo
 
     @BeforeEach
     public void init(){
-        KISS = new SectorTerritorial(TipoSectorTerritorial.DEPARTAMENTO);
+        KISS = new SectorTerritorial(TipoSectorTerritorial.DEPARTAMENTO, "KISS");
         organizacion = new Organizacion("DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
         pum = new AgenteSectorial(KISS);
         unidades.add("kgCO2eq/kWh");
