@@ -4,7 +4,7 @@
 
 {{#partial "contenido"}}
     <section>
-        <h1 align="center">Vinculaciones</h1>
+        <h1 align="center">Vinculaciones Pendientes</h1>
 
         <table class="table">
             <thead class="thead-dark">
@@ -16,72 +16,22 @@
             </tr>
             </thead>
             <tbody>
-            {{#vinculaciones}}
+            {{#each vinculacionesPendientes}}
                 <tr>
                     <td>{{empleado.usuario}}</td>
                     <td>{{organizacion.razonSocial}}</td>
-                    <td><button align="center" type="button" class="btn btn-primary" data-toggle="modal" data-target="#aceptarVinculacion">
-                        Aceptar Vinculacion
-                    </button></td>
-                        <td><button type="button" align="center" class="btn btn-danger" data-toggle="modal" data-target="#rechazarVinculacion">
-                            Rechazar Vinculacion
-                        </button></td>
+                    <td>
+                        <a class="btn btn-primary nav-item nav-link" href="/organizacion/vinculacion/aceptado/{{id}}">Aceptar Vinculacion</a>
+
+                    </td>
+                        <td>
+                            <a class="btn btn-danger nav-item nav-link" href="/organizacion/vinculacion/rechazado/{{id}}">Rechazar Vinculacion</a>
+                        </td>
                 </tr>
-            {{/vinculaciones}}
+            {{/each}}
             </tbody>
         </table>
-
-        <div class="modal fade" id="aceptarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Estas seguro que desea aceptar esta vinculacion?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="rechazarVinculacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Rechazar vinculacion</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Estas seguro que desea rechazar esta vinculacion?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" id="rechazar" class="btn btn-primary">Rechazar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
-
-    <script type="text/javascript">
-        document.getElementById("aceptar").onclick = function () {
-            location.href = "/organizacion/vinculacion/aceptadas";
-        };
-    </script>
-
-    <script type="text/javascript">
-        document.getElementById("rechazar").onclick = function () {
-            location.href = "/organizacion/vinculacion";
-        };
-    </script>
 {{/partial}}
 
 {{> layout.html.hbs }}

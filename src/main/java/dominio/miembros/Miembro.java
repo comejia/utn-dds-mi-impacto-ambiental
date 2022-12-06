@@ -90,5 +90,4 @@ public class Miembro extends EntidadPersistente {
       throw new NoPerteneceAOrganizacionException("El miembro no pertenece a la organizacion");
     }
     return this.getHC(unidad) / org.getHCTotal(unidad);
-  }
-}
+  }}

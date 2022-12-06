@@ -27,7 +27,7 @@ public class UsuarioController implements WithGlobalEntityManager, EntityManager
     Usuario usuario = RepositorioUsuarios.instance.buscarPorUsuarioYContrasenia(username, password);
 
     if (usuario == null) {
-      UsuarioNotificacion.notificar(viewModel, "danger", "Error: ", "Se debe registrar como usuario.");
+      UsuarioNotificacion.notificar(viewModel, "danger", "Error: ", "El nombre y/o contraseña ingresada es incorrecta");
       return new ModelAndView(viewModel, "login.html.hbs");
     }
 

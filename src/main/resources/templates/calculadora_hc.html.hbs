@@ -9,9 +9,9 @@
                     <div class="form-group">
                         <label for="tipoDeConsumo">Organizaciones</label>
                         <select class="form-control" id="organizacion" name="organizacion">
-                            {{#organizaciones}}
-                            <option>{{organizacion}}</option>
-                            {{/organizaciones}}
+                            {{#each organizaciones}}
+                            <option>{{razonSocial}}</option>
+                            {{/each}}
                         </select>
                     </div>
                     <div class="form-group">
@@ -21,6 +21,7 @@
                             <option>kgCO2eq/kWh</option>
                         </select>
                     </div>
+
                     <button type="button" onclick = "fun()" class="btn btn-primary">Calcular</button>
                 </form>
     </section>

@@ -14,7 +14,7 @@ public class Routes {
     new Bootstrap().run();
 
     System.out.println("Iniciando servidor...");
-    Spark.port(8080);
+    Spark.port(9090); //TODO: Modificar al momento de pushear
     Spark.staticFileLocation("/public");
 
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -40,13 +40,12 @@ public class Routes {
 
     Spark.get("/usuario/nuevo", usuarioController::getFormularioRegistrarUsuario, engine);
     Spark.post("/usuario/nuevo", usuarioController::registrarUsuario, engine);
-
-    Spark.get("/organizacion/vinculacion", vinculacionController::getOrganizacionVinculacion, engine);
     Spark.get("/miembros/vinculacion", vinculacionController::getMiembroVinculacion, engine);
-    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getVinculacionesAceptadas, engine);
+    Spark.get("/organizacion/vinculacion", vinculacionController::getOrganizacionVinculacion, engine);
     Spark.post("/organizacion/vinculacion/nuevo", vinculacionController::crear);
-    Spark.post("/organizacion/vinculacion/rechazado", vinculacionController::rechazar);
-    Spark.post("/organizacion/vinculacion/aceptado", vinculacionController::aceptar);
+
+    Spark.get("/organizacion/vinculacion/rechazado/:id", vinculacionController::rechazar);
+    Spark.get("/organizacion/vinculacion/aceptado/:id", vinculacionController::aceptar);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
     Spark.get("/medicion-particular", medicionesController::particular, engine);
@@ -66,31 +65,6 @@ public class Routes {
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
 
 
-    Spark.after((request, response) -> PerThreadEntityManagers.getEntityManager().clear());
-
-//    Spark.get("/blog", (request, response) -> {
-//      //String cookie = request.cookie("contador");
-//      String cookie = request.session().attribute("contador");
-//      int nro = cookie == null ? 0 : Integer.parseInt(cookie);
-//      //response.cookie("contador", String.valueOf(nro + 1));
-//      request.session().attribute("contador", String.valueOf(nro + 1));
-//      return new ModelAndView(request.session().attribute("contador"), "bb.hmlt.hbs");
-//    }, engine);
-
-//    Spark.before((request, response) -> {
-//      PerThreadEntityManagers.getEntityManager().clear();
-//
-//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
-//        response.redirect("/login");
-//      }
-//    });
-
-//    Spark.before("/admin", (request, response) -> {
-//      PerThreadEntityManagers.getEntityManager().clear();
-//
-//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
-//        response.redirect("/login");
-//      }
-//    });
+    Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());
   }
 }

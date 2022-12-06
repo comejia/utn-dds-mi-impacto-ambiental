@@ -34,36 +34,34 @@
 
     <class>dominio.Notificador.Contacto</class>
     <class>dominio.usuarios.Administrador</class>
+    <class>dominio.organizaciones.Vinculacion</class>
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>
 
       <!-- HSQL Database Connector -->
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+      <property name="hibernate.connection.url" value="jdbc:postgresql://containers-us-west-143.railway.app:6128/railway" />
+      <property name="hibernate.connection.username" value="postgres" />
+      <property name="hibernate.connection.password" value="dBVfEmzdoPVdIvJhmg7L" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" />
 
-      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
-      <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
-      <property name="hibernate.connection.username" value="sa"/>
-      <property name="hibernate.connection.password" value=""/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 
 
       <!-- Cloud Database Connector -->
-      <!--
-      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://" />
-      <property name="hibernate.connection.username" value="" />
-      <property name="hibernate.connection.password" value="" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-      -->
 
-      <!-- MySQL Database Connector -->
+      <!-- <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+       <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
+       <property name="hibernate.connection.username" value="sa"/>
+       <property name="hibernate.connection.password" value=""/>
+       <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/> -->
+
+       <!-- MySQL Database Connector -->
       <!--
-      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" />
-      <property name="hibernate.connection.username" value="root" />
-      <property name="hibernate.connection.password" value="" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-      -->
+
+
+      <!-- Google Cloud Database Connector -->
+
 
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />
@@ -73,3 +71,5 @@
 
   </persistence-unit>
 </persistence>
+
+

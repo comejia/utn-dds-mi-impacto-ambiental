@@ -9,7 +9,7 @@ import dominio.organizaciones.TipoSectorTerritorial;
 
 public class AgentesSectorialesTest {
 
-  SectorTerritorial KISS = new SectorTerritorial(TipoSectorTerritorial.DEPARTAMENTO);
+  SectorTerritorial KISS = new SectorTerritorial(TipoSectorTerritorial.DEPARTAMENTO, "KISS");
   AgenteSectorial pum = new AgenteSectorial(KISS);
 
   @Test

@@ -78,4 +78,5 @@ public abstract class Usuario extends EntidadPersistente {
   public String hashearContrasenia(String contraseniaPlana) {
     return BCrypt.hashpw(contraseniaPlana, BCrypt.gensalt());
   }
+
 }

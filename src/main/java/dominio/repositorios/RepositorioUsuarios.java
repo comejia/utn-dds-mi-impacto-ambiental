@@ -41,4 +41,13 @@ public class RepositorioUsuarios implements WithGlobalEntityManager, Repositorio
             .setParameter("usuario",usuario)
             .getResultList().get(0);
   }
+
+  public Usuario buscarUsuario(String usuario) {
+    return entityManager().createQuery("from Usuario U where U.usuario = :usuario", Usuario.class)
+            .setParameter("usuario", usuario)
+            .getResultList()
+            .get(0);
+  }
 }
+
+
