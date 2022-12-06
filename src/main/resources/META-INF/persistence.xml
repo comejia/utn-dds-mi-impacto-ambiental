@@ -60,7 +60,7 @@
       <!--
 
 
-      <!-- Google Cloud Database Connector -->
+      <!- Google Cloud Database Connector -->
 
 
       <property name="hibernate.show_sql" value="true" />

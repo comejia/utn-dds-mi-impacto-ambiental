@@ -63,6 +63,7 @@ public class Routes {
     Spark.post("/reportes", reportesController::generarReporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
+    Spark.post("/calculadorHC", calculadoraHCController::calcularHC, engine);
 
 
     Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());
