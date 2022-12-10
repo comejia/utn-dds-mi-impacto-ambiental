@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class CalculadoraHCController implements WithGlobalEntityManager, TransactionalOps {
@@ -49,15 +50,29 @@ public class CalculadoraHCController implements WithGlobalEntityManager, Transac
       response.redirect("/login");
       return null;
     }
+    String unidad = request.queryParams("unidad");
+    String periodicidad = request.queryParams("periodicidad");
     List<Medicion> mediciones = RepositorioMediciones.instance.listar();
-    BigDecimal hc = mediciones.stream().map(Medicion::getValor).reduce(BigDecimal.ZERO, BigDecimal::add);
+    BigDecimal hcSinUnidad = mediciones.stream().filter(medicion -> Objects.equals(medicion.getPeriodicidad(), periodicidad)).map(Medicion::getValor).reduce(BigDecimal.ZERO, BigDecimal::add);
+    BigDecimal hcConUnidad = BigDecimal.valueOf(0.0);
+    switch (unidad) {
+      case "gCO2eq":
+        hcConUnidad = hcSinUnidad.multiply(BigDecimal.valueOf(1000));
+        break;
+      case "kgCO2eq":
+        hcConUnidad = hcSinUnidad;
+        break;
+      case "tnCO2eq":
+        hcConUnidad = hcSinUnidad.divide(BigDecimal.valueOf(1000));
+        break;
+    }
     Map<String, Object> model = new HashMap<>();
     int id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("organizaciones", RepositorioOrganizacion.instance.listar());
-    model.put("valor", hc);
+    model.put("valor", hcConUnidad);
 
     return new ModelAndView(model, "calculadora_hc.html.hbs");
   }
