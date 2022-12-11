@@ -23,8 +23,15 @@ public class Miembro extends EntidadPersistente {
   private TipoDocumento tipoDocumento;
   private int numeroDocumento;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "Miembros_X_Sector")
+  @ManyToMany(cascade = {
+      CascadeType.PERSIST,
+      CascadeType.MERGE
+  })
+  @JoinTable(
+      name = "Miembros_x_Sector",
+      joinColumns = {@JoinColumn(name = "miembroId")},
+      inverseJoinColumns = {@JoinColumn(name = "sectorId")}
+  )
   private final List<Sector> trabajos = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL)
@@ -60,6 +67,10 @@ public class Miembro extends EntidadPersistente {
 
     this.trayectos.add(trayecto);
     miembro.trayectos.add(trayecto);
+  }
+
+  public void agregarTrabajo(Sector sector) {
+    this.trabajos.add(sector);
   }
 
   public List<Organizacion> listaOrganizaciones() {

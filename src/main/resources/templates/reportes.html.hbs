@@ -61,6 +61,7 @@
             {{else}}
               <th scope="col">Tipo de Organización</th>
             {{/if}}
+              <th scope="col">Unidad</th>
               <th scope="col">HC total</th>
             </tr>
           </thead>
@@ -68,6 +69,7 @@
             {{#each contenido}}
               <tr>
                 <th scope="row">{{@key}}</th>
+                <td>{{unidad}}</td>
                 <td>{{this}}</td>
               </tr>
             {{/each}}

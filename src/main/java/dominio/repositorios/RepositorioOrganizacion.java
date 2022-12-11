@@ -1,4 +1,5 @@
 package dominio.repositorios;
+import dominio.miembros.Miembro;
 import dominio.organizaciones.*;
 import dominio.trayectos.Direccion;
 import dominio.usuarios.Usuario;
@@ -15,13 +16,6 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
 
     public static RepositorioOrganizacion instance = new RepositorioOrganizacion();
 
-    Organizacion UTN = new Organizacion(
-            "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
-    Organizacion microsoft = new Organizacion(
-        "Microsoft", TipoOrganizacion.EMPRESA, new Direccion("CABA", "Carlos M. Della Paolera", "261"), Clasificacion.EMPRESA_SECTOR_PRIMARIO);
-    Organizacion legislatura = new Organizacion(
-        "Legislatura Porteña", TipoOrganizacion.GUBERNAMENTAL, new Direccion("CABA", "Peru", "160"), Clasificacion.MINISTERIO);
-
     public void agregar(Organizacion organizacion) {
         entityManager().persist(organizacion);
     }
@@ -34,11 +28,9 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
     }
 
     public List<Organizacion> listar() {
-        List<Organizacion> organizaciones = new ArrayList<>();
-        organizaciones.add(UTN);
-        organizaciones.add(microsoft);
-        organizaciones.add(legislatura);
-        return organizaciones;
+        return entityManager()
+            .createQuery("from Organizacion", Organizacion.class)
+            .getResultList();
     }
 
     public Organizacion buscarOrganizacion(String razonSocial) {

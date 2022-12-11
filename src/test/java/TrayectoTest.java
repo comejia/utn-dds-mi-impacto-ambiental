@@ -1,5 +1,7 @@
 import dominio.api.Geolocalizacion;
 import dominio.excepciones.PuntoIncompatibleException;
+import dominio.organizaciones.FactorEmision;
+import dominio.organizaciones.TipoConsumo;
 import dominio.trayectos.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,6 +26,8 @@ public class TrayectoTest {
   Bicicleta bici;
   Geolocalizacion api;
   TransportePublico colectivo;
+  TipoConsumo electricidad;
+  FactorEmision factor1;
 
   @BeforeEach
   public void initParadasYPuntos() {
@@ -47,7 +51,9 @@ public class TrayectoTest {
     bici = new Bicicleta();
     bici.setApi(api);
 
-    colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55);
+    electricidad = new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2);
+    factor1 =  new FactorEmision(10, "kgCO2eq/kWh", electricidad);
+    colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55,factor1);
 
   }
 

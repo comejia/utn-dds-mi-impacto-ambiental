@@ -28,10 +28,11 @@ public class TransportePublico extends Transporte {
 
   public TransportePublico() {}
 
-  public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea) {
+  public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea, FactorEmision factorEmision) {
     this.tipoTransportePublico = tipoTransportePublico;
     this.paradas = paradas;
     this.linea = linea;
+    this.factorEmision = factorEmision;
   }
 
   public void agregarParada(Parada parada) {

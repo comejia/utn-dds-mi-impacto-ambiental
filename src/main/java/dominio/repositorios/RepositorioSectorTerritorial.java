@@ -1,5 +1,6 @@
 package dominio.repositorios;
 import dominio.organizaciones.*;
+import dominio.usuarios.Usuario;
 import funciones.ContenidoReportes;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
@@ -14,10 +15,6 @@ public class RepositorioSectorTerritorial implements WithGlobalEntityManager {
 
     public static RepositorioSectorTerritorial instance = new RepositorioSectorTerritorial();
 
-    SectorTerritorial buenosAires = new SectorTerritorial("Buenos Aires",TipoSectorTerritorial.PROVINCIA);
-    SectorTerritorial formosa = new SectorTerritorial("Formosa",TipoSectorTerritorial.PROVINCIA);
-    SectorTerritorial jujuy = new SectorTerritorial("Jujuy",TipoSectorTerritorial.PROVINCIA);
-
     public void agregar(SectorTerritorial sectorTerritorial) {
         entityManager().persist(sectorTerritorial);
     }
@@ -30,11 +27,9 @@ public class RepositorioSectorTerritorial implements WithGlobalEntityManager {
     }
 
     public List<SectorTerritorial> listar() {
-        List<SectorTerritorial> sectores = new ArrayList<>();
-        sectores.add(buenosAires);
-        sectores.add(formosa);
-        sectores.add(jujuy);
-        return sectores;
+      return entityManager()
+          .createQuery("from SectorTerritorial", SectorTerritorial.class)
+          .getResultList();
     }
     public SectorTerritorial buscarSector(int id) {
             return entityManager().find(SectorTerritorial.class, id);

@@ -1,14 +1,11 @@
 import dominio.excepciones.NoPuedoCompartirMiTrayecto;
 import dominio.miembros.Miembro;
 import dominio.miembros.TipoDocumento;
+import dominio.organizaciones.*;
 import dominio.transportes.*;
 import dominio.trayectos.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import dominio.organizaciones.Clasificacion;
-import dominio.organizaciones.Organizacion;
-import dominio.organizaciones.Sector;
-import dominio.organizaciones.TipoOrganizacion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +26,8 @@ public class AsociacionTest {
   Sector contaduria = new Sector(estudioContable, new ArrayList<>());
   Miembro goku = new Miembro("Son", "Goku", TipoDocumento.DNI, 1525135681);
   Miembro vegetta = new Miembro("Son", "Vegetta", TipoDocumento.DNI, 1333804417);
+  TipoConsumo electricidad = new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2);
+  FactorEmision factor1 =  new FactorEmision(10, "kgCO2eq/kWh", electricidad);
 
 
   @Test
@@ -97,7 +96,7 @@ public class AsociacionTest {
     List<Parada> paradas = new ArrayList<>();
     paradas.add(p1);
     paradas.add(p5);
-    TransportePublico colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55);
+    TransportePublico colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55,factor1);
     goku.vincularASector(seguridad);
     vegetta.vincularASector(seguridad);
     Tramo tramoColectivo = new Tramo(colectivo, new Punto(p1), new Punto(p5));

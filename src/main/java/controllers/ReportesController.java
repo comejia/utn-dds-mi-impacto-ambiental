@@ -4,7 +4,11 @@ import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.SectorTerritorial;
 import dominio.repositorios.RepositorioOrganizacion;
 import dominio.repositorios.RepositorioSectorTerritorial;
+import dominio.repositorios.RepositorioUsuarios;
+import dominio.usuarios.Role;
+import dominio.usuarios.Usuario;
 import funciones.ContenidoReportes;
+import funciones.UsuarioSesion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
@@ -15,12 +19,25 @@ import java.util.*;
 
 public class ReportesController implements WithGlobalEntityManager, TransactionalOps {
   public ModelAndView reporte(Request request, Response response) {
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
+
     Map<String, Object> viewModel = new HashMap<String, Object>();
 
     List<Organizacion> organizacionList = RepositorioOrganizacion.getInstance().listar();
     viewModel.put("organizaciones", organizacionList);
     List<SectorTerritorial> sectorTerritorialList = RepositorioSectorTerritorial.getInstance().listar();
     viewModel.put("sectores", sectorTerritorialList);
+
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    viewModel.put("sesion", true);
+    viewModel.put("admin", usuario.getRole() == Role.ADMIN);
+    viewModel.put("nombreUsuario", usuario.getUsuario());
 
     return new ModelAndView(viewModel, "reportes.html.hbs");
   }
@@ -47,6 +64,7 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
     switch (reporteId){
       case 1: //HC total por sector territorial
         contenido =  RepositorioSectorTerritorial.getInstance().hcPorSector(unidad);
+        viewModel.put("esSector", true);
         break;
       case 2: //HC total por tipo de Organización
         contenido =  RepositorioOrganizacion.getInstance().hcPorOrganizacion(unidad);
@@ -54,6 +72,7 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
       case 3: //Composición de HC total de un sector territorial
         sectorTerritorial = RepositorioSectorTerritorial.getInstance().buscarSector(entidadId);
         //sectorTerritorial.getHcSector(unidades)
+        viewModel.put("esSector", true);
         break;
       case 4: //Composición de HC total de una Organización
         organizacion = RepositorioOrganizacion.getInstance().buscarOrganizacion(entidadId);
@@ -65,6 +84,7 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
             sectorTerritorialParam,
             sectorTerritorial.getHcEvolucion().get(sectorTerritorial.getHcEvolucion().size()-1).get(sectorTerritorial.getHcEvolucion().size()-1)
         );
+        viewModel.put("esSector", true);
         break;
       case 6: //Evolución de HC total de una Organización
         organizacion = RepositorioOrganizacion.getInstance().buscarOrganizacion(entidadId);
@@ -76,11 +96,18 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
     }
 
     viewModel.put("contenido", contenido);
+    viewModel.put("unidad", unidad);
 
     List<Organizacion> organizacionList = RepositorioOrganizacion.getInstance().listar();
     viewModel.put("organizaciones", organizacionList);
     List<SectorTerritorial> sectorTerritorialList = RepositorioSectorTerritorial.getInstance().listar();
     viewModel.put("sectores", sectorTerritorialList);
+
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    viewModel.put("sesion", true);
+    viewModel.put("admin", usuario.getRole() == Role.ADMIN);
+    viewModel.put("nombreUsuario", usuario.getUsuario());
 
     return new ModelAndView(viewModel, "reportes.html.hbs");
   }

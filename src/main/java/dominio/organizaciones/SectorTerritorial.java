@@ -26,6 +26,12 @@ public class SectorTerritorial extends EntidadPersistente {
     this.nombre = nombre;
   }
 
+  public SectorTerritorial(String nombre, TipoSectorTerritorial sector, List<Organizacion> organizaciones) {
+    this.tipoSectorTerritorial = sector;
+    this.nombre = nombre;
+    this.organizaciones = organizaciones;
+  }
+
   public TipoSectorTerritorial getTipoDeSector() {
     return tipoSectorTerritorial;
   }
