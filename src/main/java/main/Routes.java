@@ -62,8 +62,10 @@ public class Routes {
     Spark.get("/reportes", reportesController::reporte, engine);
     Spark.post("/reportes", reportesController::generarReporte, engine);
 
-    Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
-    Spark.post("/calculadorHC", calculadoraHCController::calcularHC, engine);
+    Spark.get("/organizacion/calculadora-hc", calculadoraHCController::organizacionCalculadora, engine);
+    Spark.post("/organizacion/calculadorHC", calculadoraHCController::organizacionCalcularHC, engine);
+    Spark.get("/miembro/calculadora-hc", calculadoraHCController::miembroCalculadora, engine);
+    Spark.post("/miembro/calculadorHC", calculadoraHCController::miembroCalcularHC, engine);
 
 
     Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());
