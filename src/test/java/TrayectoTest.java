@@ -75,7 +75,7 @@ public class TrayectoTest {
 
     Tramo tramoColectivo = new Tramo(colectivo, new Punto(p2), new Punto(p4));
 
-    assertEquals(73, tramoColectivo.distancia().getValor());
+    assertEquals(73, tramoColectivo.distancia());
   }
 
   @Test
@@ -83,14 +83,13 @@ public class TrayectoTest {
 
     Punto puntoInicio = new Punto(new Direccion(1, "Mozart", "4000"));
     Punto puntoDestino = new Punto(new Direccion(1, "Mozart", "3500"));
-    Distancia pepe = geodds.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion());
 
-    when(api.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion())).thenReturn(new Distancia("KM",500.0));
+    when(api.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion())).thenReturn(500.0);
 
     Tramo tramoAPie = new Tramo(aPie, puntoInicio, puntoDestino);
 
 
-    assertEquals(500.0, tramoAPie.distancia().getValor());
+    assertEquals(500.0, tramoAPie.distancia());
   }
 
   @Test
@@ -98,14 +97,14 @@ public class TrayectoTest {
     Punto puntoInicioBici = new Punto(new Direccion(2, "Rivadavia", "11000"));
     Punto puntoDestinoBici = new Punto(new Direccion(2, "Rivadavia", "8000"));
 
-    when(api.getDistancia(puntoInicioBici.getDireccion(), puntoDestinoBici.getDireccion())).thenReturn(new Distancia("KM",3000.0));
+    when(api.getDistancia(puntoInicioBici.getDireccion(), puntoDestinoBici.getDireccion())).thenReturn(3000.0);
 
     Tramo tramoBici = new Tramo(bici, puntoInicioBici, puntoDestinoBici);
 
     Punto puntoInicioAPie = new Punto(new Direccion(3, "Nazca", "3500"));
     Punto puntoDestinoAPie = new Punto(new Direccion(3, "Nazca", "4100"));
 
-    when(api.getDistancia(puntoInicioAPie.getDireccion(), puntoDestinoAPie.getDireccion())).thenReturn(new Distancia("KM",600.0));
+    when(api.getDistancia(puntoInicioAPie.getDireccion(), puntoDestinoAPie.getDireccion())).thenReturn(600.0);
 
     Tramo tramoAPie = new Tramo(aPie, puntoInicioAPie, puntoDestinoAPie);
 

@@ -22,8 +22,8 @@ public class Parada_X_Transporte extends Transporte {
     public Parada_X_Transporte(){}
 
     @Override
-    public Distancia getDistancia(Punto puntoInicio, Punto puntoFin) {
-        return new Distancia("KM",0.0);
+    public double getDistancia(Punto puntoInicio, Punto puntoFin) {
+        return 0.0;
     }
 
     @Override

@@ -24,7 +24,7 @@ public abstract class TransportePrivado extends Transporte {
   }
 
   @Override
-  public Distancia getDistancia(Punto puntoInicio, Punto puntoFin) {
+  public double getDistancia(Punto puntoInicio, Punto puntoFin) {
     return api.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
   }
 

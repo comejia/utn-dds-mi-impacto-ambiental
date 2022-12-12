@@ -12,7 +12,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "tipo" , length = 2)
 public abstract class Transporte extends EntidadPersistente {
 
-  public abstract Distancia getDistancia(Punto puntoInicio, Punto puntoFin);
+  public abstract double getDistancia(Punto puntoInicio, Punto puntoFin);
 
   public abstract FactorEmision getFactorEmision();
 

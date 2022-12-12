@@ -19,7 +19,7 @@ public class Geodds implements Geolocalizacion {
     this.client = Client.create();
   }
 
-  public Distancia getDistancia(Direccion direccionInicio, Direccion direccionFin) {
+  public double getDistancia(Direccion direccionInicio, Direccion direccionFin) {
     ClientResponse recurso = this.client.resource(API_DISTANCIA)
         .queryParam("localidadOrigenId", String.valueOf(direccionInicio.getLocalidadId()))
         .queryParam("calleOrigen", direccionInicio.getCalle())
@@ -39,9 +39,8 @@ public class Geodds implements Geolocalizacion {
       throw new RuntimeException("No se pudo obtener la distancia desde la API");
     }
     String unidad = jsonNodeApi.get("unidad").textValue();
-    Double valor = jsonNodeApi.get("valor").asDouble();
 
-    return new Distancia(unidad,valor);
+    return jsonNodeApi.get("valor").asDouble();
   }
 
 }

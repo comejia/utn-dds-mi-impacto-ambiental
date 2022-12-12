@@ -40,7 +40,7 @@ public class TransportePublico extends Transporte {
     this.paradas.add(parada);
   }
 
-  public Distancia getDistancia(Punto p1, Punto p2) {
+  public double getDistancia(Punto p1, Punto p2) {
     Parada parada1 = p1.getParada();
     Parada parada2 = p2.getParada();
 
@@ -52,7 +52,7 @@ public class TransportePublico extends Transporte {
 
     List<Parada> p = paradas.subList(i1, i2);
 
-    return new Distancia("KM",p.stream().mapToDouble(Parada::getDistanciaProximaParada).sum());
+    return p.stream().mapToDouble(Parada::getDistanciaProximaParada).sum();
 
   }
 

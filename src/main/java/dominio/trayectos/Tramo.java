@@ -26,7 +26,7 @@ public class Tramo extends EntidadPersistente {
     this.puntoFinal = puntoFinal;
   }
 
-  public Distancia distancia() {
+  public double distancia() {
     return transporte.getDistancia(puntoInicio, puntoFinal);
   }
 
@@ -36,6 +36,6 @@ public class Tramo extends EntidadPersistente {
 
   public double getHC(String unidad) {
     FactorEmision fe = this.transporte.getFactorEmision();
-    return this.distancia().getValor() * fe.getValor();
+    return this.distancia() * fe.getValor();
   }
 }
