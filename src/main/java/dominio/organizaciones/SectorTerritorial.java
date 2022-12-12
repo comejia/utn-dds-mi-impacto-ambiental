@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class SectorTerritorial extends EntidadPersistente {
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "organizacionId")
+  @JoinColumn(name = "sector_territorial_id")
   private List<Organizacion> organizaciones = new ArrayList<>();
 
   @Enumerated(EnumType.STRING)

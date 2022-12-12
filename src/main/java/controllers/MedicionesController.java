@@ -1,8 +1,10 @@
 package controllers;
 
 import dominio.organizaciones.Medicion;
+import dominio.organizaciones.Organizacion;
 import dominio.organizaciones.TipoConsumo;
 import dominio.repositorios.RepositorioMediciones;
+import dominio.repositorios.RepositorioOrganizacion;
 import dominio.repositorios.RepositorioTipoDeConsumo;
 import dominio.repositorios.RepositorioUsuarios;
 import dominio.usuarios.Role;
@@ -79,13 +81,18 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
 
   public Void crear(Request request, Response response) {
     withTransaction(() -> {
+      Integer id = request.session().attribute("idUsuario");
+      Usuario usuario = RepositorioUsuarios.instance.getById(id);
+      Organizacion organizacion = RepositorioOrganizacion.instance.getById(usuario.getOrganizacion().getId());
       TipoConsumo tipoConsumo = RepositorioTipoDeConsumo.instance.buscarPorTipo(request.queryParams("tipoDeConsumo"));
       Medicion medicion = new Medicion(
           tipoConsumo,
           BigDecimal.valueOf(Integer.parseInt(request.queryParams("valor"))),
           request.queryParams("periodicidad"),
           request.queryParams("periodoImputacion"));
-      RepositorioMediciones.instance.agregar(medicion);
+      organizacion.agregarMedicion(medicion);
+//      RepositorioMediciones.instance.agregar(medicion);
+      RepositorioOrganizacion.instance.actualizar(organizacion);
     });
     response.redirect("/mediciones");
     return null;
@@ -93,6 +100,9 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
 
   public Void cargar(Request request, Response response) {
     withTransaction(() -> {
+      Integer id = request.session().attribute("idUsuario");
+      Usuario usuario = RepositorioUsuarios.instance.getById(id);
+      Organizacion organizacion = RepositorioOrganizacion.instance.getById(usuario.getOrganizacion().getId());
       String[] rawBody = request.body().replaceAll("(.*Web.*)", "").replaceAll("(Content.*)", "")
           .replaceAll("\r", "").replaceAll("(\n){2,10}", "")
           .split("\n");
@@ -105,8 +115,10 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
             BigDecimal.valueOf(Integer.parseInt(lineSplited[1])),
             lineSplited[2],
             lineSplited[3]);
-        RepositorioMediciones.instance.agregar(medicion);
+        organizacion.agregarMedicion(medicion);
+//        RepositorioMediciones.instance.agregar(medicion);
       }
+      RepositorioOrganizacion.instance.actualizar(organizacion);
     });
     response.redirect("/mediciones");
     return null;

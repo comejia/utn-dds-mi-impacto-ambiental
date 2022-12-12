@@ -1,15 +1,14 @@
 package dominio.usuarios;
 
 import dominio.excepciones.ContraseniaDebilException;
+import dominio.organizaciones.Organizacion;
+import lombok.Getter;
 import org.passay.*;
 import org.passay.dictionary.Dictionary;
 import org.passay.dictionary.DictionaryBuilder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -17,10 +16,15 @@ import java.util.HashMap;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_usuario", length = 2)
+@Getter
 public abstract class Usuario extends EntidadPersistente {
 
   protected String usuario;
   protected String contrasenia;
+
+  @OneToOne(cascade = CascadeType.ALL)
+  private Organizacion organizacion;
+
 
   public String getUsuario() {
     return usuario;
@@ -43,6 +47,10 @@ public abstract class Usuario extends EntidadPersistente {
     if (!validate.isValid()) {
       throw new ContraseniaDebilException(getMensajeDeError(validate));
     }
+  }
+
+  public void setOrganizacion(Organizacion organizacion) {
+    this.organizacion = organizacion;
   }
 
   public PasswordValidator getValidador() {

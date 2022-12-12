@@ -42,7 +42,7 @@ public class Organizacion extends EntidadPersistente {
   private Clasificacion clasificacion;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "medicionId")
+  @JoinColumn(name = "organizacionId")
   private final List<Medicion> mediciones = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL)
@@ -99,7 +99,7 @@ public class Organizacion extends EntidadPersistente {
     reader.close();
   }
 
-  private void agregarMedicion(Medicion medicion) {
+  public void agregarMedicion(Medicion medicion) {
     this.mediciones.add(medicion);
   }
 
