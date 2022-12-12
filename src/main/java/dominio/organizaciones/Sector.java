@@ -4,12 +4,10 @@ import java.util.List;
 
 import dominio.miembros.Miembro;
 import dominio.usuarios.EntidadPersistente;
-import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
 public class Sector extends EntidadPersistente {
 
   @ManyToOne(cascade = CascadeType.MERGE)
@@ -20,15 +18,12 @@ public class Sector extends EntidadPersistente {
   @JoinTable(name = "Miembros_X_Sector")
   private List<Miembro> miembros;
 
-  String nombre;
-
   public Sector() {}
 
-  public Sector(Organizacion organizacion, List<Miembro> miembros, String nombre) {
+  public Sector(Organizacion organizacion, List<Miembro> miembros) {
     this.organizacion = organizacion;
     this.organizacion.agregarSector(this);
     this.miembros = miembros;
-    this.nombre = nombre;
   }
 
   public boolean perteneceAOrganizacion(Organizacion org) {
