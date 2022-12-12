@@ -111,7 +111,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       Sector contaduria = new Sector(microsoft, Collections.singletonList(ricardo));
       RepositorioSector.instance.agregar(seguridad);
       RepositorioSector.instance.agregar(contaduria);
-
+      administrador.setOrganizacion(UTN);
+      RepositorioUsuarios.instance.agregar(administrador);
+      RepositorioUsuarios.instance.agregar(persona);
       Vinculacion vinculacion = new Vinculacion(UTN, administrador);
       RepositorioVinculaciones.instance.agregar(vinculacion);
       RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));

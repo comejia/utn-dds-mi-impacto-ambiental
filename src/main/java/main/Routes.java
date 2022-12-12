@@ -1,19 +1,12 @@
 package main;
 
 import controllers.*;
-import dominio.Notificador.Contacto;
-import dominio.Notificador.NotificacionCalendarizada;
-import dominio.Notificador.Notificador;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class Routes {
-static Timer timer = new Timer();
 
   public static void main(String[] args) {
 
@@ -56,10 +49,10 @@ static Timer timer = new Timer();
     Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getOrganizacionVinculacionAceptadas,engine);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
-    Spark.get("/medicion-particular", medicionesController::particular, engine);
-    Spark.get("/medicion-csv", medicionesController::csv, engine);
-    Spark.post("/medicion-particular/nuevo", medicionesController::crear);
-    Spark.post("/medicion-csv/nuevo", medicionesController::cargar);
+    Spark.get("/mediciones-particular", medicionesController::particular, engine);
+    Spark.get("/mediciones-csv", medicionesController::csv, engine);
+    Spark.post("/mediciones-particular/nuevo", medicionesController::crear);
+    Spark.post("/mediciones-csv/nuevo", medicionesController::cargar);
 
     Spark.get("/trayectos", trayectosController::trayectos, engine);
     Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);

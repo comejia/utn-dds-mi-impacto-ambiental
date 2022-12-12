@@ -1,8 +1,5 @@
 package dominio.repositorios;
-import dominio.miembros.Miembro;
 import dominio.organizaciones.*;
-import dominio.trayectos.Direccion;
-import dominio.usuarios.Usuario;
 import funciones.ContenidoReportes;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
@@ -14,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class RepositorioOrganizacion implements WithGlobalEntityManager {
 
-    public static RepositorioOrganizacion instance = new RepositorioOrganizacion();
+  public static RepositorioOrganizacion instance = new RepositorioOrganizacion();
 
     public void agregar(Organizacion organizacion) {
         entityManager().persist(organizacion);
@@ -65,5 +62,7 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
 
         return contenidosFinal;
     }
+  public void actualizar(Organizacion organizacion) {
+    entityManager().merge(organizacion);
+  }
 }
-
