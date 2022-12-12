@@ -16,18 +16,18 @@ import java.util.Map;
 public class GuiaController implements WithGlobalEntityManager, TransactionalOps {
 
   public ModelAndView guia(Request request, Response response) {
-    Usuario usuarie = UsuarioSesion.estaLogueado(request);
-
-    if (usuarie == null) {
-      response.redirect("/login");
-      return null;
-    }
-    Map<String, Object> model = new HashMap<>();
-    Integer id = request.session().attribute("idUsuario");
-    Usuario usuario = RepositorioUsuarios.instance.getById(id);
-    model.put("sesion", true);
-    model.put("admin", usuario.getRole() == Role.ADMIN);
-    model.put("nombreUsuario", usuario.getUsuario());
-    return new ModelAndView(model, "guia.html.hbs");
+//    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+//
+//    if (usuarie == null) {
+//      response.redirect("/login");
+//      return null;
+//    }
+//    Map<String, Object> model = new HashMap<>();
+//    Integer id = request.session().attribute("idUsuario");
+//    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+//    model.put("sesion", true);
+//    model.put("admin", usuario.getRole() == Role.ADMIN);
+//    model.put("nombreUsuario", usuario.getUsuario());
+    return new ModelAndView(null, "guia.html.hbs");
   }
 }

@@ -1,5 +1,6 @@
 package main;
 
+import dominio.Notificador.Contacto;
 import dominio.miembros.Miembro;
 import dominio.miembros.TipoDocumento;
 import dominio.organizaciones.*;
@@ -25,7 +26,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
   public void run() {
     withTransaction(() -> {
       Administrador administrador = new Administrador("admin", "Admin2022@");
-
       Persona persona = new Persona("dds", "Dds2022@");
       SectorTerritorial sectorTerritorial = new SectorTerritorial(TipoSectorTerritorial.DEPARTAMENTO, "sectorTerritorial");
       RepositorioUsuarios.instance.agregar(administrador);
@@ -79,6 +79,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportes.instance.agregar(new ServicioContratado(TipoServicioContratado.TAXI));
       RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
       RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
+
+      Contacto migue = new Contacto("cmejia@frba.utn.edu.ar", "+5491155136689");
+      Organizacion noti = new Organizacion(
+          "NOTI", TipoOrganizacion.INSTITUCION, new Direccion("caba", "siempre viva", "666"), Clasificacion.UNIVERSIDAD);
+      noti.agregarContacto(migue);
+
+      RepositorioOrganizacion.instance.agregar(noti);
     });
   }
 }

@@ -59,11 +59,14 @@
        <property name="hibernate.connection.password" value=""/>
        <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 
-       <!-- MySQL Database Connector -->
-      <!--
+      <!-- MySQL Database Connector -->
+      <!--      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />-->
+      <!--      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp?useSSL=false" />-->
+      <!--      <property name="hibernate.connection.username" value="root" />-->
+      <!--      <property name="hibernate.connection.password" value="" />-->
+      <!--      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />-->
 
-
-      <!- Google Cloud Database Connector -->
+      <!-- Google Cloud Database Connector -->
 
 
       <property name="hibernate.show_sql" value="true" />

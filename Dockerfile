@@ -1,35 +1,38 @@
-FROM maven:3.6.3-jdk-8
+FROM maven:3.8.6-openjdk-8-slim
 
-EXPOSE 8080
+EXPOSE 9090
 
-WORKDIR .
+RUN apt-get update && apt-get install cron -y && rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
 
-RUN git clone https://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@github.com/dds-utn/2022-tpa-vi-no-grupo-05.git
+RUN service cron stop && service cron start
 
-RUN ls
+#WORKDIR .
 
-WORKDIR /2022-tpa-vi-no-grupo-05
+#RUN git clone https://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@github.com/dds-utn/2022-tpa-vi-no-grupo-05.git
 
-RUN mvn clean package
+COPY . /tpa-dds
 
-RUN java -version
+#COPY target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar /tpa-dds/target
 
-CMD  ["java", "-jar", "target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar"]
+#WORKDIR /2022-tpa-vi-no-grupo-05
+WORKDIR /tpa-dds
 
-# Me muevo a la carpeta donde voy a dejar el cronjob
-WORKDIR /2022-tpa-vi-no-grupo-05/cron.d
+RUN mvn package -DskipTests
 
-ARG CRON_NOTIFICADOR
+WORKDIR /etc/cron.d
 
-# Creo el archivito en /etc/cron.d/cronjob, que tiene el comando
-RUN echo "${CRON_ENVIO_GUIA} sh -c \"java -cp /2022-tpa-vi-no-grupo-05/target/application.jar src.main.java.dominio.Notificador.Notificador\"" >> logcron
+RUN echo "52 6 * * * sh -c \"cd /tpa-dds; /usr/local/openjdk-8/bin/java -cp /tpa-dds/target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar main/Recomendador 2>/tmp/cron.log\"" > notificador
 
-RUN chmod 0644 logcron
+RUN chmod 0644 notificador
 
-RUN crontab logcron
+RUN crontab notificador
 
-# Dejo que el container se quede escuchando los logs de crond
-ENTRYPOINT ["crond", "-f"]
+WORKDIR /tpa-dds
+
+CMD ["/bin/bash", "-c", "service cron start; java -jar target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar"]
+
+#CMD  ["java", "-jar", "target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar"]
+#CMD ["cron", "-f"]
 
 # Build image
 # docker build -t tpa .
