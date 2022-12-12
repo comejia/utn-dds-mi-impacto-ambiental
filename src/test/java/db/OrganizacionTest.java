@@ -44,14 +44,12 @@ public class OrganizacionTest extends AbstractPersistenceTest implements WithGlo
     }
 
     @Test
-    @Disabled
     public void calculoHCPorOrganizacion() {
         assertEquals(0, organizacion.getHCTotal("kgCO2eq/kWh"));
     }
     @Test
-    @Disabled
     public void composicionHcOrganizacion() {
-        assertEquals(0, organizacion.getHCPorPorcentaje(unidades));
+        assertEquals(2, organizacion.getHCPorPorcentaje(unidades).size());
     }
 
     @Test

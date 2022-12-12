@@ -28,7 +28,7 @@ public class Organizacion extends EntidadPersistente {
   private TipoOrganizacion tipoOrganizacion;
 
   @Transient
-  private List<Double> hcTotal;
+  private List<Double> hcTotal = new ArrayList<>();
 
   @OneToOne(cascade = CascadeType.ALL)
   private Direccion ubicacion;
