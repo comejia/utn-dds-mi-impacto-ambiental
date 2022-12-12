@@ -40,6 +40,9 @@ public class RepositorioOrganizacion implements WithGlobalEntityManager {
                     .getResultList()
                     .get(0);
         }
+    public Organizacion buscarOrganizacion(int id) {
+        return entityManager().find(Organizacion.class, id);
+    }
 
     public Map<String, Double> hcPorOrganizacion(String unidad) {
         List<ContenidoReportes> contenidosAux = new ArrayList<>();

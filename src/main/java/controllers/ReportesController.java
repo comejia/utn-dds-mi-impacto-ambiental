@@ -113,9 +113,6 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
     viewModel.put("organizaciones", organizacionList);
     List<SectorTerritorial> sectorTerritorialList = RepositorioSectorTerritorial.getInstance().listar();
     viewModel.put("sectores", sectorTerritorialList);
-
-    Integer id = request.session().attribute("idUsuario");
-    Usuario usuario = RepositorioUsuarios.instance.getById(id);
     viewModel.put("sesion", true);
     viewModel.put("admin", usuario.getRole() == Role.ADMIN);
     viewModel.put("nombreUsuario", usuario.getUsuario());

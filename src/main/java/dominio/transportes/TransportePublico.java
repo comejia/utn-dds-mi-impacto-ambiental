@@ -31,7 +31,7 @@ public class TransportePublico extends Transporte {
   public TransportePublico() { }
 
   public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea, FactorEmision factorEmision) {
-    this.tipoTransportePublico = tipoTransportePublico;
+    this.tipo = tipoTransportePublico;
     this.paradas = paradas;
     this.linea = linea;
     this.factorEmision = factorEmision;

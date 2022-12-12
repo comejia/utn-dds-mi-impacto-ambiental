@@ -2,6 +2,7 @@ package dominio.repositorios;
 import dominio.miembros.Miembro;
 import dominio.organizaciones.*;
 import dominio.trayectos.Tramo;
+import dominio.usuarios.Usuario;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.ArrayList;
@@ -33,9 +34,6 @@ public class RepositorioMiembros implements WithGlobalEntityManager {
     return entityManager().find(Miembro.class, id);
   }
 
-  public void agregar(Miembro miembro) {
-    entityManager().persist(miembro);
-  }
 
   public Usuario buscarMiembro(String usuario) {
     return entityManager().createQuery("from Usuario U where U.usuario = :usuario", Usuario.class)

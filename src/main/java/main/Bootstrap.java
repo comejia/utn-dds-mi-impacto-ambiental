@@ -28,12 +28,12 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
     withTransaction(() -> {
       Administrador administrador = new Administrador("admin", "Admin2022@");
       Persona persona = new Persona("dds", "Dds2022@");
-      SectorTerritorial sectorTerritorial = new SectorTerritorial(TipoSectorTerritorial.DEPARTAMENTO, "sectorTerritorial");
+      SectorTerritorial sectorTerritorial = new SectorTerritorial( "sectorTerritorial",TipoSectorTerritorial.DEPARTAMENTO);
       RepositorioUsuarios.instance.agregar(administrador);
       RepositorioUsuarios.instance.agregar(persona);
       RepositorioSectorTerritorial.instance.agregar(sectorTerritorial);
-      RepositorioSectorTerritorial.instance.agregar(new SectorTerritorial(TipoSectorTerritorial.PROVINCIA,"unSector"));
-      RepositorioSectorTerritorial.instance.agregar(new SectorTerritorial(TipoSectorTerritorial.PROVINCIA,"otroSector"));
+      RepositorioSectorTerritorial.instance.agregar(new SectorTerritorial("unSector",TipoSectorTerritorial.PROVINCIA));
+      RepositorioSectorTerritorial.instance.agregar(new SectorTerritorial("otroSector",TipoSectorTerritorial.PROVINCIA));
 
       TipoConsumo gasNatural = new TipoConsumo("Gas Natural", "m3", "Combustión fija", 1);
       TipoConsumo electricidad = new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2);

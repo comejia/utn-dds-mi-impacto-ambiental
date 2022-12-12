@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
-@NoArgsConstructor
+
 @Entity
 public class Direccion extends EntidadPersistente {
   private int localidadId;
