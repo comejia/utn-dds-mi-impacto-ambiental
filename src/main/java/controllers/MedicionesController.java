@@ -29,6 +29,8 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
     Map<String, Object> model = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+
+    model.put("color-med", true);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
@@ -49,6 +51,7 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
     Map<String, Object> model = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("color-med", true);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
@@ -57,7 +60,21 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
   }
 
   public ModelAndView csv(Request request, Response response) {
-    return new ModelAndView(null, "mediciones_csv.html.hbs");
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
+    Map<String, Object> model = new HashMap<>();
+    Integer id = request.session().attribute("idUsuario");
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("color-med", true);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
+    model.put("tiposDeConsumos", RepositorioTipoDeConsumo.instance.listar());
+    return new ModelAndView(model, "mediciones_csv.html.hbs");
   }
 
   public Void crear(Request request, Response response) {

@@ -26,6 +26,7 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
     Map<String, Object> model = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("color-rep", true);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());

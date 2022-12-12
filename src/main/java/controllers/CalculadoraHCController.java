@@ -29,6 +29,7 @@ public class CalculadoraHCController implements WithGlobalEntityManager, Transac
     Map<String, Object> model = new HashMap<>();
     int id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("color-cal", true);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("organizaciones", RepositorioOrganizacion.instance.listar());

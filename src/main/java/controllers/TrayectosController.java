@@ -34,6 +34,7 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
     Map<String, Object> model = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("color-tra", true);
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
@@ -53,6 +54,7 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
     Map<String, Object> modelo = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    modelo.put("color-tra", true);
     modelo.put("sesion", true);
     modelo.put("admin", usuario.getRole() == Role.ADMIN);
     modelo.put("nombreUsuario", usuario.getUsuario());

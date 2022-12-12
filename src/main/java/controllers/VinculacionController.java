@@ -38,6 +38,8 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     int id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
 
+    model.put("color-pro", true);
+
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
@@ -59,6 +61,9 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     Stream<Vinculacion> vinculacionesStream = RepositorioVinculaciones.instance.listar().stream();
     List<Vinculacion> vinculacionesPendientes = vinculacionesStream.filter(vinculacion -> !vinculacion.estaAprobada()).collect(Collectors.toList());
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+
+    model.put("color-vin", true);
+
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
@@ -79,6 +84,9 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     Stream<Vinculacion> vinculacionesStream = RepositorioVinculaciones.instance.listar().stream();
     List<Vinculacion> vinculacionesAceptadas = vinculacionesStream.filter(vinculacion -> vinculacion.estaAprobada()).collect(Collectors.toList());
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+
+    model.put("color-vin", true);
+
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
