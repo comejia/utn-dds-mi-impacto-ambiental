@@ -21,7 +21,7 @@ static Timer timer = new Timer();
     new Bootstrap().run();
 
     System.out.println("Iniciando servidor...");
-    Spark.port(8080); //TODO: Modificar al momento de pushear
+    Spark.port(9090); //TODO: Modificar al momento de pushear
     Spark.staticFileLocation("/public");
 
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();

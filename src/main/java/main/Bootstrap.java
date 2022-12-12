@@ -73,10 +73,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       Punto puntoInicioColectivoB160 = new Punto(parada1);
       Punto puntoDestinocClectivoB160 = new Punto(parada2);
       Tramo tramoColectivoB160 = new Tramo(colectivo7,puntoInicioColectivoB160,puntoDestinocClectivoB160);
-      TipoConsumo tipoConsumox = new TipoConsumo("Gas Natural", "m3", "Combustión fija", 100);
-      FactorEmision fireEmblem = new FactorEmision(100,"m3",tipoConsumox);
-      FactorEmision fireEmblem2 = new FactorEmision(500,"m3",tipoConsumox);
-      RepositorioTipoDeConsumo.instance.agregar(tipoConsumox);
       RepositorioPuntos.instance.agregar(puntoInicioColectivoA160);
       RepositorioPuntos.instance.agregar(puntoDestinocClectivoA160);
       RepositorioPuntos.instance.agregar(puntoInicioColectivoB160);
@@ -123,8 +119,8 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportes.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
       RepositorioTransportes.instance.agregar(new Bicicleta());
       RepositorioTransportes.instance.agregar(new ServicioContratado(TipoServicioContratado.TAXI));
-      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160,fireEmblem));
-      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7,fireEmblem2));
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160,factor3));
+      RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7,factor2));
 
       Contacto migue = new Contacto("cmejia@frba.utn.edu.ar", "+5491155136689");
       Organizacion noti = new Organizacion(
