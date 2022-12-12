@@ -2,7 +2,6 @@ package db;
 
 import dominio.miembros.AgenteSectorial;
 import dominio.organizaciones.*;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

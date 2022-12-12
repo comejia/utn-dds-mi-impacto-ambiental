@@ -5,7 +5,6 @@ import dominio.excepciones.TipoConsumoInexistente;
 import dominio.Notificador.Notificador;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import dominio.miembros.Miembro;
 import dominio.trayectos.Direccion;
 import dominio.usuarios.EntidadPersistente;
 import lombok.Getter;
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Entity
 @Getter
@@ -34,7 +32,7 @@ public class Organizacion extends EntidadPersistente {
   private Direccion ubicacion;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "sectorId")
+  @JoinColumn(name = "organizacionId")
   private final List<Sector> sectores = new ArrayList<>();
 
 
@@ -46,7 +44,7 @@ public class Organizacion extends EntidadPersistente {
   private final List<Medicion> mediciones = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "contactoId")
+  @JoinColumn(name = "organizacionId")
   private final List<Contacto> contactos = new ArrayList<>();
 
   @Transient

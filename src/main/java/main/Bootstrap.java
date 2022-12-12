@@ -1,8 +1,6 @@
 package main;
 
 import dominio.Notificador.Contacto;
-import dominio.miembros.Miembro;
-import dominio.miembros.TipoDocumento;
 import dominio.organizaciones.*;
 import dominio.repositorios.*;
 import dominio.transportes.*;
@@ -42,14 +40,16 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       paradas.add(new Parada(30));
       Organizacion UTN = new Organizacion(
               "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+      Sector seguridad = new Sector(UTN, new ArrayList<>(), "SEGURIDAD");
+      Sector contaduria = new Sector(UTN, new ArrayList<>(), "CONTADURIA");
       RepositorioOrganizacion.instance.agregar(UTN);
       administrador.setOrganizacion(UTN);
       RepositorioUsuarios.instance.agregar(administrador);
       RepositorioUsuarios.instance.agregar(persona);
       Vinculacion vinculacion = new Vinculacion(UTN, administrador);
       RepositorioVinculaciones.instance.agregar(vinculacion);
-      RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));
-      RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
+      //RepositorioOrganizacion.instance.agregar(new Organizacion("DDS"));
+      //RepositorioVinculaciones.instance.agregar(new Vinculacion(UTN, administrador));
       RepositorioTransportes.instance.agregar(new APie());
       RepositorioTransportes.instance.agregar(new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA));
       RepositorioTransportes.instance.agregar(new Bicicleta());

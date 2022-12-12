@@ -17,8 +17,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static spark.Spark.after;
-
 public class VinculacionController implements WithGlobalEntityManager, TransactionalOps {
 
   public ModelAndView getMiembroVinculacion(Request request, Response response) {
@@ -55,7 +53,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     List<Vinculacion> vinculacionesPendientes = vinculacionesStream.filter(vinculacion -> !vinculacion.estaAprobada()).collect(Collectors.toList());
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
 
-    model.put("color-vin", true);
+    model.put("color-ace", true);
 
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
