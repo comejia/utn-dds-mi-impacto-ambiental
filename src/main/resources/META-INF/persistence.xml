@@ -41,11 +41,11 @@
 
       <!-- HSQL Database Connector -->
 
-      <!-- <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:postgresql://containers-us-west-160.railway.app:6597/railway" />
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+      <property name="hibernate.connection.url" value="jdbc:postgresql://containers-us-west-160.railway.app:6597/tp" />
       <property name="hibernate.connection.username" value="postgres" />
       <property name="hibernate.connection.password" value="cKB6bA92Wujqw3KG8zBn" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" /> -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" />
 
 
 
@@ -79,11 +79,11 @@
 
       <!-- MySQL Database Connector -->
 
-      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" />
-      <property name="hibernate.connection.username" value="root" />
-      <property name="hibernate.connection.password" value="" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+<!--      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />-->
+<!--      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp" />-->
+<!--      <property name="hibernate.connection.username" value="root" />-->
+<!--      <property name="hibernate.connection.password" value="" />-->
+<!--      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />-->
 
 
       <property name="hibernate.show_sql" value="true" />
