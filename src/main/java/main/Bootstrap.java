@@ -58,9 +58,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       Sector sector3 = new Sector(UTN,new ArrayList<>(),"sector3");
       Sector sector4 = new Sector(UTN2,new ArrayList<>(),"sector4");
       RepositorioSector.instance.agregar(sector);
-      RepositorioSector.instance.agregar(sector2);
-      RepositorioSector.instance.agregar(sector3);
-      RepositorioSector.instance.agregar(sector4);
+      UTN.agregarSector(sector2);
+      UTN2.agregarSector(sector4);
+      UTN.agregarSector(sector3);
+      UTN2.agregarSector(sector);
+      //RepositorioSector.instance.agregar(sector2);
+      //RepositorioSector.instance.agregar(sector3);
+      //RepositorioSector.instance.agregar(sector4);
       RepositorioOrganizacion.instance.agregar(UTN);
       RepositorioUsuarios.instance.agregar(administrador);
       RepositorioUsuarios.instance.agregar(persona);
