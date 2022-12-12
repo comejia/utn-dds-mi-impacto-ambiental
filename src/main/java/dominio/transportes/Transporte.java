@@ -1,5 +1,6 @@
 package dominio.transportes;
 
+import dominio.trayectos.Distancia;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
 import dominio.usuarios.EntidadPersistente;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "tipo" , length = 2)
 public abstract class Transporte extends EntidadPersistente {
 
-  public abstract double getDistancia(Punto puntoInicio, Punto puntoFin);
+  public abstract Distancia getDistancia(Punto puntoInicio, Punto puntoFin);
 
   public abstract FactorEmision getFactorEmision();
 

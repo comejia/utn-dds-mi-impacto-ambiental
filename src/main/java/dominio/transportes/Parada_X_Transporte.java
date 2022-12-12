@@ -1,5 +1,6 @@
 package dominio.transportes;
 
+import dominio.trayectos.Distancia;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
 import dominio.trayectos.Parada;
@@ -21,8 +22,8 @@ public class Parada_X_Transporte extends Transporte {
     public Parada_X_Transporte(){}
 
     @Override
-    public double getDistancia(Punto puntoInicio, Punto puntoFin) {
-        return 0;
+    public Distancia getDistancia(Punto puntoInicio, Punto puntoFin) {
+        return new Distancia("KM",0.0);
     }
 
     @Override

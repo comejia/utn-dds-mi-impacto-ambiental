@@ -2,6 +2,7 @@ package dominio.transportes;
 
 import dominio.api.Geodds;
 import dominio.api.Geolocalizacion;
+import dominio.trayectos.Distancia;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
 
@@ -23,7 +24,7 @@ public abstract class TransportePrivado extends Transporte {
   }
 
   @Override
-  public double getDistancia(Punto puntoInicio, Punto puntoFin) {
+  public Distancia getDistancia(Punto puntoInicio, Punto puntoFin) {
     return api.getDistancia(puntoInicio.getDireccion(), puntoFin.getDireccion());
   }
 

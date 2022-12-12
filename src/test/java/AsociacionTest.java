@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AsociacionTest {
   APie aPie;
 
-  Direccion direccionMinisterio = new Direccion("Capital", "Av.Libertador", "2552");
+  Direccion direccionMinisterio = new Direccion(1, "Av.Libertador", "2552");
 
-  Direccion direccionEstudio = new Direccion("Capital", "Antezana", "247");
+  Direccion direccionEstudio = new Direccion(1, "Antezana", "247");
   Organizacion ministerio = new Organizacion("Ministerio Dr Goku", TipoOrganizacion.GUBERNAMENTAL, direccionMinisterio, Clasificacion.MINISTERIO);
 
   Organizacion estudioContable = new Organizacion("Estudio contable", TipoOrganizacion.EMPRESA, direccionEstudio, Clasificacion.MINISTERIO);

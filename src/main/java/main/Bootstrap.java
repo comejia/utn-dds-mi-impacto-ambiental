@@ -60,11 +60,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportePrivado.instance.agregar(camionetaNafta);
       RepositorioTransportePrivado.instance.agregar(bici);
 
-      Punto puntoInicioColectivoA160 = new Punto(new Direccion("Capital Federal", "pabellon", "3"));
-      Punto puntoDestinocClectivoA160 = new Punto(new Direccion("Don Orione", "Humahuaca", "1150"));
+      Punto puntoInicioColectivoA160 = new Punto(new Direccion(1, "pabellon", "3"));
+      Punto puntoDestinocClectivoA160 = new Punto(new Direccion(2, "Humahuaca", "1150"));
       Tramo tramoColectivoA160 = new Tramo(colectivo160,puntoInicioColectivoA160,puntoDestinocClectivoA160);
-      Punto puntoInicioColectivoB160 = new Punto(new Direccion("Capital Federal", "Directorio", "4269"));
-      Punto puntoDestinocClectivoB160 = new Punto(new Direccion("Capital Federal", "Castañares", "4702"));
+      Punto puntoInicioColectivoB160 = new Punto(new Direccion(1, "Directorio", "4269"));
+      Punto puntoDestinocClectivoB160 = new Punto(new Direccion(1, "Castañares", "4702"));
       Tramo tramoColectivoB160 = new Tramo(colectivo7,puntoInicioColectivoB160,puntoDestinocClectivoB160);
       RepositorioPuntos.instance.agregar(puntoInicioColectivoA160);
       RepositorioPuntos.instance.agregar(puntoDestinocClectivoA160);
@@ -77,13 +77,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTrayectos.instance.agregar(trayecto1);
 
       Organizacion UTN = new Organizacion(
-          "DDS", TipoOrganizacion.INSTITUCION, new Direccion("CABA", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+          "DDS", TipoOrganizacion.INSTITUCION, new Direccion(3, "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
       RepositorioOrganizacion.instance.agregar(UTN);
       Organizacion microsoft = new Organizacion(
-          "Microsoft", TipoOrganizacion.EMPRESA, new Direccion("CABA", "Carlos M. Della Paolera", "261"), Clasificacion.EMPRESA_SECTOR_PRIMARIO);
+          "Microsoft", TipoOrganizacion.EMPRESA, new Direccion(3, "Carlos M. Della Paolera", "261"), Clasificacion.EMPRESA_SECTOR_PRIMARIO);
       RepositorioOrganizacion.instance.agregar(microsoft);
       Organizacion legislatura = new Organizacion(
-          "Legislatura Porteña", TipoOrganizacion.GUBERNAMENTAL, new Direccion("CABA", "Peru", "160"), Clasificacion.MINISTERIO);
+          "Legislatura Porteña", TipoOrganizacion.GUBERNAMENTAL, new Direccion(3, "Peru", "160"), Clasificacion.MINISTERIO);
       RepositorioOrganizacion.instance.agregar(legislatura);
 
       SectorTerritorial buenosAires = new SectorTerritorial("Buenos Aires", TipoSectorTerritorial.PROVINCIA,Arrays.asList(microsoft,legislatura));

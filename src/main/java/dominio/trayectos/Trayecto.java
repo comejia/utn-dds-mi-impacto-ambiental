@@ -22,7 +22,7 @@ public class Trayecto extends EntidadPersistente {
   }
 
   public double distanciaTotal() {
-    return tramos.stream().mapToDouble(tramo -> tramo.distancia()).sum();
+    return tramos.stream().mapToDouble(tramo -> tramo.distancia().getValor()).sum();
   }
 
   public boolean puedoCompartir() {

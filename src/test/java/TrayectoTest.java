@@ -1,3 +1,4 @@
+import dominio.api.Geodds;
 import dominio.api.Geolocalizacion;
 import dominio.excepciones.PuntoIncompatibleException;
 import dominio.organizaciones.FactorEmision;
@@ -28,6 +29,7 @@ public class TrayectoTest {
   TransportePublico colectivo;
   TipoConsumo electricidad;
   FactorEmision factor1;
+  Geodds geodds;
 
   @BeforeEach
   public void initParadasYPuntos() {
@@ -55,6 +57,8 @@ public class TrayectoTest {
     factor1 =  new FactorEmision(10, "kgCO2eq/kWh", electricidad);
     colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55,factor1);
 
+    geodds = new Geodds();
+
   }
 
   @Test
@@ -71,35 +75,37 @@ public class TrayectoTest {
 
     Tramo tramoColectivo = new Tramo(colectivo, new Punto(p2), new Punto(p4));
 
-    assertEquals(73, tramoColectivo.distancia());
+    assertEquals(73, tramoColectivo.distancia().getValor());
   }
 
   @Test
   public void distanciaAPieSeCalculaConAppiExterna() {
 
-    Punto puntoInicio = new Punto(new Direccion("Lugano", "Mozart", "4000"));
-    Punto puntoDestino = new Punto(new Direccion("Lugano", "Mozart", "3500"));
+    Punto puntoInicio = new Punto(new Direccion(1, "Mozart", "4000"));
+    Punto puntoDestino = new Punto(new Direccion(1, "Mozart", "3500"));
+    Distancia pepe = geodds.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion());
 
-    when(api.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion())).thenReturn(500.0);
+    when(api.getDistancia(puntoInicio.getDireccion(), puntoDestino.getDireccion())).thenReturn(new Distancia("KM",500.0));
 
     Tramo tramoAPie = new Tramo(aPie, puntoInicio, puntoDestino);
 
-    assertEquals(500.0, tramoAPie.distancia());
+
+    assertEquals(500.0, tramoAPie.distancia().getValor());
   }
 
   @Test
   public void distanciaTotalTrayectoUnTramoEnColectivoUnoAPieYUnoEnBicicleta() {
-    Punto puntoInicioBici = new Punto(new Direccion("Flores", "Rivadavia", "11000"));
-    Punto puntoDestinoBici = new Punto(new Direccion("Flores", "Rivadavia", "8000"));
+    Punto puntoInicioBici = new Punto(new Direccion(2, "Rivadavia", "11000"));
+    Punto puntoDestinoBici = new Punto(new Direccion(2, "Rivadavia", "8000"));
 
-    when(api.getDistancia(puntoInicioBici.getDireccion(), puntoDestinoBici.getDireccion())).thenReturn(3000.0);
+    when(api.getDistancia(puntoInicioBici.getDireccion(), puntoDestinoBici.getDireccion())).thenReturn(new Distancia("KM",3000.0));
 
     Tramo tramoBici = new Tramo(bici, puntoInicioBici, puntoDestinoBici);
 
-    Punto puntoInicioAPie = new Punto(new Direccion("Villa del Parque", "Nazca", "3500"));
-    Punto puntoDestinoAPie = new Punto(new Direccion("Villa del Parque", "Nazca", "4100"));
+    Punto puntoInicioAPie = new Punto(new Direccion(3, "Nazca", "3500"));
+    Punto puntoDestinoAPie = new Punto(new Direccion(3, "Nazca", "4100"));
 
-    when(api.getDistancia(puntoInicioAPie.getDireccion(), puntoDestinoAPie.getDireccion())).thenReturn(600.0);
+    when(api.getDistancia(puntoInicioAPie.getDireccion(), puntoDestinoAPie.getDireccion())).thenReturn(new Distancia("KM",600.0));
 
     Tramo tramoAPie = new Tramo(aPie, puntoInicioAPie, puntoDestinoAPie);
 
