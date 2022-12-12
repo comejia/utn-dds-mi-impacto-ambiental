@@ -1,6 +1,8 @@
 package main;
 
-import dominio.Notificador.NotificacionCalendarizada;
+import dominio.Notificador.Contacto;
+import dominio.miembros.Miembro;
+import dominio.miembros.TipoDocumento;
 import dominio.organizaciones.*;
 import dominio.repositorios.*;
 import dominio.transportes.*;
@@ -40,7 +42,6 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       paradas.add(new Parada(30));
       Organizacion UTN = new Organizacion(
               "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
-      NotificacionCalendarizada notificacion = new NotificacionCalendarizada(UTN);
       RepositorioOrganizacion.instance.agregar(UTN);
       RepositorioUsuarios.instance.agregar(administrador);
       RepositorioUsuarios.instance.agregar(persona);
@@ -54,6 +55,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportes.instance.agregar(new ServicioContratado(TipoServicioContratado.TAXI));
       RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160));
       RepositorioTransportes.instance.agregar(new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7));
+
+      Contacto migue = new Contacto("cmejia@frba.utn.edu.ar", "+5491155136689");
+      Organizacion noti = new Organizacion(
+          "NOTI", TipoOrganizacion.INSTITUCION, new Direccion("caba", "siempre viva", "666"), Clasificacion.UNIVERSIDAD);
+      noti.agregarContacto(migue);
+
+      RepositorioOrganizacion.instance.agregar(noti);
     });
   }
 }
