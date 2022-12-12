@@ -73,6 +73,8 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
       entidadId = Integer.parseInt(sectorTerritorialParam);
     }
 
+    List<String> unidades = Arrays.asList("kgCO2eq/kWh","gCO2eq/m3");
+
     switch (reporteId){
       case 1: //HC total por sector territorial
         contenido =  RepositorioSectorTerritorial.getInstance().hcPorSector(unidad);
@@ -83,12 +85,12 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
         break;
       case 3: //Composición de HC total de un sector territorial
         sectorTerritorial = RepositorioSectorTerritorial.getInstance().buscarSector(entidadId);
-        //sectorTerritorial.getHcSector(unidades)
+        List<List<Double>> aux = sectorTerritorial.getHcSector(unidades);
         viewModel.put("esSector", true);
         break;
       case 4: //Composición de HC total de una Organización
         organizacion = RepositorioOrganizacion.getInstance().buscarOrganizacion(entidadId);
-        //organizacion.getHCPorPorcentaje(unidades));
+        List<Double> aux2 = organizacion.getHCPorPorcentaje(unidades);
         break;
       case 5: //Evolución de HC total de un sector territorial
         sectorTerritorial = RepositorioSectorTerritorial.getInstance().buscarSector(entidadId);
