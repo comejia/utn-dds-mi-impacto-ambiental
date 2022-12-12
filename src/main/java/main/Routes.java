@@ -53,6 +53,7 @@ static Timer timer = new Timer();
 
     Spark.get("/organizacion/vinculacion/rechazado/:id", vinculacionController::rechazar);
     Spark.get("/organizacion/vinculacion/aceptado/:id", vinculacionController::aceptar);
+    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getOrganizacionVinculacionAceptadas,engine);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
     Spark.get("/medicion-particular", medicionesController::particular, engine);
@@ -70,6 +71,7 @@ static Timer timer = new Timer();
     Spark.post("/reportes", reportesController::generarReporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
+    Spark.post("/calculadorHC", calculadoraHCController::calcularHC, engine);
 
 
     Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());

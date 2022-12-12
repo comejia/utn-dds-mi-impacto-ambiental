@@ -25,12 +25,17 @@
 
                     </td>
                         <td>
-                            <a class="btn btn-danger nav-item nav-link" href="/organizacion/vinculacion/rechazado/{{id}}">Rechazar Vinculacion</a>
+                            <a class="btn btn-danger nav-item nav-link" onclick="rechazado()" href="/organizacion/vinculacion/rechazado/{{id}}">Rechazar Vinculacion</a>
                         </td>
                 </tr>
             {{/each}}
             </tbody>
         </table>
+        <script>
+            function rechazado(){
+                alert("La vinculacion se eliminara");
+            }
+        </script>
     </section>
 {{/partial}}
 
