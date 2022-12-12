@@ -53,8 +53,10 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioFactorEmision.instance.agregarFactorEmision(factor3);
 
       List<Parada> paradas = new ArrayList<>();
-      paradas.add(new Parada(20));
-      paradas.add(new Parada(30));
+      Parada parada1 = new Parada(20);
+      Parada parada2 = new Parada(30);
+      paradas.add(parada1);
+      paradas.add(parada2);
       TransportePublico colectivo160 = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 160,factor3);
       TransportePublico colectivo7 = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 7,factor2);
       VehiculoParticular camionetaNafta = new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA);
@@ -64,11 +66,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioTransportePrivado.instance.agregar(camionetaNafta);
       RepositorioTransportePrivado.instance.agregar(bici);
 
-      Punto puntoInicioColectivoA160 = new Punto(new Direccion(1, "pabellon", "3"));
-      Punto puntoDestinocClectivoA160 = new Punto(new Direccion(2, "Humahuaca", "1150"));
+      Punto puntoInicioColectivoA160 = new Punto(parada1);
+      Punto puntoDestinocClectivoA160 = new Punto(parada2);
       Tramo tramoColectivoA160 = new Tramo(colectivo160,puntoInicioColectivoA160,puntoDestinocClectivoA160);
-      Punto puntoInicioColectivoB160 = new Punto(new Direccion(1, "Directorio", "4269"));
-      Punto puntoDestinocClectivoB160 = new Punto(new Direccion(1, "Castañares", "4702"));
+      Punto puntoInicioColectivoB160 = new Punto(parada1);
+      Punto puntoDestinocClectivoB160 = new Punto(parada2);
       Tramo tramoColectivoB160 = new Tramo(colectivo7,puntoInicioColectivoB160,puntoDestinocClectivoB160);
       RepositorioPuntos.instance.agregar(puntoInicioColectivoA160);
       RepositorioPuntos.instance.agregar(puntoDestinocClectivoA160);

@@ -2,6 +2,7 @@ package dominio.transportes;
 
 import dominio.api.Geodds;
 import dominio.api.Geolocalizacion;
+import dominio.organizaciones.TipoConsumo;
 import dominio.trayectos.Distancia;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
@@ -21,6 +22,7 @@ public abstract class TransportePrivado extends Transporte {
 
   public TransportePrivado() {
     this.api = new Geodds();
+    this.factorEmision = new FactorEmision(100,"kgCO2eq/km",new TipoConsumo("Nafta","km","",2));
   }
 
   @Override

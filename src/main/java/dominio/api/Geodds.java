@@ -38,7 +38,7 @@ public class Geodds implements Geolocalizacion {
     } catch (JsonProcessingException e) {
       throw new RuntimeException("No se pudo obtener la distancia desde la API");
     }
-    String unidad = jsonNodeApi.get("unidad").textValue();
+    //String unidad = jsonNodeApi.get("unidad").textValue();
 
     return jsonNodeApi.get("valor").asDouble();
   }
