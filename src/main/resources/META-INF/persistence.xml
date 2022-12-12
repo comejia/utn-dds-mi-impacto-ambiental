@@ -40,11 +40,13 @@
       <property name="hibernate.archive.autodetection" value="class"/>
 
       <!-- HSQL Database Connector -->
+
       <!-- <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
       <property name="hibernate.connection.url" value="jdbc:postgresql://containers-us-west-160.railway.app:6597/railway" />
       <property name="hibernate.connection.username" value="postgres" />
       <property name="hibernate.connection.password" value="cKB6bA92Wujqw3KG8zBn" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect" /> -->
+
 
 
 
