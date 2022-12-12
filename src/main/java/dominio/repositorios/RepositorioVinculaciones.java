@@ -1,6 +1,5 @@
 package dominio.repositorios;
 
-import dominio.organizaciones.Sector;
 import dominio.organizaciones.Vinculacion;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
@@ -9,11 +8,6 @@ import java.util.List;
 
 public class RepositorioVinculaciones implements WithGlobalEntityManager {
     public static RepositorioVinculaciones instance = new RepositorioVinculaciones();
-
-    public List<Sector> sectores(Vinculacion vinculacion)
-    {
-        return vinculacion.getOrganizacion().getSectores();
-    }
 
     public List<Vinculacion> listar() {
         return entityManager()
@@ -26,7 +20,6 @@ public class RepositorioVinculaciones implements WithGlobalEntityManager {
 
     public void agregar(Vinculacion vinculacion) {
         entityManager().persist(vinculacion.getEmpleado());
-        sectores(vinculacion).forEach(sector -> entityManager().persist(sector));
         entityManager().persist(vinculacion.getOrganizacion());
         entityManager().persist(vinculacion);
     }
