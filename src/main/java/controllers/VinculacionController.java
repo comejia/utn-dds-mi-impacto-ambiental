@@ -99,9 +99,9 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     int idLogeado = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(idLogeado);
     if (usuario.getRole() == Role.ADMIN)
-      response.redirect("/organizacion/vinculacion");
+      response.redirect("/organizaciones-vinculacion");
     else
-      response.redirect("/miembros/vinculacion");
+      response.redirect("/miembros-vinculacion");
     return null;
   }
 
@@ -111,7 +111,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
       vinculacion.setEstado();
     });
-    response.redirect("/organizacion/vinculacion/aceptadas");
+    response.redirect("/organizaciones-vinculacion");
     return null;
   }
 
@@ -122,7 +122,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
       RepositorioVinculaciones.instance.quitar(vinculacion);
     });
-    response.redirect("/organizacion/vinculacion");
+    response.redirect("/organizaciones-vinculacion");
     return null;
   }
 

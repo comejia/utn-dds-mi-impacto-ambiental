@@ -35,6 +35,7 @@ public class ReportesController implements WithGlobalEntityManager, Transactiona
 
     Integer id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    viewModel.put("color-rep", true);
     viewModel.put("sesion", true);
     viewModel.put("admin", usuario.getRole() == Role.ADMIN);
     viewModel.put("nombreUsuario", usuario.getUsuario());
