@@ -126,6 +126,8 @@ public class Organizacion extends EntidadPersistente {
     this.contactos.forEach(contacto -> notificarUnContacto(contacto, "Guia de recomendaciones", "link"));
   }
 
-}
+  public Sector obtenerSector(int numeroDeSector) {
+    return sectores.get(numeroDeSector);
+  }
 
-//TODO: Revisar
+}

@@ -1,12 +1,19 @@
 package main;
 
 import controllers.*;
+import dominio.Notificador.Contacto;
+import dominio.Notificador.NotificacionCalendarizada;
+import dominio.Notificador.Notificador;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Routes {
+static Timer timer = new Timer();
 
   public static void main(String[] args) {
 
@@ -46,6 +53,7 @@ public class Routes {
 
     Spark.get("/organizacion/vinculacion/rechazado/:id", vinculacionController::rechazar);
     Spark.get("/organizacion/vinculacion/aceptado/:id", vinculacionController::aceptar);
+    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getOrganizacionVinculacionAceptadas,engine);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
     Spark.get("/medicion-particular", medicionesController::particular, engine);
@@ -63,6 +71,7 @@ public class Routes {
     Spark.post("/reportes", reportesController::generarReporte, engine);
 
     Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
+    Spark.post("/calculadorHC", calculadoraHCController::calcularHC, engine);
 
 
     Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());
