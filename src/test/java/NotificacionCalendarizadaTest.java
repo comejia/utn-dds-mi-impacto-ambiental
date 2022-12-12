@@ -23,7 +23,7 @@ public class NotificacionCalendarizadaTest {
     Properties properties = new Properties();
     properties.load(Files.newInputStream(new File(System.getProperty("user.dir") + "/src/main/resources/mail_data.properties").toPath()));
     this.organizacion = new Organizacion(
-        "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+        "DDS", TipoOrganizacion.INSTITUCION, new Direccion(1, "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
     this.organizacion.agregarNotificador(new NotificarPorMail(properties.getProperty("user"), properties.getProperty("pass")));
     this.organizacion.agregarNotificador(new NotificarPorWhatsApp());
   }

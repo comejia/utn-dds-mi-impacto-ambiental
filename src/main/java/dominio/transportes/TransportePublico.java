@@ -3,6 +3,7 @@ package dominio.transportes;
 import java.util.List;
 
 import dominio.excepciones.PuntoIncompatibleException;
+import dominio.trayectos.Distancia;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
 import dominio.trayectos.Parada;
@@ -29,10 +30,11 @@ public class TransportePublico extends Transporte {
 
   public TransportePublico() { }
 
-  public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea) {
+  public TransportePublico(TipoTransportePublico tipoTransportePublico, List<Parada> paradas, int linea, FactorEmision factorEmision) {
     this.tipo = tipoTransportePublico;
     this.paradas = paradas;
     this.linea = linea;
+    this.factorEmision = factorEmision;
   }
 
   public void agregarParada(Parada parada) {
@@ -50,7 +52,8 @@ public class TransportePublico extends Transporte {
     int i1 = paradas.indexOf(parada1), i2 = paradas.indexOf(parada2);
 
     List<Parada> p = paradas.subList(i1, i2);
-    return p.stream().mapToDouble(parada -> parada.getDistanciaProximaParada()).sum();
+
+    return p.stream().mapToDouble(Parada::getDistanciaProximaParada).sum();
 
   }
 

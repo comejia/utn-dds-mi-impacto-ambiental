@@ -1,5 +1,6 @@
 package dominio.transportes;
 
+import dominio.organizaciones.FactorEmision;
 import lombok.Getter;
 
 import javax.persistence.*;

@@ -32,8 +32,8 @@ public class TrayectoTest extends AbstractPersistenceTest implements WithGlobalE
   public void init(){
     scaloneta = new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA);
 
-    A = new Punto(new Direccion("Burzaco","Yrigoyen","1234"));
-    B = new Punto(new Direccion("Burzaco","Yrigoyen","4321"));
+    A = new Punto(new Direccion(1,"Yrigoyen","1234"));
+    B = new Punto(new Direccion(1,"Yrigoyen","4321"));
 
     AB = new Tramo(scaloneta,A,B);
     BA = new Tramo(scaloneta,B,A);

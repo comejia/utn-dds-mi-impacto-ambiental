@@ -21,7 +21,7 @@ static Timer timer = new Timer();
     new Bootstrap().run();
 
     System.out.println("Iniciando servidor...");
-    Spark.port(9090); //TODO: Modificar al momento de pushear
+    Spark.port(8080); //TODO: Modificar al momento de pushear
     Spark.staticFileLocation("/public");
 
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -70,8 +70,10 @@ static Timer timer = new Timer();
     Spark.get("/reportes", reportesController::reporte, engine);
     Spark.post("/reportes", reportesController::generarReporte, engine);
 
-    Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
-    Spark.post("/calculadorHC", calculadoraHCController::calcularHC, engine);
+    Spark.get("/organizacion/calculadora-hc", calculadoraHCController::organizacionCalculadora, engine);
+    Spark.post("/organizacion/calculadorHC", calculadoraHCController::organizacionCalcularHC, engine);
+    Spark.get("/miembro/calculadora-hc", calculadoraHCController::miembroCalculadora, engine);
+    Spark.post("/miembro/calculadorHC", calculadoraHCController::miembroCalcularHC, engine);
 
 
     Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());

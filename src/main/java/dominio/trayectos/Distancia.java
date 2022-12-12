@@ -2,19 +2,19 @@ package dominio.trayectos;
 
 public class Distancia {
 
-  private Double unidad;
-  private String valor;
+  private Double valor;
+  private String unidad;
 
-  public Distancia(Double unidad, String valor) {
+  public Distancia(String unidad, Double valor) {
     this.unidad = unidad;
     this.valor = valor;
   }
 
-  public Double getUnidad() {
+  public String getUnidad() {
     return unidad;
   }
 
-  public String getValor() {
+  public Double getValor() {
     return valor;
   }
 
