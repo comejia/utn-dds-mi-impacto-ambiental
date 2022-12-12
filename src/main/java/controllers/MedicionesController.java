@@ -83,7 +83,7 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
     withTransaction(() -> {
       Integer id = request.session().attribute("idUsuario");
       Usuario usuario = RepositorioUsuarios.instance.getById(id);
-      Organizacion organizacion = RepositorioOrganizacion.instance.getById(usuario.getOrganizacion().getId());
+      Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion(usuario.getOrganizacion().getId());
       TipoConsumo tipoConsumo = RepositorioTipoDeConsumo.instance.buscarPorTipo(request.queryParams("tipoDeConsumo"));
       Medicion medicion = new Medicion(
           tipoConsumo,
@@ -102,7 +102,7 @@ public class MedicionesController implements WithGlobalEntityManager, Transactio
     withTransaction(() -> {
       Integer id = request.session().attribute("idUsuario");
       Usuario usuario = RepositorioUsuarios.instance.getById(id);
-      Organizacion organizacion = RepositorioOrganizacion.instance.getById(usuario.getOrganizacion().getId());
+      Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion(usuario.getOrganizacion().getId());
       String[] rawBody = request.body().replaceAll("(.*Web.*)", "").replaceAll("(Content.*)", "")
           .replaceAll("\r", "").replaceAll("(\n){2,10}", "")
           .split("\n");

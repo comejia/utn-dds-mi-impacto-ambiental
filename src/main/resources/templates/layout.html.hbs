@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/main.css">
-    <script src="/canvas.js"></script>
     <script src="https://kit.fontawesome.com/816b172e21.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -48,7 +47,7 @@
                             <a class="nav-item nav-link" {{#if color-gui}}style="border-style:solid;border-color:black;" {{/if}} href="/guia-recomendaciones">Guia Recomendacion <span class="sr-only">(current)</span></a>
                         </div>
                         <div class="navbar-nav">
-                            <a class="nav-item nav-link" {{#if color-cal}}style="border-style:solid;border-color:black;" {{/if}} href="/calculadora-hc">Calculador HC <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="/organizacion/calculadora-hc">Calculador HC <span class="sr-only">(current)</span></a>
                         </div>
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" {{#if color-rep}}style="border-style:solid;border-color:black;" {{/if}} href="/reportes">Reportes <span class="sr-only">(current)</span></a>
@@ -62,6 +61,9 @@
                         </div>
                         <div class="navbar-nav">
                             <a class="nav-item nav-link" {{#if color-tra}}style="border-style:solid;border-color:black;" {{/if}} href="/trayectos">Trayectos<span class="sr-only">(current)</span></a>
+                        </div>
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="/miembro/calculadora-hc">Calculador HC <span class="sr-only">(current)</span></a>
                         </div>
                     {{/if}}
                     <div class="navbar-nav ml-auto">
@@ -130,6 +132,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>

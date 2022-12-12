@@ -16,8 +16,7 @@ public class Sector extends EntidadPersistente {
   @JoinColumn(name = "organizacionId")
   private Organizacion organizacion;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "Miembros_X_Sector")
+  @ManyToMany(mappedBy = "trabajos")
   private List<Miembro> miembros;
 
   private String nombre;

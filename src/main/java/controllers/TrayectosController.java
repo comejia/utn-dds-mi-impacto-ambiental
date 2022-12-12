@@ -64,11 +64,17 @@ public class TrayectosController implements WithGlobalEntityManager, Transaction
 
   public Void crear(Request request, Response response) {
     List<Tramo> tramos = new ArrayList<>();
+    String inicio = request.queryParams("inicio");
+    String calleInicio = inicio.split(" ")[0];
+    String alturaInicio = inicio.split(" ")[1];
+    String fin = request.queryParams("fin");
+    String calleFin = fin.split(" ")[0];
+    String alturaFin = fin.split(" ")[1];
     withTransaction(() -> {
       Transporte transporte = getTransporte(request.queryParams("tipoTransporte"));
 
-      Punto puntoInicio = new Punto(new Direccion("", request.queryParams("inicio"), ""));
-      Punto puntoFin = new Punto(new Direccion("", request.queryParams("fin"), ""));
+      Punto puntoInicio = new Punto(new Direccion(1, calleInicio, alturaInicio));
+      Punto puntoFin = new Punto(new Direccion(1, calleFin, alturaFin));
       tramos.add(new Tramo(transporte, puntoInicio, puntoFin));
       Trayecto trayecto = new Trayecto(tramos);
       RepositorioTrayectos.instance.agregar(trayecto);

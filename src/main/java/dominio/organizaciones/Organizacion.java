@@ -65,6 +65,11 @@ public class Organizacion extends EntidadPersistente {
     this.ubicacion = ubicacion;
     this.clasificacion = clasificacion;
   }
+
+  public TipoOrganizacion getTipoOrganizacion() {
+    return tipoOrganizacion;
+  }
+
   public List<Double> getHc() {
     return this.hcTotal;
   }
