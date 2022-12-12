@@ -8,18 +8,20 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Entity
 public class Direccion extends EntidadPersistente {
-  private String localidad;
+  private int localidadId;
   private String calle;
   private String altura;
 
-  public Direccion(String localidad, String calle, String altura) {
-      this.localidad = localidad;
+  public Direccion() {}
+
+  public Direccion(int localidadId, String calle, String altura) {
+      this.localidadId = localidadId;
     this.calle = calle;
     this.altura = altura;
   }
 
-  public String getLocalidad() {
-    return localidad;
+  public int getLocalidadId() {
+    return localidadId;
   }
 
   public String getCalle() {

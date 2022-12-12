@@ -2,6 +2,7 @@ package dominio.transportes;
 
 import dominio.api.Geodds;
 import dominio.api.Geolocalizacion;
+import dominio.trayectos.Distancia;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
 

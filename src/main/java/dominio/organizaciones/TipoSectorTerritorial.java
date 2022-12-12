@@ -1,5 +1,5 @@
 package dominio.organizaciones;
 
 public enum TipoSectorTerritorial {
-    DEPARTAMENTO,PROVINCIA
+    DEPARTAMENTO,PROVINCIA,BARRIO
 }
