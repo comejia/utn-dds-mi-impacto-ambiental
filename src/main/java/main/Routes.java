@@ -46,6 +46,7 @@ public class Routes {
 
     Spark.get("/organizacion/vinculacion/rechazado/:id", vinculacionController::rechazar);
     Spark.get("/organizacion/vinculacion/aceptado/:id", vinculacionController::aceptar);
+    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getOrganizacionVinculacionAceptadas,engine);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
     Spark.get("/medicion-particular", medicionesController::particular, engine);
