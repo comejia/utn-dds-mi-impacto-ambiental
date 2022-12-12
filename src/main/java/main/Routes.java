@@ -1,12 +1,19 @@
 package main;
 
 import controllers.*;
+import dominio.Notificador.Contacto;
+import dominio.Notificador.NotificacionCalendarizada;
+import dominio.Notificador.Notificador;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Routes {
+static Timer timer = new Timer();
 
   public static void main(String[] args) {
 

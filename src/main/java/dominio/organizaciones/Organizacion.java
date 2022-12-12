@@ -127,5 +127,3 @@ public class Organizacion extends EntidadPersistente {
   }
 
 }
-
-//TODO: Revisar

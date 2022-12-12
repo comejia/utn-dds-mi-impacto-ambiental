@@ -1,5 +1,6 @@
 package main;
 
+import dominio.Notificador.NotificacionCalendarizada;
 import dominio.organizaciones.*;
 import dominio.repositorios.*;
 import dominio.transportes.*;
@@ -39,6 +40,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       paradas.add(new Parada(30));
       Organizacion UTN = new Organizacion(
               "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
+      NotificacionCalendarizada notificacion = new NotificacionCalendarizada(UTN);
       RepositorioOrganizacion.instance.agregar(UTN);
       RepositorioUsuarios.instance.agregar(administrador);
       RepositorioUsuarios.instance.agregar(persona);

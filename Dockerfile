@@ -16,6 +16,20 @@ RUN java -version
 
 CMD  ["java", "-jar", "target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar"]
 
+# Me muevo a la carpeta donde voy a dejar el cronjob
+WORKDIR /2022-tpa-vi-no-grupo-05/cron.d
+
+ARG CRON_NOTIFICADOR
+
+# Creo el archivito en /etc/cron.d/cronjob, que tiene el comando
+RUN echo "${CRON_ENVIO_GUIA} sh -c \"java -cp /2022-tpa-vi-no-grupo-05/target/application.jar src.main.java.dominio.Notificador.Notificador\"" >> logcron
+
+RUN chmod 0644 logcron
+
+RUN crontab logcron
+
+# Dejo que el container se quede escuchando los logs de crond
+ENTRYPOINT ["crond", "-f"]
 
 # Build image
 # docker build -t tpa .
