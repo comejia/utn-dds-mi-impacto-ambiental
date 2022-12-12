@@ -1,10 +1,7 @@
 package main;
 
-<<<<<<< HEAD
-import dominio.Notificador.Contacto;
-=======
 
->>>>>>> origin/backend_hc
+import dominio.Notificador.Contacto;
 import dominio.miembros.Miembro;
 import dominio.miembros.TipoDocumento;
 import dominio.organizaciones.*;
