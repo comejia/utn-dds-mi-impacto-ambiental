@@ -1,6 +1,7 @@
 package controllers;
 
 import dominio.organizaciones.Organizacion;
+import dominio.organizaciones.Sector;
 import dominio.organizaciones.Vinculacion;
 import dominio.repositorios.*;
 import dominio.usuarios.Role;
@@ -11,6 +12,8 @@ import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,13 +32,18 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       return null;
     }
     Map<String, Object> model = new HashMap<>();
+    List<Organizacion> listaOrgs= RepositorioOrganizacion.instance.listar();
+    List<Sector> sectores = new ArrayList<>();
+
     int id = request.session().attribute("idUsuario");
     Usuario usuario = RepositorioUsuarios.instance.getById(id);
+
     model.put("sesion", true);
     model.put("admin", usuario.getRole() == Role.ADMIN);
     model.put("nombreUsuario", usuario.getUsuario());
-    model.put("organizaciones", RepositorioOrganizacion.instance.listar());
+    model.put("organizaciones", listaOrgs);
     model.put("miembros", RepositorioUsuarios.instance.listar());
+    model.put("sectores", RepositorioSector.instance.listar());
     return new ModelAndView(model, "miembroVinculacion.html.hbs");
   }
 
@@ -56,12 +64,35 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
     model.put("nombreUsuario", usuario.getUsuario());
     model.put("vinculaciones", RepositorioVinculaciones.instance.listar());
     model.put("vinculacionesPendientes", vinculacionesPendientes);
+    model.put("seAgrego", "true");
     return new ModelAndView(model, "organizacionVinculacion.html.hbs");
+  }
+  public ModelAndView getOrganizacionVinculacionAceptadas(Request request, Response response) {
+    Usuario usuarie = UsuarioSesion.estaLogueado(request);
+
+    if (usuarie == null) {
+      response.redirect("/login");
+      return null;
+    }
+    Map<String, Object> model = new HashMap<>();
+    int id = request.session().attribute("idUsuario");
+    Stream<Vinculacion> vinculacionesStream = RepositorioVinculaciones.instance.listar().stream();
+    List<Vinculacion> vinculacionesAceptadas = vinculacionesStream.filter(vinculacion -> vinculacion.estaAprobada()).collect(Collectors.toList());
+    Usuario usuario = RepositorioUsuarios.instance.getById(id);
+    model.put("sesion", true);
+    model.put("admin", usuario.getRole() == Role.ADMIN);
+    model.put("nombreUsuario", usuario.getUsuario());
+    model.put("vinculaciones", vinculacionesAceptadas);
+    model.put("vinculacionesPendientes", RepositorioVinculaciones.instance.listar());
+    return new ModelAndView(model, "vinculaciones.html.hbs");
   }
 
   public Void crear(Request request, Response response) {
     withTransaction(() -> {
-      Organizacion organizacion = RepositorioOrganizacion.instance.buscarOrganizacion((request.queryParams("organizacion")));
+      Sector sector = RepositorioSector.instance.buscarSectores((request.queryParams("sector")));
+      Organizacion organizacion = sector.getOrganizacion();
+
+      System.out.print("Organizacion: " + request.queryParams("miembro"));
       Usuario usuario = RepositorioUsuarios.instance.buscarUsuario(request.queryParams("miembro"));
       Vinculacion vinculacion = new Vinculacion(
             organizacion,usuario);
@@ -82,7 +113,7 @@ public class VinculacionController implements WithGlobalEntityManager, Transacti
       Vinculacion vinculacion = RepositorioVinculaciones.instance.getById(id_empleado);
       vinculacion.setEstado();
     });
-    response.redirect("/organizacion/vinculacion");
+    response.redirect("/organizacion/vinculacion/aceptadas");
     return null;
   }
 

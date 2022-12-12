@@ -61,5 +61,6 @@ public class NotificarPorMail implements Notificador {
     } catch (MessagingException e) {
       throw new NotificacionException("Error al enviar la notificacion por mail");
     }
+    System.out.println("Soy la notificacion por whatsapp");
   }
 }

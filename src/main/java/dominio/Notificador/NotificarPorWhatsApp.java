@@ -26,5 +26,6 @@ public class NotificarPorWhatsApp implements Notificador {
             from,
             cuerpo)
         .create();
+    System.out.println("Soy la notificacion por whatsapp");
   }
 }
