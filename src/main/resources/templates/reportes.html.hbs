@@ -40,7 +40,7 @@
             </select>
         </div>
 
-        <div class="form-group">
+        <div id="unidadesDiv" class="form-group">
             <label for="unidad">Seleccione una unidad</label>
             <select class="form-control" name="unidad">
                 <option value>seleccione</option>
@@ -83,13 +83,20 @@
             if(selectValue == 3 || selectValue == 5){
                 document.getElementById("sectorTerritorialDiv").removeAttribute("hidden");
                 document.getElementById("organizacionDiv").setAttribute("hidden",true);
+                if(selectValue == 3){
+                    document.getElementById("unidadesDiv").setAttribute("hidden",true);
+                }
             }
             else if(selectValue == 4 || selectValue == 6){
                 document.getElementById("organizacionDiv").removeAttribute("hidden");
                 document.getElementById("sectorTerritorialDiv").setAttribute("hidden",true);
+                if(selectValue == 4){
+                    document.getElementById("unidadesDiv").setAttribute("hidden",true);
+                }
             } else {
                 document.getElementById("sectorTerritorialDiv").setAttribute("hidden",true);
                 document.getElementById("organizacionDiv").setAttribute("hidden",true);
+                document.getElementById("unidadesDiv").removeAttribute("hidden");
             }
         }
 </script>

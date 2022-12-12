@@ -47,6 +47,14 @@ public class Miembro extends EntidadPersistente {
     this.numeroDocumento = numeroDocumento;
   }
 
+  public Miembro(String nombre, String apellido, TipoDocumento tipoDocumento, int numeroDocumento, List<Trayecto> trayectos) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.tipoDocumento = tipoDocumento;
+    this.numeroDocumento = numeroDocumento;
+    this.trayectos = trayectos;
+  }
+
   public void vincularASector(Sector sector) {
     trabajos.add(sector);
   }
