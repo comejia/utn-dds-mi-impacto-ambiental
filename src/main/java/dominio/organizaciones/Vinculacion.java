@@ -20,6 +20,7 @@ public class Vinculacion extends EntidadPersistente{
     @OneToOne
     private Usuario empleado;
 
+
     boolean pendiente = true;
 
     public Vinculacion() {

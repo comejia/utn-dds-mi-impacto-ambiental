@@ -29,9 +29,9 @@ VinculacionController controlador = new VinculacionController();
   Organizacion ministerio = new Organizacion("Ministerio Dr Goku", TipoOrganizacion.GUBERNAMENTAL, direccionMinisterio, Clasificacion.MINISTERIO);
 
   Organizacion estudioContable = new Organizacion("Estudio contable", TipoOrganizacion.EMPRESA, direccionEstudio, Clasificacion.MINISTERIO);
-  Sector seguridad = new Sector(ministerio, new ArrayList<>());
+  Sector seguridad = new Sector(ministerio, new ArrayList<>(),"seguridad");
 
-  Sector contaduria = new Sector(estudioContable, new ArrayList<>());
+  Sector contaduria = new Sector(estudioContable, new ArrayList<>(),"contaduria");
   Miembro goku = new Miembro("Son", "Goku", TipoDocumento.DNI, 1525135681);
   Miembro vegetta = new Miembro("Son", "Vegetta", TipoDocumento.DNI, 1333804417);
 
