@@ -1,12 +1,13 @@
 package dominio.usuarios;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import dominio.organizaciones.Organizacion;
+import lombok.Getter;
+
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("AD")
+@Getter
 public class Administrador extends Usuario {
 
   @Enumerated(EnumType.STRING)
@@ -29,5 +30,4 @@ public class Administrador extends Usuario {
   public Role getRole() {
     return this.role;
   }
-
 }

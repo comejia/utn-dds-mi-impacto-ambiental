@@ -1,5 +1,6 @@
 package dominio.transportes;
 
+import dominio.trayectos.Distancia;
 import dominio.trayectos.Punto;
 import dominio.organizaciones.FactorEmision;
 import dominio.usuarios.EntidadPersistente;

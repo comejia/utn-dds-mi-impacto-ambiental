@@ -25,6 +25,10 @@ public class Medicion extends EntidadPersistente {
     this.periodicidadDeImputacion = periodicidadDeImputacion;
   }
 
+  public BigDecimal getValor() {
+    return valor;
+  }
+
   public double getHuellaCarbono(TipoConsumo tipo) {
     return valor.doubleValue();
   }

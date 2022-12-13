@@ -16,8 +16,9 @@ public class HomeController implements WithGlobalEntityManager, TransactionalOps
   public ModelAndView home(Request request, Response response) {
     Map<String, Object> model = new HashMap<>();
     Integer id = request.session().attribute("idUsuario");
+    model.put("color-ini", true);
     if (id == null) {
-      return new ModelAndView(null, "index.html.hbs");
+      return new ModelAndView(model, "index.html.hbs");
     }
 
     Usuario usuario = RepositorioUsuarios.instance.getById(id);

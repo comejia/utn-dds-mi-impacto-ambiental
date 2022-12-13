@@ -1,35 +1,39 @@
+import controllers.VinculacionController;
 import dominio.excepciones.NoPuedoCompartirMiTrayecto;
 import dominio.miembros.Miembro;
 import dominio.miembros.TipoDocumento;
+import dominio.organizaciones.*;
 import dominio.transportes.*;
 import dominio.trayectos.*;
+import dominio.usuarios.Administrador;
+import dominio.usuarios.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import dominio.organizaciones.Clasificacion;
-import dominio.organizaciones.Organizacion;
-import dominio.organizaciones.Sector;
-import dominio.organizaciones.TipoOrganizacion;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AsociacionTest {
+public class AsociacionTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
   APie aPie;
 
-  Direccion direccionMinisterio = new Direccion("Capital", "Av.Libertador", "2552");
+  Direccion direccionMinisterio = new Direccion(1, "Av.Libertador", "2552");
 
-  Direccion direccionEstudio = new Direccion("Capital", "Antezana", "247");
+  Direccion direccionEstudio = new Direccion(1, "Antezana", "247");
   Organizacion ministerio = new Organizacion("Ministerio Dr Goku", TipoOrganizacion.GUBERNAMENTAL, direccionMinisterio, Clasificacion.MINISTERIO);
 
   Organizacion estudioContable = new Organizacion("Estudio contable", TipoOrganizacion.EMPRESA, direccionEstudio, Clasificacion.MINISTERIO);
-  Sector seguridad = new Sector(ministerio, new ArrayList<>());
+  Sector seguridad = new Sector(ministerio, new ArrayList<>(), "SEGURIDAD");
 
-  Sector contaduria = new Sector(estudioContable, new ArrayList<>());
+  Sector contaduria = new Sector(estudioContable, new ArrayList<>(), "CONTADURIA");
   Miembro goku = new Miembro("Son", "Goku", TipoDocumento.DNI, 1525135681);
   Miembro vegetta = new Miembro("Son", "Vegetta", TipoDocumento.DNI, 1333804417);
-
+  TipoConsumo electricidad = new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2);
+  FactorEmision factor1 =  new FactorEmision(10, "kgCO2eq/kWh", electricidad);
 
   @Test
   public void unMiembroConoceSuSector() {
@@ -97,7 +101,7 @@ public class AsociacionTest {
     List<Parada> paradas = new ArrayList<>();
     paradas.add(p1);
     paradas.add(p5);
-    TransportePublico colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55);
+    TransportePublico colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO, paradas, 55,factor1);
     goku.vincularASector(seguridad);
     vegetta.vincularASector(seguridad);
     Tramo tramoColectivo = new Tramo(colectivo, new Punto(p1), new Punto(p5));

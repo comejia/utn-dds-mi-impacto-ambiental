@@ -14,7 +14,7 @@ public class Routes {
     new Bootstrap().run();
 
     System.out.println("Iniciando servidor...");
-    Spark.port(8080);
+    Spark.port(9090); //TODO: Modificar al momento de pushear
     Spark.staticFileLocation("/public");
 
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -40,19 +40,19 @@ public class Routes {
 
     Spark.get("/usuario/nuevo", usuarioController::getFormularioRegistrarUsuario, engine);
     Spark.post("/usuario/nuevo", usuarioController::registrarUsuario, engine);
+    Spark.get("/miembros-vinculacion", vinculacionController::getMiembroVinculacion, engine);
+    Spark.get("/organizaciones-vinculacion", vinculacionController::getOrganizacionVinculacion, engine);
+    Spark.post("/organizaciones-vinculacion/nuevo", vinculacionController::crear);
 
-    Spark.get("/organizacion/vinculacion", vinculacionController::getOrganizacionVinculacion, engine);
-    Spark.get("/miembros/vinculacion", vinculacionController::getMiembroVinculacion, engine);
-    Spark.get("/organizacion/vinculacion/aceptadas", vinculacionController::getVinculacionesAceptadas, engine);
-    Spark.post("/organizacion/vinculacion/nuevo", vinculacionController::crear);
-    Spark.post("/organizacion/vinculacion/rechazado", vinculacionController::rechazar);
-    Spark.post("/organizacion/vinculacion/aceptado", vinculacionController::aceptar);
+    Spark.get("/organizaciones-vinculacion/rechazado/:id", vinculacionController::rechazar);
+    Spark.get("/organizaciones-vinculacion/aceptado/:id", vinculacionController::aceptar);
+    Spark.get("/organizaciones-vinculacion/aceptadas", vinculacionController::getOrganizacionVinculacionAceptadas,engine);
 
     Spark.get("/mediciones", medicionesController::mediciones, engine);
-    Spark.get("/medicion-particular", medicionesController::particular, engine);
-    Spark.get("/medicion-csv", medicionesController::csv, engine);
-    Spark.post("/medicion-particular/nuevo", medicionesController::crear);
-    Spark.post("/medicion-csv/nuevo", medicionesController::cargar);
+    Spark.get("/mediciones-particular", medicionesController::particular, engine);
+    Spark.get("/mediciones-csv", medicionesController::csv, engine);
+    Spark.post("/mediciones-particular/nuevo", medicionesController::crear);
+    Spark.post("/mediciones-csv/nuevo", medicionesController::cargar);
 
     Spark.get("/trayectos", trayectosController::trayectos, engine);
     Spark.get("/trayectos/nuevo", trayectosController::nuevo, engine);
@@ -63,34 +63,12 @@ public class Routes {
     Spark.get("/reportes", reportesController::reporte, engine);
     Spark.post("/reportes", reportesController::generarReporte, engine);
 
-    Spark.get("/calculadora-hc", calculadoraHCController::calculadora, engine);
+    Spark.get("/organizacion/calculadora-hc", calculadoraHCController::organizacionCalculadora, engine);
+    Spark.post("/organizacion/calculadorHC", calculadoraHCController::organizacionCalcularHC, engine);
+    Spark.get("/miembro/calculadora-hc", calculadoraHCController::miembroCalculadora, engine);
+    Spark.post("/miembro/calculadorHC", calculadoraHCController::miembroCalcularHC, engine);
 
 
-    Spark.after((request, response) -> PerThreadEntityManagers.getEntityManager().clear());
-
-//    Spark.get("/blog", (request, response) -> {
-//      //String cookie = request.cookie("contador");
-//      String cookie = request.session().attribute("contador");
-//      int nro = cookie == null ? 0 : Integer.parseInt(cookie);
-//      //response.cookie("contador", String.valueOf(nro + 1));
-//      request.session().attribute("contador", String.valueOf(nro + 1));
-//      return new ModelAndView(request.session().attribute("contador"), "bb.hmlt.hbs");
-//    }, engine);
-
-//    Spark.before((request, response) -> {
-//      PerThreadEntityManagers.getEntityManager().clear();
-//
-//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
-//        response.redirect("/login");
-//      }
-//    });
-
-//    Spark.before("/admin", (request, response) -> {
-//      PerThreadEntityManagers.getEntityManager().clear();
-//
-//      if (!request.pathInfo().startsWith("/login") && request.session().attribute("user_id") == null) {
-//        response.redirect("/login");
-//      }
-//    });
+    Spark.after("/*",(request, response) -> PerThreadEntityManagers.getEntityManager().clear());
   }
 }

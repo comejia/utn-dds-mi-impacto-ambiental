@@ -1,5 +1,6 @@
 package dominio.repositorios;
 
+import dominio.trayectos.Tramo;
 import dominio.trayectos.Trayecto;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 

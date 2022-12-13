@@ -1,5 +1,7 @@
 package db;
 
+import dominio.organizaciones.FactorEmision;
+import dominio.organizaciones.TipoConsumo;
 import org.junit.jupiter.api.AfterEach;
 import dominio.transportes.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +20,8 @@ public class TransporteTest extends AbstractPersistenceTest implements WithGloba
   TransportePublico colectivo;
   VehiculoParticular scaloneta;
   Bicicleta bicicleta;
+  TipoConsumo electricidad;
+  FactorEmision factor1;
 
   @BeforeEach
   public void setup() {
@@ -33,7 +37,9 @@ public class TransporteTest extends AbstractPersistenceTest implements WithGloba
   public void init(){
     paradas = new ArrayList<>();
     paradas.add(new Parada(20));
-    colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO,paradas,160);
+    electricidad = new TipoConsumo("Electricidad", "kWh", "Electricidad adquirida", 2);
+    factor1 =  new FactorEmision(10, "kgCO2eq/kWh", electricidad);
+    colectivo = new TransportePublico(TipoTransportePublico.COLECTIVO,paradas,160,factor1);
 
     scaloneta = new VehiculoParticular(TipoVehiculo.CAMIONETA, TipoCombustible.NAFTA);
 

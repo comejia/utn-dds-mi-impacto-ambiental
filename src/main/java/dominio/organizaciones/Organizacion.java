@@ -26,28 +26,30 @@ public class Organizacion extends EntidadPersistente {
   private TipoOrganizacion tipoOrganizacion;
 
   @Transient
-  private List<Double> hcTotal;
+  private List<Double> hcTotal = new ArrayList<>();
 
   @OneToOne(cascade = CascadeType.ALL)
   private Direccion ubicacion;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "sectorId")
+  @JoinColumn(name = "organizacionId")
   private final List<Sector> sectores = new ArrayList<>();
+
 
   @Enumerated(EnumType.STRING)
   private Clasificacion clasificacion;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "medicionId")
+  @JoinColumn(name = "organizacionId")
   private final List<Medicion> mediciones = new ArrayList<>();
 
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "contactoId")
+  @JoinColumn(name = "organizacionId")
   private final List<Contacto> contactos = new ArrayList<>();
 
   @Transient
   private final List<Notificador> notificadores = new ArrayList<>();
+
 
   public Organizacion(String razonSocial) {
     this.razonSocial = razonSocial;
@@ -63,6 +65,11 @@ public class Organizacion extends EntidadPersistente {
     this.ubicacion = ubicacion;
     this.clasificacion = clasificacion;
   }
+
+  public TipoOrganizacion getTipoOrganizacion() {
+    return tipoOrganizacion;
+  }
+
   public List<Double> getHc() {
     return this.hcTotal;
   }
@@ -95,7 +102,7 @@ public class Organizacion extends EntidadPersistente {
     reader.close();
   }
 
-  private void agregarMedicion(Medicion medicion) {
+  public void agregarMedicion(Medicion medicion) {
     this.mediciones.add(medicion);
   }
 
@@ -121,4 +128,5 @@ public class Organizacion extends EntidadPersistente {
   public void notificarGuiaRecomendaciones() {
     this.contactos.forEach(contacto -> notificarUnContacto(contacto, "Guia de recomendaciones", "link"));
   }
+
 }
