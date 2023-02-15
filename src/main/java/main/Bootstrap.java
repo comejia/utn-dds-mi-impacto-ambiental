@@ -101,16 +101,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
       Organizacion UTN = new Organizacion(
           "DDS", TipoOrganizacion.INSTITUCION, new Direccion(3, "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
-            //  "DDS", TipoOrganizacion.INSTITUCION, new Direccion("Lugano", "Mozart", "2300"), Clasificacion.UNIVERSIDAD);
-      Sector seguridad = new Sector(UTN, new ArrayList<>(), "SEGURIDAD");
-      Sector contaduria = new Sector(UTN, new ArrayList<>(), "CONTADURIA");
-      RepositorioOrganizacion.instance.agregar(UTN);
+//      RepositorioOrganizacion.instance.agregar(UTN);
       Organizacion microsoft = new Organizacion(
           "Microsoft", TipoOrganizacion.EMPRESA, new Direccion(3, "Carlos M. Della Paolera", "261"), Clasificacion.EMPRESA_SECTOR_PRIMARIO);
-      RepositorioOrganizacion.instance.agregar(microsoft);
+//      RepositorioOrganizacion.instance.agregar(microsoft);
       Organizacion legislatura = new Organizacion(
           "Legislatura Porteña", TipoOrganizacion.GUBERNAMENTAL, new Direccion(3, "Peru", "160"), Clasificacion.MINISTERIO);
-      RepositorioOrganizacion.instance.agregar(legislatura);
+//      RepositorioOrganizacion.instance.agregar(legislatura);
 
       SectorTerritorial buenosAires = new SectorTerritorial("Buenos Aires", TipoSectorTerritorial.PROVINCIA,Arrays.asList(microsoft,legislatura));
       RepositorioSectorTerritorial.instance.agregar(buenosAires);
@@ -126,17 +123,17 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
       RepositorioMiembros.instance.agregar(jorge);
       RepositorioMiembros.instance.agregar(ricardo);
 
-      Sector seguridad = new Sector(UTN, Arrays.asList(jose,jorge));
-      Sector contaduria = new Sector(microsoft, Collections.singletonList(ricardo));
-      Sector sistemas = new Sector(legislatura, Arrays.asList(jose,jorge,ricardo));
-      RepositorioSector.instance.agregar(seguridad);
-      RepositorioSector.instance.agregar(contaduria);
-      RepositorioSector.instance.agregar(sistemas);
+      Sector seguridad = new Sector(UTN, Arrays.asList(jose,jorge), "SEGURIDAD");
+      Sector contaduria = new Sector(microsoft, Collections.singletonList(ricardo), "CONTADURIA");
+      Sector sistemas = new Sector(legislatura, Arrays.asList(jose,jorge,ricardo), "SISTEMAS");
 
-//      Sector seguridad = new Sector(UTN, Arrays.asList(jose,jorge));
-//      Sector contaduria = new Sector(microsoft, Collections.singletonList(ricardo));
+      RepositorioOrganizacion.instance.agregar(UTN);
+      RepositorioOrganizacion.instance.agregar(microsoft);
+      RepositorioOrganizacion.instance.agregar(legislatura);
 //      RepositorioSector.instance.agregar(seguridad);
 //      RepositorioSector.instance.agregar(contaduria);
+//      RepositorioSector.instance.agregar(sistemas);
+
       administrador.setOrganizacion(UTN);
       RepositorioUsuarios.instance.agregar(administrador);
       RepositorioUsuarios.instance.agregar(persona);

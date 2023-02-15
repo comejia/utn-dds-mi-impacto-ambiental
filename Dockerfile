@@ -1,10 +1,10 @@
-FROM maven:3.8.6-openjdk-8-slim
+FROM maven:3.8.6-openjdk-8
 
 EXPOSE 9090
 
 RUN apt-get update && apt-get install cron -y && rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
 
-RUN service cron stop && service cron start
+RUN service cron start && service cron status
 
 #WORKDIR .
 
@@ -21,7 +21,11 @@ RUN mvn package -DskipTests
 
 WORKDIR /etc/cron.d
 
-RUN echo "52 6 * * * sh -c \"cd /tpa-dds; /usr/local/openjdk-8/bin/java -cp /tpa-dds/target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar main/Recomendador 2>/tmp/cron.log\"" > notificador
+RUN service cron start && service cron restart && service cron status
+
+#RUN service cron status
+
+RUN echo "0 19 * * * sh -c \"cd /tpa-dds; /usr/local/openjdk-8/bin/java -cp /tpa-dds/target/tpa-1.0-SNAPSHOT-jar-with-dependencies.jar main/Recomendador 2>/tmp/cron.log\"" > notificador
 
 RUN chmod 0644 notificador
 
